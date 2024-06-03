@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "13745ac86808afdd",
+        "id": "1cbbce5e4d32311e",
         "type": "tabs",
         "children": [
           {
-            "id": "2a070a49d8401086",
+            "id": "e33f3055e97ed063",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -146,20 +146,21 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "2a070a49d8401086",
+  "active": "e33f3055e97ed063",
   "lastOpenFiles": [
-    "算法设计与分析/未命名.md",
+    "0,  1], [ 1,  1], [ 1, -1],  [-1, -1],  [-1,  4],  [ 0,  1], [ 0,  1.md",
     "人工智能数学期末速成极速入门/如下.md",
-    "Pasted image 20240603180049.png",
-    "Pasted image 20240604002524.png",
-    "Pasted image 20240604001908.png",
-    "Pasted image 20240604001903.png",
-    "Pasted image 20240604001517.png",
-    "Pasted image 20240604001442.png",
-    "Pasted image 20240603182255.png",
-    "Pasted image 20240603182251.png",
-    "Pasted image 20240603182230.png",
-    "Pasted image 20240603182158.png",
+    "Pasted image 20240604021451.png",
+    "Pasted image 20240604021448.png",
+    "Pasted image 20240604020951.png",
+    "Pasted image 20240604020722.png",
+    "Pasted image 20240604020210.png",
+    "Pasted image 20240604020203.png",
+    "Pasted image 20240604015801.png",
+    "Pasted image 20240604015736.png",
+    "Pasted image 20240604015724.png",
+    "Pasted image 20240604015124.png",
+    "算法设计与分析/未命名.md",
     "算法设计与分析",
     "2024-06-03.md",
     "编译原理期末极速入门/求语法树短语 直接短语.md",

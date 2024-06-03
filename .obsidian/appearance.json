@@ -2,5 +2,7 @@
   "accentColor": "",
   "enabledCssSnippets": [
     "picture-border-line"
-  ]
+  ],
+  "theme": "system",
+  "baseFontSize": 18
 }

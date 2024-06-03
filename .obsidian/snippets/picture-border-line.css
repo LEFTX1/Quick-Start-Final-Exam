@@ -1,5 +1,7 @@
-/* 为 Obsidian 中插入的图片设置边框颜色和样式 */
-.markdown-preview-view img {
-    border: 20px solid #ff0000; /* 红色边框，你可以修改颜色和边框宽度 */
-    border-radius: 4px; /* 可选：圆角边框 */
+img {
+    border-style: solid;
+    border-width: 5px;
+    border-color: green; /* 边框颜色: 绿色 */
 }
+
+
