@@ -1,0 +1,186 @@
+{
+  "main": {
+    "id": "da26f41699838e5a",
+    "type": "split",
+    "children": [
+      {
+        "id": "13745ac86808afdd",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "2a070a49d8401086",
+            "type": "leaf",
+            "state": {
+              "type": "image",
+              "state": {
+                "file": "static/Pasted image 20240601234955.png"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "d22288ca83ca5a1e",
+    "type": "split",
+    "children": [
+      {
+        "id": "44f34bd537a74724",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "a76c7b1782834285",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "3188ef97d946f1c9",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "c0c12fae01923263",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
+          }
+        ],
+        "currentTab": 1
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "727f1dd7ebe622c8",
+    "type": "split",
+    "children": [
+      {
+        "id": "ab67d26c31f17232",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "cf939eee2b264489",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "static/Pasted image 20240601234955.png",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "a4d451d05dd8d5a7",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "static/Pasted image 20240601234955.png",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "490832f5fb840376",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "7e71f334735e2057",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "static/Pasted image 20240601234955.png"
+              }
+            }
+          }
+        ],
+        "currentTab": 3
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:打开快速切换": false,
+      "graph:查看关系图谱": false,
+      "canvas:新建白板": false,
+      "daily-notes:打开/创建今天的日记": false,
+      "templates:插入模板": false,
+      "command-palette:打开命令面板": false
+    }
+  },
+  "active": "3188ef97d946f1c9",
+  "lastOpenFiles": [
+    "2024-06-03.md",
+    "static/Pasted image 20240601234955.png",
+    "static/Pasted image 20240601234031.png",
+    "static/Pasted image 20240522171316.png",
+    "static/Pasted image 20240519213746.png",
+    "static/Pasted image 20240519213944.png",
+    "static/Pasted image 20240519213507.png",
+    "人工智能数学期末速成极速入门/求极值 范数 矩阵范数 梯度 图像梯度.md",
+    "static/Pasted image 20240601234951.png",
+    "static/Pasted image 20240601234947.png",
+    "static/Pasted image 20240601234939.png",
+    "static/Pasted image 20240601234109.png",
+    "编译原理期末极速入门/求语法树短语 直接短语.md",
+    "编译原理期末极速入门/未命名.md",
+    "编译原理期末极速入门",
+    "马克思主义期末极速入门",
+    "static",
+    "人工智能数学期末速成极速入门/未命名.md",
+    "人工智能数学期末速成极速入门",
+    "electron/mvm nodejs.md",
+    "操作系统/图解系统/5.1 进程、线程基础知识.md",
+    "electron",
+    "操作系统/王道/2 进程管理.md",
+    "操作系统/王道",
+    "操作系统/图解系统",
+    "git github/github.md",
+    "操作系统",
+    "计算机组成原理",
+    "计算机网络/图解网络/2.1 TCP IP 网络模型有哪几层？.md",
+    "git github",
+    "计算机网络/未命名.md",
+    "未命名.md",
+    "Welcome.md",
+    "狂神全栈/dataStatistics.md",
+    "daily notes/2024.md"
+  ]
+}
