@@ -25,7 +25,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "算法设计与分析/未命名.md",
+                "file": "马克思主义期末极速入门/未命名.md",
                 "mode": "source",
                 "source": false
               }
@@ -82,7 +82,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 200,
+    "collapsed": true
   },
   "right": {
     "id": "727f1dd7ebe622c8",
@@ -98,7 +99,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "算法设计与分析/未命名.md",
+                "file": "马克思主义期末极速入门/未命名.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -115,7 +116,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "算法设计与分析/未命名.md",
+                "file": "马克思主义期末极速入门/未命名.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -138,7 +139,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "算法设计与分析/未命名.md"
+                "file": "马克思主义期末极速入门/未命名.md"
               }
             }
           }
@@ -161,34 +162,35 @@
   },
   "active": "c22ad4c4868642bc",
   "lastOpenFiles": [
-    "Pasted image 20240609131337.png",
-    "Pasted image 20240609010819.png",
-    "Pasted image 20240609010808.png",
-    "Pasted image 20240609010751.png",
-    "Pasted image 20240609010323.png",
-    "Pasted image 20240609010142.png",
-    "Pasted image 20240609001757.png",
-    "Pasted image 20240609000949.png",
-    "Pasted image 20240609000623.png",
-    "Pasted image 20240609000619.png",
-    "Pasted image 20240609000610.png",
-    "人工智能数学期末速成极速入门/人工智能数学期末复习.md",
+    "Pasted image 20240609214041.png",
+    "Pasted image 20240609214037.png",
     "算法设计与分析/未命名.md",
+    "编译原理期末极速入门/编译原理期末复习.md",
     "马克思主义期末极速入门/未命名.md",
+    "2022-12-06 211735 2.jpg",
+    "2022-12-06 211735 1.jpg",
+    "2022-12-06 102637 1.jpg",
+    "2022-12-06 102606 1.jpg",
+    "2022-12-06 102556 1.jpg",
+    "2022-12-06 102547 1.jpg",
+    "2022-12-06 102531 1.jpg",
+    "2022-12-06 102514 1.jpg",
+    "2022-12-06 102503 1.jpg",
+    "编译原理期末极速入门/未命名.md",
+    "人工智能数学期末速成极速入门/人工智能数学期末复习.md",
+    "output/人工智能数学期末复习.md",
+    "output/人工智能数学期末复习.html",
+    "output/attachment",
+    "output",
+    "合并后",
     "2022-12-06 211735.heic",
     "2022-12-06 102637.heic",
     "2022-12-06 102606.heic",
     "2022-12-06 102556.heic",
     "2022-12-06 102547.heic",
     "2022-12-06 102531.heic",
-    "2022-12-06 102514.heic",
-    "2022-12-06 102503.heic",
-    "2022-12-06 102451.heic",
-    "2022-12-06 102433.heic",
     "static/0,  1], [ 1,  1], [ 1, -1],  [-1, -1],  [-1,  4],  [ 0,  1], [ 0,  1.md",
     "2024-06-03.md",
-    "编译原理期末极速入门/求语法树短语 直接短语.md",
-    "编译原理期末极速入门/未命名.md",
     "人工智能数学期末速成极速入门/未命名.md",
     "electron/mvm nodejs.md",
     "操作系统/图解系统/5.1 进程、线程基础知识.md",
