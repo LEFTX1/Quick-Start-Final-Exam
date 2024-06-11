@@ -73,7 +73,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": " ",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -174,6 +174,7 @@
   },
   "active": "2fbf361d6c92b728",
   "lastOpenFiles": [
+    "Pasted image 20240611171111.png",
     "1f1f4d93d659124e73bf122ad0f0ce24_d2377883d96434ba3dfd444e25452c01.png",
     "Pasted image 20240610225028.png",
     "Pasted image 20240610225025.png",
@@ -184,7 +185,6 @@
     "Pasted image 20240610220641.png",
     "Pasted image 20240610215258.png",
     "Pasted image 20240610215241.png",
-    "Pasted image 20240610191739.png",
     "计算机组成原理/计算机组成原理.md",
     "计算机组成原理",
     "算法设计与分析/未命名.md",
