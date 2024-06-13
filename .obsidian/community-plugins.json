@@ -1,5 +1,5 @@
 [
-  "obsidian-git",
   "obsidian-markdown-export-plugin",
-  "obsidian-pandoc"
+  "obsidian-pandoc",
+  "obsidian-git"
 ]
