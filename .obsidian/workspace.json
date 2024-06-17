@@ -8,43 +8,18 @@
         "type": "tabs",
         "children": [
           {
-            "id": "e33f3055e97ed063",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "算法设计与分析/未命名.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "c22ad4c4868642bc",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "马克思主义期末极速入门/未命名.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
             "id": "2fbf361d6c92b728",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "马克思主义期末极速入门/未命名.md",
+                "file": "编译原理期末极速入门/编译原理期末复习.md",
                 "mode": "source",
                 "source": false
               }
             }
           }
-        ],
-        "currentTab": 2
+        ]
       }
     ],
     "direction": "vertical"
@@ -110,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "马克思主义期末极速入门/未命名.md",
+                "file": "编译原理期末极速入门/编译原理期末复习.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -127,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "马克思主义期末极速入门/未命名.md",
+                "file": "编译原理期末极速入门/编译原理期末复习.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -150,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "马克思主义期末极速入门/未命名.md"
+                "file": "编译原理期末极速入门/编译原理期末复习.md"
               }
             }
           }
@@ -173,11 +148,11 @@
   },
   "active": "2fbf361d6c92b728",
   "lastOpenFiles": [
-    "人工智能数学期末速成极速入门/人工智能数学期末复习.md",
-    "马克思主义期末极速入门/未命名.md",
-    "计算机组成原理/计算机组成原理.md",
-    "编译原理期末极速入门/编译原理期末复习.md",
     "算法设计与分析/未命名.md",
+    "人工智能数学期末速成极速入门/人工智能数学期末复习.md",
+    "计算机组成原理/计算机组成原理.md",
+    "马克思主义期末极速入门/未命名.md",
+    "编译原理期末极速入门/编译原理期末复习.md",
     "Pasted image 20240616160212.png",
     "Pasted image 20240616160209.png",
     "Pasted image 20240615204248.png",
