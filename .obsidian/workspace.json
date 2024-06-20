@@ -11,6 +11,16 @@
             "id": "2fbf361d6c92b728",
             "type": "leaf",
             "state": {
+              "type": "image",
+              "state": {
+                "file": "static/Screenshot_2024-06-14-17-26-01-637_com.zmzx.colle.jpg"
+              }
+            }
+          },
+          {
+            "id": "8ffaa2f251bba849",
+            "type": "leaf",
+            "state": {
               "type": "markdown",
               "state": {
                 "file": "计算机组成原理/计算机组成原理.md",
@@ -19,7 +29,8 @@
               }
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -146,24 +157,23 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "2fbf361d6c92b728",
+  "active": "8ffaa2f251bba849",
   "lastOpenFiles": [
-    "Pasted image 20240620021842.png",
-    "Pasted image 20240620021833.png",
-    "Pasted image 20240620021824.png",
-    "Pasted image 20240620014523.png",
-    "df956bb6d039a6ca0bad7c69125026d2_31d572892b7713ad0ef071c7e1ce1684.jpg",
-    "0905572cb632ed5621f18884dfe0b990_10f208df662ce9f3ee4ab117d52a98bf.jpg",
-    "7615c2cf695b01888cdcd9d346bd8579_a80013eb8cc3bc4e4fd212b15999631b.jpg",
-    "d1ded6705a6b81205a5f2aa06cc7fb4e_9e23180e6f4abdadea82853af4d87ed2.jpg",
-    "82db837d7e7bad5197957a7c6633ed10_8d8227ae0f137660077a8ea36bcc1832.jpg",
-    "Pasted image 20240620011639.png",
-    "Pasted image 20240620011633.png",
+    "马克思主义期末极速入门/未命名.md",
+    "Pasted image 20240620185613.png",
+    "Pasted image 20240620185110.png",
+    "Pasted image 20240620185104.png",
+    "Pasted image 20240620181837.png",
+    "Pasted image 20240620181635.png",
+    "Pasted image 20240620181529.png",
+    "Pasted image 20240620181428.png",
+    "Pasted image 20240620171029.png",
+    "static/Screenshot_2024-06-14-17-26-01-637_com.zmzx.colle.jpg",
+    "static/Screenshot_2024-06-14-17-25-59-147_com.zmzx.colle.jpg",
+    "计算机组成原理/计算机组成原理.md",
     "编译原理期末极速入门/编译原理期末复习.md",
     "算法设计与分析/未命名.md",
     "人工智能数学期末速成极速入门/人工智能数学期末复习.md",
-    "计算机组成原理/计算机组成原理.md",
-    "马克思主义期末极速入门/未命名.md",
     "未命名",
     "2022-12-06 211735 1.heic",
     "2022-12-06 102637 1.heic",
