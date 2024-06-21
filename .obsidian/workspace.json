@@ -11,16 +11,6 @@
             "id": "2fbf361d6c92b728",
             "type": "leaf",
             "state": {
-              "type": "image",
-              "state": {
-                "file": "static/Screenshot_2024-06-14-17-26-01-637_com.zmzx.colle.jpg"
-              }
-            }
-          },
-          {
-            "id": "8ffaa2f251bba849",
-            "type": "leaf",
-            "state": {
               "type": "markdown",
               "state": {
                 "file": "计算机组成原理/计算机组成原理.md",
@@ -29,8 +19,7 @@
               }
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -157,22 +146,22 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "8ffaa2f251bba849",
+  "active": "2fbf361d6c92b728",
   "lastOpenFiles": [
-    "Pasted image 20240621000249.png",
-    "10e37d592518db092286d20c585be6c2_fb8f268957fd14090072c10cad29e0e2.jpg",
-    "677c9be77825bf7e1aa61826193ff2c1_b0cf7466d53bc466751bc58bf336486c.jpg",
-    "cd82503dd02b72043fd5613332433855_2958ef7eaa1542d593e3b314a0bf9dee.jpg",
-    "9de203f8a67a48faa9cbf686275aeb66_9b42b3d27558eb531069532000c11080.jpg",
-    "Pasted image 20240620211705.png",
-    "571cf14e5cc479d8e64c078153fbbcf5_067acf6503386643842336f327c84063.jpg",
-    "马克思主义期末极速入门/未命名.md",
-    "Pasted image 20240620185613.png",
-    "Pasted image 20240620185110.png",
-    "Pasted image 20240620185104.png",
-    "Pasted image 20240620181837.png",
-    "计算机组成原理/计算机组成原理.md",
+    "Pasted image 20240621171013.png",
+    "Pasted image 20240621170911.png",
+    "Pasted image 20240621162059.png",
+    "Pasted image 20240621152130.png",
+    "Pasted image 20240621145307.png",
+    "IMG_20240621_145227.jpg",
     "编译原理期末极速入门/编译原理期末复习.md",
+    "static/Screenshot_2024-06-14-17-26-01-637_com.zmzx.colle.jpg",
+    "static/Pasted image 20240621134422.png",
+    "计算机组成原理/计算机组成原理.md",
+    "static/Pasted image 20240621000249.png",
+    "static/10e37d592518db092286d20c585be6c2_fb8f268957fd14090072c10cad29e0e2.jpg",
+    "static/677c9be77825bf7e1aa61826193ff2c1_b0cf7466d53bc466751bc58bf336486c.jpg",
+    "马克思主义期末极速入门/未命名.md",
     "算法设计与分析/未命名.md",
     "人工智能数学期末速成极速入门/人工智能数学期末复习.md",
     "未命名",
