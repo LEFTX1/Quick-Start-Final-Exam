@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "计算机组成原理/计算机组成原理.md",
+                "file": "计算机网络/计算机网络.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "计算机组成原理/计算机组成原理.md",
+                "file": "计算机网络/计算机网络.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "计算机组成原理/计算机组成原理.md",
+                "file": "计算机网络/计算机网络.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "计算机组成原理/计算机组成原理.md"
+                "file": "计算机网络/计算机网络.md"
               }
             }
           }
@@ -148,20 +148,19 @@
   },
   "active": "2fbf361d6c92b728",
   "lastOpenFiles": [
-    "Pasted image 20240624011252.png",
-    "Pasted image 20240624010103.png",
-    "Pasted image 20240624005539.png",
-    "Pasted image 20240624005505.png",
-    "static/IMG_20240621_145227.jpg",
+    "static/Pasted image 20240624005505.png",
+    "计算机网络/计算机网络.md",
     "计算机组成原理/计算机组成原理.md",
+    "static/Pasted image 20240624011252.png",
+    "static/Pasted image 20240624010103.png",
+    "static/Pasted image 20240624005539.png",
+    "static/IMG_20240621_145227.jpg",
     "static/Pasted image 20240623235554.png",
     "static/Pasted image 20240623232949.png",
     "static/Pasted image 20240623232640.png",
     "static/Pasted image 20240623232516.png",
     "static/Pasted image 20240623232442.png",
-    "static/Pasted image 20240623220102.png",
     "马克思主义期末极速入门/未命名.md",
-    "计算机网络/计算机网络.md",
     "编译原理期末极速入门/编译原理期末复习.md",
     "计算机网络",
     "算法设计与分析/未命名.md",
