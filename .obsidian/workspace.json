@@ -69,7 +69,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 200,
+    "collapsed": true
   },
   "right": {
     "id": "727f1dd7ebe622c8",
@@ -134,7 +135,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 205.5
+    "width": 200
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -148,18 +149,19 @@
   },
   "active": "2fbf361d6c92b728",
   "lastOpenFiles": [
-    "static/Pasted image 20240624005505.png",
+    "Pasted image 20240625133849.png",
+    "Pasted image 20240625133645.png",
+    "Pasted image 20240625133442.png",
+    "Pasted image 20240625133412.png",
+    "Pasted image 20240625133241.png",
+    "Pasted image 20240625132852.png",
+    "Pasted image 20240625132838.png",
+    "Pasted image 20240625130208.png",
+    "Pasted image 20240625125032.png",
+    "Pasted image 20240625124528.png",
+    "Pasted image 20240625124455.png",
     "计算机网络/计算机网络.md",
     "计算机组成原理/计算机组成原理.md",
-    "static/Pasted image 20240624011252.png",
-    "static/Pasted image 20240624010103.png",
-    "static/Pasted image 20240624005539.png",
-    "static/IMG_20240621_145227.jpg",
-    "static/Pasted image 20240623235554.png",
-    "static/Pasted image 20240623232949.png",
-    "static/Pasted image 20240623232640.png",
-    "static/Pasted image 20240623232516.png",
-    "static/Pasted image 20240623232442.png",
     "马克思主义期末极速入门/未命名.md",
     "编译原理期末极速入门/编译原理期末复习.md",
     "计算机网络",
