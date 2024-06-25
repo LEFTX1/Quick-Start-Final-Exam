@@ -4,5 +4,6 @@
     "picture-border-line"
   ],
   "theme": "system",
-  "baseFontSize": 18
+  "baseFontSize": 16,
+  "baseFontSizeAction": true
 }
