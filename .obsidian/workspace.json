@@ -23,9 +23,11 @@
             "id": "c1538190c821cbb4",
             "type": "leaf",
             "state": {
-              "type": "release-notes",
+              "type": "markdown",
               "state": {
-                "currentVersion": "1.6.5"
+                "file": "计算机网络/计算机网络.md",
+                "mode": "source",
+                "source": false
               }
             }
           }
@@ -159,19 +161,20 @@
   },
   "active": "c1538190c821cbb4",
   "lastOpenFiles": [
+    "Pasted image 20240626215829.png",
+    "Pasted image 20240626214800.png",
+    "Pasted image 20240626214443.png",
+    "Pasted image 20240626214433.png",
+    "Pasted image 20240626214317.png",
+    "Pasted image 20240626214143.png",
+    "Pasted image 20240626204849.png",
+    "Pasted image 20240626204359.png",
+    "Pasted image 20240626204333.png",
+    "Pasted image 20240626203913.png",
+    "Pasted image 20240626203907.png",
     "操作系统/操作系统.md",
     "计算机网络/计算机网络.md",
-    "Pasted image 20240625203258.png",
-    "Pasted image 20240625203254.png",
-    "Pasted image 20240625203154.png",
-    "Pasted image 20240625203001.png",
-    "Pasted image 20240625202820.png",
-    "Pasted image 20240625202818.png",
-    "Pasted image 20240625202815.png",
-    "Pasted image 20240625202705.png",
-    "Pasted image 20240625202701.png",
     "操作系统",
-    "Pasted image 20240625195640.png",
     "计算机组成原理/计算机组成原理.md",
     "马克思主义期末极速入门/未命名.md",
     "编译原理期末极速入门/编译原理期末复习.md",
