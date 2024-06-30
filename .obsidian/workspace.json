@@ -25,7 +25,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "计算机网络/计算机网络.md",
+                "file": "操作系统/操作系统.md",
                 "mode": "source",
                 "source": false
               }
@@ -98,7 +98,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "计算机网络/计算机网络.md",
+                "file": "操作系统/操作系统.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -115,7 +115,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "计算机网络/计算机网络.md",
+                "file": "操作系统/操作系统.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -138,7 +138,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "计算机网络/计算机网络.md"
+                "file": "操作系统/操作系统.md"
               }
             }
           }
@@ -161,11 +161,11 @@
   },
   "active": "c1538190c821cbb4",
   "lastOpenFiles": [
+    "计算机网络/计算机网络.md",
     "Pasted image 20240629182750.png",
     "Pasted image 20240629182521.png",
     "Pasted image 20240629182503.png",
     "操作系统/操作系统.md",
-    "计算机网络/计算机网络.md",
     "Pasted image 20240628205239.png",
     "Pasted image 20240628205113.png",
     "Pasted image 20240628204822.png",
@@ -173,7 +173,6 @@
     "Pasted image 20240628203056.png",
     "Pasted image 20240628202509.png",
     "Pasted image 20240628200649.png",
-    "Pasted image 20240628200136.png",
     "操作系统",
     "计算机组成原理/计算机组成原理.md",
     "马克思主义期末极速入门/未命名.md",
