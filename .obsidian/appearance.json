@@ -4,6 +4,7 @@
     "picture-border-line"
   ],
   "theme": "system",
-  "baseFontSize": 12,
-  "baseFontSizeAction": true
+  "baseFontSize": 10,
+  "baseFontSizeAction": true,
+  "cssTheme": "Blue Topaz"
 }

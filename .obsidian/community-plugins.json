@@ -1,5 +1,7 @@
 [
   "obsidian-markdown-export-plugin",
   "obsidian-pandoc",
-  "obsidian-git"
+  "obsidian-git",
+  "obsidian-image-toolkit",
+  "mousewheel-image-zoom"
 ]
