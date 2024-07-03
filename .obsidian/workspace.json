@@ -23,11 +23,9 @@
             "id": "c1538190c821cbb4",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "image",
               "state": {
-                "file": "计算机网络/计算机网络.md",
-                "mode": "source",
-                "source": false
+                "file": "static/Pasted image 20240702222629.png"
               }
             }
           }
@@ -82,8 +80,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200,
-    "collapsed": true
+    "width": 200
   },
   "right": {
     "id": "727f1dd7ebe622c8",
@@ -160,20 +157,19 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "c1538190c821cbb4",
+  "active": "a76c7b1782834285",
   "lastOpenFiles": [
-    "Pasted image 20240702222629.png",
-    "Pasted image 20240702222231.png",
-    "Pasted image 20240702221311.png",
-    "Pasted image 20240702215820.png",
-    "Pasted image 20240702215228.png",
-    "Pasted image 20240702215133.png",
-    "Pasted image 20240702214914.png",
-    "Pasted image 20240702214544.png",
-    "Pasted image 20240702211953.png",
-    "Pasted image 20240702202727.png",
-    "Pasted image 20240702195440.png",
     "计算机网络/计算机网络.md",
+    "static/Pasted image 20240702222629.png",
+    "static/Pasted image 20240702222231.png",
+    "static/Pasted image 20240702221311.png",
+    "static/Pasted image 20240702215820.png",
+    "static/Pasted image 20240702215228.png",
+    "static/Pasted image 20240702215133.png",
+    "static/Pasted image 20240702214914.png",
+    "static/Pasted image 20240702214544.png",
+    "static/Pasted image 20240702211953.png",
+    "static/Pasted image 20240702202727.png",
     "操作系统/操作系统.md",
     "static/2022-12-06 211735.heic",
     "static/2022-12-06 211735 1.heic",
