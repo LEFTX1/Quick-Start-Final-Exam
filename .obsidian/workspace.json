@@ -23,9 +23,11 @@
             "id": "c1538190c821cbb4",
             "type": "leaf",
             "state": {
-              "type": "image",
+              "type": "markdown",
               "state": {
-                "file": "static/Pasted image 20240702222629.png"
+                "file": "计算机网络/计算机网络.md",
+                "mode": "source",
+                "source": false
               }
             }
           }
@@ -157,8 +159,10 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "a76c7b1782834285",
+  "active": "c1538190c821cbb4",
   "lastOpenFiles": [
+    "操作系统/操作系统.md",
+    "编译原理期末极速入门/编译原理期末复习.md",
     "计算机网络/计算机网络.md",
     "static/Pasted image 20240702222629.png",
     "static/Pasted image 20240702222231.png",
@@ -170,7 +174,6 @@
     "static/Pasted image 20240702214544.png",
     "static/Pasted image 20240702211953.png",
     "static/Pasted image 20240702202727.png",
-    "操作系统/操作系统.md",
     "static/2022-12-06 211735.heic",
     "static/2022-12-06 211735 1.heic",
     "static/2022-12-06 102637.heic",
@@ -183,7 +186,6 @@
     "static/2022-12-06 102547 1.heic",
     "计算机组成原理/计算机组成原理.md",
     "马克思主义期末极速入门/未命名.md",
-    "编译原理期末极速入门/编译原理期末复习.md",
     "算法设计与分析/未命名.md",
     "人工智能数学期末速成极速入门/人工智能数学期末复习.md",
     "编译原理期末极速入门/未命名.md",
