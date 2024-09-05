@@ -25,7 +25,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "计算机网络/计算机网络.md",
+                "file": "数值分析/未命名.md",
                 "mode": "source",
                 "source": false
               }
@@ -98,7 +98,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "计算机网络/计算机网络.md",
+                "file": "数值分析/未命名.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -115,7 +115,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "计算机网络/计算机网络.md",
+                "file": "数值分析/未命名.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -138,7 +138,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "计算机网络/计算机网络.md"
+                "file": "数值分析/未命名.md"
               }
             }
           }
@@ -161,9 +161,11 @@
   },
   "active": "c1538190c821cbb4",
   "lastOpenFiles": [
+    "计算机网络/计算机网络.md",
+    "数值分析/未命名.md",
+    "数值分析",
     "操作系统/操作系统.md",
     "编译原理期末极速入门/编译原理期末复习.md",
-    "计算机网络/计算机网络.md",
     "static/Pasted image 20240702222629.png",
     "static/Pasted image 20240702222231.png",
     "static/Pasted image 20240702221311.png",
@@ -183,7 +185,6 @@
     "static/2022-12-06 102556.heic",
     "static/2022-12-06 102556 1.heic",
     "static/2022-12-06 102547.heic",
-    "static/2022-12-06 102547 1.heic",
     "计算机组成原理/计算机组成原理.md",
     "马克思主义期末极速入门/未命名.md",
     "算法设计与分析/未命名.md",
