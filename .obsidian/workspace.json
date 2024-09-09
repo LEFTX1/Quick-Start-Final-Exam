@@ -30,9 +30,19 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "93047144b39d632c",
+            "type": "leaf",
+            "state": {
+              "type": "release-notes",
+              "state": {
+                "currentVersion": "1.6.7"
+              }
+            }
           }
         ],
-        "currentTab": 1
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -159,8 +169,10 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "c1538190c821cbb4",
+  "active": "93047144b39d632c",
   "lastOpenFiles": [
+    "Pasted image 20240905200044.png",
+    "Pasted image 20240905200036.png",
     "计算机网络/计算机网络.md",
     "数值分析/数值分析.md",
     "数值分析",
@@ -175,7 +187,6 @@
     "static/Pasted image 20240702214914.png",
     "static/Pasted image 20240702214544.png",
     "static/Pasted image 20240702211953.png",
-    "static/Pasted image 20240702202727.png",
     "static/2022-12-06 211735.heic",
     "static/2022-12-06 211735 1.heic",
     "static/2022-12-06 102637.heic",
