@@ -35,9 +35,11 @@
             "id": "93047144b39d632c",
             "type": "leaf",
             "state": {
-              "type": "release-notes",
+              "type": "markdown",
               "state": {
-                "currentVersion": "1.6.7"
+                "file": "数值分析/数值分析.md",
+                "mode": "source",
+                "source": false
               }
             }
           }
@@ -171,6 +173,8 @@
   },
   "active": "93047144b39d632c",
   "lastOpenFiles": [
+    "Pasted image 20240909152235.png",
+    "b0cac8dc6ddb6b76685b073b7285159.jpg",
     "Pasted image 20240905200044.png",
     "Pasted image 20240905200036.png",
     "计算机网络/计算机网络.md",
@@ -185,8 +189,6 @@
     "static/Pasted image 20240702215228.png",
     "static/Pasted image 20240702215133.png",
     "static/Pasted image 20240702214914.png",
-    "static/Pasted image 20240702214544.png",
-    "static/Pasted image 20240702211953.png",
     "static/2022-12-06 211735.heic",
     "static/2022-12-06 211735 1.heic",
     "static/2022-12-06 102637.heic",
