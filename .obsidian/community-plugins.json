@@ -3,5 +3,6 @@
   "obsidian-pandoc",
   "obsidian-git",
   "obsidian-image-toolkit",
-  "mousewheel-image-zoom"
+  "mousewheel-image-zoom",
+  "obsidian-link-embed"
 ]
