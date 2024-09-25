@@ -37,7 +37,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "黑马点评项目/黑马点评.md",
+                "file": "mysql45讲/mysql45讲.md",
                 "mode": "source",
                 "source": false
               }
@@ -94,7 +94,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 200,
+    "collapsed": true
   },
   "right": {
     "id": "727f1dd7ebe622c8",
@@ -110,7 +111,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "黑马点评项目/黑马点评.md",
+                "file": "mysql45讲/mysql45讲.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -127,7 +128,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "黑马点评项目/黑马点评.md",
+                "file": "mysql45讲/mysql45讲.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -150,7 +151,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "黑马点评项目/黑马点评.md"
+                "file": "mysql45讲/mysql45讲.md"
               }
             }
           }
@@ -173,8 +174,13 @@
   },
   "active": "93047144b39d632c",
   "lastOpenFiles": [
-    "计算机网络/计算机网络.md",
+    "Pasted image 20240926002812.png",
+    "Pasted image 20240926002639.png",
+    "Pasted image 20240926001539.png",
     "黑马点评项目/黑马点评.md",
+    "mysql45讲/mysql45讲.md",
+    "mysql45讲",
+    "计算机网络/计算机网络.md",
     "黑马点评项目",
     "数值分析/数值分析.md",
     "每日学习记录/begin - 2024-09-19.md",
@@ -190,15 +196,12 @@
     "static/Pasted image 20240702222231.png",
     "static/Pasted image 20240702221311.png",
     "static/Pasted image 20240702215820.png",
-    "static/Pasted image 20240702215228.png",
-    "static/Pasted image 20240702215133.png",
     "static/2022-12-06 211735.heic",
     "static/2022-12-06 211735 1.heic",
     "static/2022-12-06 102637.heic",
     "static/2022-12-06 102637 1.heic",
     "static/2022-12-06 102606.heic",
     "static/2022-12-06 102606 1.heic",
-    "static/2022-12-06 102556.heic",
     "计算机组成原理/计算机组成原理.md",
     "马克思主义期末极速入门/未命名.md",
     "算法设计与分析/未命名.md",
