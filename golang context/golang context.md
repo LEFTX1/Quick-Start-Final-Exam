@@ -131,9 +131,14 @@ type canceler interface {
 - **children**：一个 set，指向 `cancelCtx` 的所有子 context；
 - **err**：记录了当前 `cancelCtx` 的错误，必然为某个 context 的子 context。
 
+
+
 ### Q4：`cancelCtx`是怎么继承父context的能力的
 - `cancelCtx` 通过嵌入一个 `Context` 接口，继承了父 `Context` 的所有方法（如 `Deadline`、`Value` 等）。这使得 `cancelCtx` 成为一个父子关系中的子节点，能够访问并继承父 `Context` 的特性。
 
+
+### Q5: done方法本质上只是用来查看context是否存活是吗?
+是的，您理解得非常正确！`Done()` 方法的本质作用就是**用于检测 `Context` 是否已经被取消或完成**。它通过返回一个只读的 `chan struct{}` 通道，允许 goroutine 被动监听 `Context` 的状态，得知 `Context` 是否还“存活”。
 
 
 
