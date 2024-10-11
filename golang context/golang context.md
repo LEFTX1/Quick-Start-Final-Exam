@@ -658,3 +658,79 @@ Copy code
 
 - 子 `Context` 并不会立即创建自己的 `Done` 通道，而是通过 `parent.Done()` 继承父 `Context` 的 `Done` 通道。
 - 当父 `Context` 的 `Done` 通道被懒加载创建时，子 `Context` 的 `Done` 通道也会通过 `propagateCancel` 机制绑定，确保取消信号能够正确传递。
+
+
+## 1. `Context` 的树设计是否使用了组合模式？
+
+**问**：`Context` 的树设计是否使用了组合模式？
+
+**答**：是的，`Go` 的 `Context` 设计可以视为一种组合模式的应用。组合模式允许将对象组合成树形结构以表示“部分-整体”的层次结构，父 `Context` 和子 `Context` 形成了树形结构，通过嵌套组合实现键值对的管理和取消信号的传递。
+
+---
+
+## 2. 在 `valueCtx` 结构体中，`Context` 字段是否是原 `Context` 的指针？
+
+**问**：在 `valueCtx` 结构体中，`Context` 字段是否是原 `Context` 的指针？
+
+**答**：是的，`valueCtx` 中的 `Context` 字段实际上是指向原 `Context` 的指针，而不是将原 `Context` 完整地拷贝。每次创建新的 `valueCtx` 时，都是通过嵌套的方式，将父 `Context` 的指针保存到 `valueCtx` 中，以节省内存。
+
+---
+
+## 3. 每次派生一个新的 `Context` 时，是否是在形成树的新节点时加上一个被包装好的指针壳？
+
+**问**：每次派生一个新的 `Context` 时，是否是在形成树的新节点时加上一个被包装好的指针壳？
+
+**答**：是的，新节点通过包装对原 `Context` 的指针来形成树形结构。每次创建新的 `Context` 时，新的节点只增加自己的字段，不会复制整个原 `Context`，形成“壳子”加指针的结构，从而节省内存并保持高效。
+
+---
+
+## 4. 对于 `cancel` 方法，它的主要职责是什么？
+
+**问**：对于 `cancel` 方法，它的主要职责是什么？
+
+**答**：`cancel` 方法的主要职责包括：
+
+1. 设置取消状态（记录错误）。
+2. 关闭 `Done` 通道，通知所有监听者 `Context` 已取消。
+3. 递归取消所有子 `Context`，确保整个 `Context` 树能够响应取消信号。
+4. 从父 `Context` 的 `children` 集合中移除自己，以维护结构的清晰性。
+
+---
+
+## 5. 在 `value` 函数中，遇到非 `valueCtx` 类型的上下文时，做了什么？
+
+**问**：在 `value` 函数中，遇到非 `valueCtx` 类型的上下文时，做了什么？
+
+**答**：当遇到非 `valueCtx` 类型的 `Context`（如 `cancelCtx`、`withoutCancelCtx` 和 `timerCtx`）时，`value` 函数会检查传入的 `key`。对于 `cancelCtx` 和 `timerCtx`，如果 `key` 匹配特定的取消相关的键（`&cancelCtxKey`），则直接返回对应的 `cancelCtx`。这样做可以高效地访问取消相关的信息，而不需要遍历整个上下文链。
+
+---
+
+## 6. 如果要找到最近的 `cancelCtx` 祖先，该如何操作？
+
+**问**：如果要找到最近的 `cancelCtx` 祖先，该如何操作？
+
+**答**：您可以调用 `value` 方法，并将 `key` 设置为 `&cancelCtxKey`。这样，`value` 函数会遍历上下文链，找到最近的 `cancelCtx`，并返回该实例。例如，调用 `ctx.Value(&cancelCtxKey)` 可以有效地查找与取消相关的上下文信息。
+
+---
+
+## 7. `value` 函数的主要任务是什么？
+
+**问**：`value` 函数的主要任务是什么？
+
+**答**：`value` 函数的主要任务是从当前的 `Context` 节点开始，向上遍历上下文链，查找与指定的 `key` 关联的值。如果找到匹配的值，则返回该值；如果没有找到，则返回 `nil`。
+
+---
+
+## 8. 遇到父节点是非 `valueCtx` 时，如何处理？
+
+**问**：遇到父节点是非 `valueCtx` 时，如何处理？
+
+**答**：遇到非 `valueCtx` 类型的父节点时，`value` 函数会针对特定类型执行逻辑。例如，对于 `cancelCtx` 和 `timerCtx`，如果 `key` 匹配特定的取消相关键（`&cancelCtxKey`），则返回对应的 `cancelCtx`。这确保了能快速访问取消功能相关的信息。
+
+---
+
+## 9. `value` 函数中查找的流程是怎样的？
+
+**问**：`value` 函数中查找的流程是怎样的？
+
+**答**：`value` 函数使用一个无限循环，逐层向上遍历 `Context` 链。通过类型断言检查当前上下文的类型，如果是 `valueCtx` 则查找键值对，如果是 `cancelCtx`、`timerCtx` 或其他类型，则根据需要检查 `key` 并执行相应的操作。如果到达 `backgroundCtx` 或 `todoCtx`，则返回 `nil`，表示没有找到匹配的值。
