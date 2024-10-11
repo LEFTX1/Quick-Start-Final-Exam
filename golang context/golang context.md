@@ -131,6 +131,12 @@ type canceler interface {
 - **children**：一个 set，指向 `cancelCtx` 的所有子 context；
 - **err**：记录了当前 `cancelCtx` 的错误，必然为某个 context 的子 context。
 
+### Q4：`cancelCtx`是怎么继承父context的能力的
+- `cancelCtx` 通过嵌入一个 `Context` 接口，继承了父 `Context` 的所有方法（如 `Deadline`、`Value` 等）。这使得 `cancelCtx` 成为一个父子关系中的子节点，能够访问并继承父 `Context` 的特性。
+
+
+
+
 ### 3.2 Deadline 方法
 #### Q1:cancelcontext本身不实现Deadline ，默认使用其父context的Deadline 方法，如果没有实现则返回nil？这个说法对吗？
 ![[Pasted image 20241011003431.png]]
