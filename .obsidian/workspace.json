@@ -20,18 +20,6 @@
             }
           },
           {
-            "id": "c1538190c821cbb4",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "数值分析/数值分析.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
             "id": "93047144b39d632c",
             "type": "leaf",
             "state": {
@@ -42,9 +30,53 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "aca436c58378605c",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "golang context/golang context.md",
+                "mode": "preview",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "c3e6d1b52e42c222",
+            "type": "leaf",
+            "state": {
+              "type": "excalidraw",
+              "state": {
+                "file": "Excalidraw/propagateCancel函数.md"
+              }
+            }
+          },
+          {
+            "id": "2a7a31a1ec078d06",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "golang context/golang context.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "f89a6f448a32b5c0",
+            "type": "leaf",
+            "state": {
+              "type": "excalidraw",
+              "state": {
+                "file": "Excalidraw/Drawing 2024-10-12 20.44.30.excalidraw.md"
+              }
+            }
           }
         ],
-        "currentTab": 2
+        "currentTab": 5
       }
     ],
     "direction": "vertical"
@@ -110,7 +142,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "golang context/golang context.md",
+                "file": "Excalidraw/Drawing 2024-10-12 20.44.30.excalidraw.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -127,7 +159,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "golang context/golang context.md",
+                "file": "Excalidraw/Drawing 2024-10-12 20.44.30.excalidraw.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -150,7 +182,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "golang context/golang context.md"
+                "file": "Excalidraw/Drawing 2024-10-12 20.44.30.excalidraw.md"
               }
             }
           }
@@ -159,7 +191,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 209.5
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -168,24 +200,36 @@
       "canvas:新建白板": false,
       "daily-notes:打开/创建今天的日记": false,
       "templates:插入模板": false,
-      "command-palette:打开命令面板": false
+      "command-palette:打开命令面板": false,
+      "obsidian-excalidraw-plugin:新建绘图文件": false
     }
   },
-  "active": "93047144b39d632c",
+  "active": "f89a6f448a32b5c0",
   "lastOpenFiles": [
+    "golang context/golang context.md",
+    "Excalidraw/Drawing 2024-10-12 20.44.30.excalidraw.md",
+    "Excalidraw/cancel方法.md",
+    "Excalidraw/propagateCancel函数.md",
+    "Excalidraw/Drawing 2024-10-12 19.53.06.excalidraw.md",
+    "Excalidraw/Drawing 2024-10-12 20.04.58.excalidraw.md",
+    "Excalidraw/Drawing 2024-10-12 20.04.51.excalidraw.md",
+    "Excalidraw/Drawing 2024-10-12 19.54.41.excalidraw.svg",
+    "Excalidraw/Drawing 2024-10-12 19.54.41.excalidraw.md",
+    "Excalidraw/Drawing 2024-10-12 19.53.38.excalidraw.md",
+    "Excalidraw/Drawing 2024-10-12 19.53.26.excalidraw.md",
     "Pasted image 20241011003431.png",
+    "Pasted image 20240905200036.png",
+    "b0cac8dc6ddb6b76685b073b7285159.jpg",
+    "static/0,  1], [ 1,  1], [ 1, -1],  [-1, -1],  [-1,  4],  [ 0,  1], [ 0,  1.md",
+    "数值分析/数值分析.md",
+    "Excalidraw",
     "Pasted image 20241011003256.png",
     "Pasted image 20241011003209.png",
     "Pasted image 20241011003029.png",
     "Pasted image 20241011003025.png",
     "Pasted image 20241011002941.png",
     "Pasted image 20241011002740.png",
-    "Pasted image 20241011002722.png",
-    "Pasted image 20241011002703.png",
-    "Pasted image 20241011002650.png",
-    "Pasted image 20241011002357.png",
     "黑马点评项目/黑马点评.md",
-    "golang context/golang context.md",
     "golang context",
     "gmp模型/gmp.md",
     "mysql45讲/mysql45讲.md",
@@ -193,7 +237,6 @@
     "mysql45讲",
     "计算机网络/计算机网络.md",
     "黑马点评项目",
-    "数值分析/数值分析.md",
     "每日学习记录/begin - 2024-09-19.md",
     "每日学习记录",
     "数值分析",
@@ -202,22 +245,12 @@
     "static/2022-12-06 211735.heic",
     "static/2022-12-06 211735 1.heic",
     "static/2022-12-06 102637.heic",
-    "static/2022-12-06 102637 1.heic",
     "计算机组成原理/计算机组成原理.md",
     "马克思主义期末极速入门/未命名.md",
     "算法设计与分析/未命名.md",
     "人工智能数学期末速成极速入门/人工智能数学期末复习.md",
     "编译原理期末极速入门/未命名.md",
     "output/人工智能数学期末复习.md",
-    "static/0,  1], [ 1,  1], [ 1, -1],  [-1, -1],  [-1,  4],  [ 0,  1], [ 0,  1.md",
-    "2024-06-03.md",
-    "人工智能数学期末速成极速入门/未命名.md",
-    "electron/mvm nodejs.md",
-    "操作系统/图解系统/5.1 进程、线程基础知识.md",
-    "操作系统/王道/2 进程管理.md",
-    "git github/github.md",
-    "计算机网络/图解网络/2.1 TCP IP 网络模型有哪几层？.md",
-    "未命名.md",
-    "Welcome.md"
+    "2024-06-03.md"
   ]
 }
