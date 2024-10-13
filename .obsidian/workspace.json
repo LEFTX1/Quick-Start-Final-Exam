@@ -49,7 +49,7 @@
             "state": {
               "type": "excalidraw",
               "state": {
-                "file": "Excalidraw/propagateCancel函数.md"
+                "file": "Excalidraw/context/propagateCancel函数.md"
               }
             }
           },
@@ -71,12 +71,44 @@
             "state": {
               "type": "excalidraw",
               "state": {
-                "file": "Excalidraw/Drawing 2024-10-12 20.44.30.excalidraw.md"
+                "file": "Excalidraw/context/value方法.md"
+              }
+            }
+          },
+          {
+            "id": "1145f239bf11a292",
+            "type": "leaf",
+            "state": {
+              "type": "excalidraw",
+              "state": {
+                "file": "Excalidraw/context/propagateCancel函数.md"
+              }
+            }
+          },
+          {
+            "id": "420b9bac974d8f56",
+            "type": "leaf",
+            "state": {
+              "type": "excalidraw",
+              "state": {
+                "file": "Excalidraw/context/cancel方法.md"
+              }
+            }
+          },
+          {
+            "id": "597d6950c9ce0084",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "golang context/golang context.md",
+                "mode": "source",
+                "source": false
               }
             }
           }
         ],
-        "currentTab": 5
+        "currentTab": 8
       }
     ],
     "direction": "vertical"
@@ -142,7 +174,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Excalidraw/Drawing 2024-10-12 20.44.30.excalidraw.md",
+                "file": "golang context/golang context.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -159,7 +191,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Excalidraw/Drawing 2024-10-12 20.44.30.excalidraw.md",
+                "file": "golang context/golang context.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -182,7 +214,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Excalidraw/Drawing 2024-10-12 20.44.30.excalidraw.md"
+                "file": "golang context/golang context.md"
               }
             }
           }
@@ -191,7 +223,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 209.5
+    "width": 200,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -204,12 +237,19 @@
       "obsidian-excalidraw-plugin:新建绘图文件": false
     }
   },
-  "active": "f89a6f448a32b5c0",
+  "active": "597d6950c9ce0084",
   "lastOpenFiles": [
+    "gmp模型/gmp.md",
+    "Excalidraw/context/context包概括.md",
+    "Excalidraw/context/cancel方法.md",
+    "Excalidraw/context/context树.md",
+    "Excalidraw/context/Drawing 2024-10-13 00.49.16.excalidraw.md",
     "golang context/golang context.md",
+    "Excalidraw/context",
+    "Excalidraw/context/WithDeadlineCause.md",
+    "Excalidraw/context/value方法.md",
+    "Excalidraw/context/propagateCancel函数.md",
     "Excalidraw/Drawing 2024-10-12 20.44.30.excalidraw.md",
-    "Excalidraw/cancel方法.md",
-    "Excalidraw/propagateCancel函数.md",
     "Excalidraw/Drawing 2024-10-12 19.53.06.excalidraw.md",
     "Excalidraw/Drawing 2024-10-12 20.04.58.excalidraw.md",
     "Excalidraw/Drawing 2024-10-12 20.04.51.excalidraw.md",
@@ -231,7 +271,6 @@
     "Pasted image 20241011002740.png",
     "黑马点评项目/黑马点评.md",
     "golang context",
-    "gmp模型/gmp.md",
     "mysql45讲/mysql45讲.md",
     "gmp模型",
     "mysql45讲",
@@ -244,13 +283,7 @@
     "编译原理期末极速入门/编译原理期末复习.md",
     "static/2022-12-06 211735.heic",
     "static/2022-12-06 211735 1.heic",
-    "static/2022-12-06 102637.heic",
     "计算机组成原理/计算机组成原理.md",
-    "马克思主义期末极速入门/未命名.md",
-    "算法设计与分析/未命名.md",
-    "人工智能数学期末速成极速入门/人工智能数学期末复习.md",
-    "编译原理期末极速入门/未命名.md",
-    "output/人工智能数学期末复习.md",
-    "2024-06-03.md"
+    "马克思主义期末极速入门/未命名.md"
   ]
 }
