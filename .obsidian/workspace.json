@@ -79,9 +79,49 @@
             "id": "1145f239bf11a292",
             "type": "leaf",
             "state": {
+              "type": "empty",
+              "state": {}
+            }
+          },
+          {
+            "id": "fdacc002a15a2a33",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "每日学习记录/begin - 2024-09-19.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "f493c5da5fe10ff8",
+            "type": "leaf",
+            "state": {
+              "type": "image",
+              "state": {
+                "file": "Excalidraw/context/withcancel全流程.svg"
+              }
+            }
+          },
+          {
+            "id": "376940061c919544",
+            "type": "leaf",
+            "state": {
               "type": "excalidraw",
               "state": {
                 "file": "Excalidraw/context/propagateCancel函数.md"
+              }
+            }
+          },
+          {
+            "id": "072d53b12af94fd6",
+            "type": "leaf",
+            "state": {
+              "type": "image",
+              "state": {
+                "file": "Excalidraw/context/context树组成图示.svg"
               }
             }
           },
@@ -121,16 +161,14 @@
             "id": "733b28ba31ad5511",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "image",
               "state": {
-                "file": "golang context/golang context.md",
-                "mode": "source",
-                "source": false
+                "file": "Excalidraw/context/context树组成图示.svg"
               }
             }
           }
         ],
-        "currentTab": 10
+        "currentTab": 7
       }
     ],
     "direction": "vertical"
@@ -180,8 +218,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200,
-    "collapsed": true
+    "width": 239.5086555480957
   },
   "right": {
     "id": "727f1dd7ebe622c8",
@@ -197,7 +234,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "golang context/golang context.md",
+                "file": "每日学习记录/begin - 2024-09-19.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -214,7 +251,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "golang context/golang context.md",
+                "file": "每日学习记录/begin - 2024-09-19.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -237,7 +274,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "golang context/golang context.md"
+                "file": "每日学习记录/begin - 2024-09-19.md"
               }
             }
           }
@@ -246,8 +283,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200,
-    "collapsed": true
+    "width": 200
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -260,29 +296,31 @@
       "obsidian-excalidraw-plugin:新建绘图文件": false
     }
   },
-  "active": "733b28ba31ad5511",
+  "active": "fdacc002a15a2a33",
   "lastOpenFiles": [
-    "Pasted image 20241013193909.png",
-    "Excalidraw/context/context树双向连接.svg",
+    "golang context/golang context.md",
+    "gmp模型/gmp.md",
     "Excalidraw/context/context树双向连接.md",
     "Excalidraw/context/context树.md",
     "Excalidraw/context/context包概括.svg",
-    "golang context/golang context.md",
     "Excalidraw/context/context包概括.md",
-    "Pasted image 20241013191123.png",
-    "Pasted image 20241013183512.png",
-    "Pasted image 20241013183354.png",
-    "Pasted image 20241013183137.png",
+    "Excalidraw/context/cancelctx的cancel.md",
     "Excalidraw/context/cancel向下传播.md",
     "Excalidraw/context/cancel向下传播.svg",
-    "Pasted image 20241013182226.png",
-    "Pasted image 20241013182218.png",
-    "Excalidraw/context/context树组成图示.md",
-    "Excalidraw/context/context树组成图示.svg",
-    "Excalidraw/context/propagateCancel函数.md",
-    "mysql45讲/mysql45讲.md",
-    "gmp模型/gmp.md",
     "Excalidraw/context/cancel方法.md",
+    "Excalidraw/context/Drawing 2024-10-13 23.43.33.excalidraw.md",
+    "Excalidraw/context/withcancel全流程.svg",
+    "Excalidraw/context/withcancel全流程.md",
+    "image_1.png",
+    "Pasted image 20241014003607.png",
+    "Pasted image 20241014003538.png",
+    "Pasted image 20241014002410.png",
+    "image_0.png",
+    "Excalidraw/context/propagateCancel函数.md",
+    "Pasted image 20241013235955.png",
+    "Pasted image 20241013235953.png",
+    "Excalidraw/context/context树组成图示.md",
+    "mysql45讲/mysql45讲.md",
     "Excalidraw/context/Drawing 2024-10-13 00.49.16.excalidraw.md",
     "Excalidraw/context",
     "Excalidraw/context/WithDeadlineCause.md",
@@ -297,13 +335,10 @@
     "static/0,  1], [ 1,  1], [ 1, -1],  [-1, -1],  [-1,  4],  [ 0,  1], [ 0,  1.md",
     "数值分析/数值分析.md",
     "Excalidraw",
-    "黑马点评项目/黑马点评.md",
     "golang context",
     "gmp模型",
     "mysql45讲",
-    "计算机网络/计算机网络.md",
     "黑马点评项目",
-    "每日学习记录/begin - 2024-09-19.md",
     "每日学习记录",
     "数值分析",
     "static/2022-12-06 211735.heic",

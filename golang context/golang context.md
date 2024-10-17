@@ -10,32 +10,32 @@
 - [[#3 `cancelCtx`|3 `cancelCtx`]]
 	- [[#3 `cancelCtx`#Q1:协程创建时，context会形成一颗父子结构的树吗?|Q1:协程创建时，context会形成一颗父子结构的树吗?]]
 	- [[#3 `cancelCtx`#Q2:父context终止，会形成从上往下的树的单向传递的终止是吗?|Q2:父context终止，会形成从上往下的树的单向传递的终止是吗?]]
-	- [[#3 `cancelCtx`#Q3:也就是说是协程之间的生命周期联动属性？|Q3:也就是说是协程之间的生命周期联动属性？]]
+	- [[#3 `cancelCtx`#Q3:也就是说context是协程之间的生命周期联动属性？|Q3:也就是说context是协程之间的生命周期联动属性？]]
+		- [[#Q3:也就是说context是协程之间的生命周期联动属性？#q1 我们知道context之间的联动取消，但还不知道是如何通过context取消影响到goroutine的取消的。|q1 我们知道context之间的联动取消，但还不知道是如何通过context取消影响到goroutine的取消的。]]
+			- [[#q1 我们知道context之间的联动取消，但还不知道是如何通过context取消影响到goroutine的取消的。#什么是多路复用？|什么是多路复用？]]
 	- [[#3 `cancelCtx`#3.1 `cancelCtx` 数据结构|3.1 `cancelCtx` 数据结构]]
 	- [[#3 `cancelCtx`#Q4：`cancelCtx`是怎么继承父context的能力的|Q4：`cancelCtx`是怎么继承父context的能力的]]
 	- [[#3 `cancelCtx`#Q5: done方法本质上只是用来查看context是否存活是吗?|Q5: done方法本质上只是用来查看context是否存活是吗?]]
+	- [[#3 `cancelCtx`#只读管道读取时会阻塞，直到他被关闭？|只读管道读取时会阻塞，直到他被关闭？]]
+	- [[#3 `cancelCtx`#这就是为什么只读管道可以作为信号变量的原因？|这就是为什么只读管道可以作为信号变量的原因？]]
+	- [[#3 `cancelCtx`#作为信号变量的原因：|作为信号变量的原因：]]
 	- [[#3 `cancelCtx`#3.2 Deadline 方法|3.2 Deadline 方法]]
 		- [[#3.2 Deadline 方法#Q1:cancelcontext本身不实现Deadline ，默认使用其父context的Deadline 方法，如果没有实现则返回nil？这个说法对吗？|Q1:cancelcontext本身不实现Deadline ，默认使用其父context的Deadline 方法，如果没有实现则返回nil？这个说法对吗？]]
 	- [[#3 `cancelCtx`#3.3 Done 方法|3.3 Done 方法]]
-	- [[#3 `cancelCtx`#什么是 `Done` 通道？|什么是 `Done` 通道？]]
 - [[#1. 什么是“接收方 Context”？|1. 什么是“接收方 Context”？]]
 - [[#2. “当 Context 被取消时，这个通道会被关闭” 是指 cancel 方法吗？|2. “当 Context 被取消时，这个通道会被关闭” 是指 cancel 方法吗？]]
 - [[#3. 关于 Done 通道的懒加载和创建|3. 关于 Done 通道的懒加载和创建]]
-- [[#Q 调用cancel时，调用的context会从其父context的map集合里删除，并且关闭其done通道？不过我好奇父子通道不是会监听一个通道吗？|Q 调用cancel时，调用的context会从其父context的map集合里删除，并且关闭其done通道？不过我好奇父子通道不是会监听一个通道吗？]]
-	- [[#Q 调用cancel时，调用的context会从其父context的map集合里删除，并且关闭其done通道？不过我好奇父子通道不是会监听一个通道吗？#1. 调用 cancel 时的行为|1. 调用 cancel 时的行为]]
-	- [[#Q 调用cancel时，调用的context会从其父context的map集合里删除，并且关闭其done通道？不过我好奇父子通道不是会监听一个通道吗？#2. 父子 Context 如何关联？|2. 父子 Context 如何关联？]]
-	- [[#Q 调用cancel时，调用的context会从其父context的map集合里删除，并且关闭其done通道？不过我好奇父子通道不是会监听一个通道吗？#3. 父子 Done 通道的关系|3. 父子 Done 通道的关系]]
-	- [[#Q 调用cancel时，调用的context会从其父context的map集合里删除，并且关闭其done通道？不过我好奇父子通道不是会监听一个通道吗？#总结|总结]]
-	- [[#Q 调用cancel时，调用的context会从其父context的map集合里删除，并且关闭其done通道？不过我好奇父子通道不是会监听一个通道吗？#4. 监听 Done 通道的方式|4. 监听 Done 通道的方式]]
-	- [[#Q 调用cancel时，调用的context会从其父context的map集合里删除，并且关闭其done通道？不过我好奇父子通道不是会监听一个通道吗？#5. 监听 Done 通道是由编程者自己控制还是 Go 管理？|5. 监听 Done 通道是由编程者自己控制还是 Go 管理？]]
-	- [[#Q 调用cancel时，调用的context会从其父context的map集合里删除，并且关闭其done通道？不过我好奇父子通道不是会监听一个通道吗？#总结|总结]]
-	- [[#Q 调用cancel时，调用的context会从其父context的map集合里删除，并且关闭其done通道？不过我好奇父子通道不是会监听一个通道吗？#3.4 Err 方法|3.4 Err 方法]]
-	- [[#Q 调用cancel时，调用的context会从其父context的map集合里删除，并且关闭其done通道？不过我好奇父子通道不是会监听一个通道吗？#3.5 Value 方法|3.5 Value 方法]]
-	- [[#Q 调用cancel时，调用的context会从其父context的map集合里删除，并且关闭其done通道？不过我好奇父子通道不是会监听一个通道吗？#3.6 context.WithCancel()|3.6 context.WithCancel()]]
+- [[#Q 调用cancel时，调用的context会从其父context的map集合里删除，并且关闭其done通道？|Q 调用cancel时，调用的context会从其父context的map集合里删除，并且关闭其done通道？]]
+	- [[#Q 调用cancel时，调用的context会从其父context的map集合里删除，并且关闭其done通道？#1. 调用 cancel 时的行为|1. 调用 cancel 时的行为]]
+	- [[#Q 调用cancel时，调用的context会从其父context的map集合里删除，并且关闭其done通道？#5. 监听 Done 通道是由编程者自己控制还是 Go 管理？|5. 监听 Done 通道是由编程者自己控制还是 Go 管理？]]
+	- [[#Q 调用cancel时，调用的context会从其父context的map集合里删除，并且关闭其done通道？#3.4 Err 方法|3.4 Err 方法]]
+	- [[#Q 调用cancel时，调用的context会从其父context的map集合里删除，并且关闭其done通道？#3.5 Value 方法|3.5 Value 方法]]
+	- [[#Q 调用cancel时，调用的context会从其父context的map集合里删除，并且关闭其done通道？#3.6 context.WithCancel()|3.6 context.WithCancel()]]
 		- [[#3.6 context.WithCancel()#3.6.1 context.WithCancel()|3.6.1 context.WithCancel()]]
 		- [[#3.6 context.WithCancel()#3.6.2 newCancelCtx|3.6.2 newCancelCtx]]
 		- [[#3.6 context.WithCancel()#3.6.3 propagateCancel|3.6.3 propagateCancel]]
-	- [[#Q 调用cancel时，调用的context会从其父context的map集合里删除，并且关闭其done通道？不过我好奇父子通道不是会监听一个通道吗？#3.6.4 cancelCtx.cancel|3.6.4 cancelCtx.cancel]]
+	- [[#Q 调用cancel时，调用的context会从其父context的map集合里删除，并且关闭其done通道？#具体说明：|具体说明：]]
+	- [[#Q 调用cancel时，调用的context会从其父context的map集合里删除，并且关闭其done通道？#3.6.4 cancelCtx.cancel|3.6.4 cancelCtx.cancel]]
 - [[#4 `timerCtx`|4 `timerCtx`]]
 	- [[#4 `timerCtx`#4.1 类|4.1 类]]
 	- [[#4 `timerCtx`#4.2 `timerCtx.Deadline()`|4.2 `timerCtx.Deadline()`]]
@@ -48,16 +48,6 @@
 	- [[#5 `valueCtx`#5.4 `context.WithValue()`|5.4 `context.WithValue()`]]
 - [[#3. **`cancelCtx` 本身不实现 `Deadline`，默认使用其父 `Context` 的 `Deadline` 方法，如果没有实现则返回 `nil`，这个说法对吗？**|3. **`cancelCtx` 本身不实现 `Deadline`，默认使用其父 `Context` 的 `Deadline` 方法，如果没有实现则返回 `nil`，这个说法对吗？**]]
 - [[#4. **`cancelCtxKey` 是什么？**|4. **`cancelCtxKey` 是什么？**]]
-- [[#5. **`Done()` 方法在 `cancelCtx` 中的实现原理是什么？**|5. **`Done()` 方法在 `cancelCtx` 中的实现原理是什么？**]]
-	- [[#5. **`Done()` 方法在 `cancelCtx` 中的实现原理是什么？**#解释：|解释：]]
-- [[#6. **如何理解 Go 中的管道信号编程？**|6. **如何理解 Go 中的管道信号编程？**]]
-- [[#7. **`canceler` 接口的实现细节是什么？**|7. **`canceler` 接口的实现细节是什么？**]]
-	- [[#7. **`canceler` 接口的实现细节是什么？**#实现细节：|实现细节：]]
-- [[#8. **`propagateCancel` 什么时候会调用？子 `Context` 是怎么通过 `propagateCancel` 接收到取消信号的？**|8. **`propagateCancel` 什么时候会调用？子 `Context` 是怎么通过 `propagateCancel` 接收到取消信号的？**]]
-	- [[#8. **`propagateCancel` 什么时候会调用？子 `Context` 是怎么通过 `propagateCancel` 接收到取消信号的？**#`propagateCancel` 的调用时机：|`propagateCancel` 的调用时机：]]
-	- [[#8. **`propagateCancel` 什么时候会调用？子 `Context` 是怎么通过 `propagateCancel` 接收到取消信号的？**#如何关联父子 `Context`：|如何关联父子 `Context`：]]
-	- [[#8. **`propagateCancel` 什么时候会调用？子 `Context` 是怎么通过 `propagateCancel` 接收到取消信号的？**#取消信号的传递：|取消信号的传递：]]
-- [[#9. **子 `Context` 在父 `Context` 的 `Done` 通道懒加载的情况下是如何返回正确的 `Done` 通道的？**|9. **子 `Context` 在父 `Context` 的 `Done` 通道懒加载的情况下是如何返回正确的 `Done` 通道的？**]]
 - [[#1. `Context` 的树设计是否使用了组合模式？|1. `Context` 的树设计是否使用了组合模式？]]
 - [[#2. 在 `valueCtx` 结构体中，`Context` 字段是否是原 `Context` 的指针？|2. 在 `valueCtx` 结构体中，`Context` 字段是否是原 `Context` 的指针？]]
 - [[#3. 每次派生一个新的 `Context` 时，是否是在形成树的新节点时加上一个被包装好的指针壳？|3. 每次派生一个新的 `Context` 时，是否是在形成树的新节点时加上一个被包装好的指针壳？]]
@@ -65,15 +55,11 @@
 - [[#5. 在 `value` 函数中，遇到非 `valueCtx` 类型的上下文时，做了什么？|5. 在 `value` 函数中，遇到非 `valueCtx` 类型的上下文时，做了什么？]]
 - [[#6. 如果要找到最近的 `cancelCtx` 祖先，该如何操作？|6. 如果要找到最近的 `cancelCtx` 祖先，该如何操作？]]
 - [[#7. `value` 函数的主要任务是什么？|7. `value` 函数的主要任务是什么？]]
-- [[#8. 遇到父节点是非 `valueCtx` 时，如何处理？|8. 遇到父节点是非 `valueCtx` 时，如何处理？]]
-- [[#9. `value` 函数中查找的流程是怎样的？|9. `value` 函数中查找的流程是怎样的？]]
-	- [[#9. `value` 函数中查找的流程是怎样的？#总结|总结]]
 - [[#解释一下：func Cause(c Context) error|解释一下：func Cause(c Context) error]]
-		- [[#总结#1. 父 `Context` 是否具备取消能力|1. 父 `Context` 是否具备取消能力]]
-		- [[#总结#2. 为什么要检查 `done` 通道是否相同？|2. 为什么要检查 `done` 通道是否相同？]]
-		- [[#总结#3. 一句话描述三个函数的作用|3. 一句话描述三个函数的作用]]
+		- [[#5.4 `context.WithValue()`#1. 父 `Context` 是否具备取消能力|1. 父 `Context` 是否具备取消能力]]
+		- [[#5.4 `context.WithValue()`#2. 为什么要检查 `done` 通道是否相同？|2. 为什么要检查 `done` 通道是否相同？]]
+		- [[#5.4 `context.WithValue()`#3. 一句话描述三个函数的作用|3. 一句话描述三个函数的作用]]
 	- [[#解释一下：func Cause(c Context) error#总结|总结]]
-
 
 
 
@@ -182,7 +168,7 @@ func TODO() Context {
 ### Q1:协程创建时，context会形成一颗父子结构的树吗?
 ![[Pasted image 20241011002650.png|575]]
 
-![[context树组成图示.svg]]
+![[context树组成图示.svg|75]]
 
 ![[context树双向连接.svg]]
 
@@ -295,24 +281,6 @@ func (c *cancelCtx) Done() <-chan struct{} {
 - 基于 atomic 包，读取 `cancelCtx` 中的 channel；倘若已存在，则直接返回；
 - 加锁后，在此检查 channel 是否存在，若存在则返回；（双重检查）
 - 初始化 channel 存储到 `atomic.Value` 当中，并返回。（懒加载机制）
-### 什么是 `Done` 通道？
-
-`Done` 通道是 `Context` 接口中的一个关键部分，用于通知接收方 `Context` 已经被取消或超时。它的类型是 `<-chan struct{}`，即一个只读的空结构体通道。当 `Context` 被取消时，这个通道会被关闭，所有监听该通道的 goroutine 会收到通知，从而能够及时停止相关操作，避免资源泄漏或不必要的计算。
-### 每一个ctx都有对应一个独有的只读channel对吗？
-是的，每个 `Context` 在 Go 中都对应有一个唯一的只读通道 `Done()`，它用于传递取消信号或超时信号。具体来说：
-
-- **`ctx.Done()`** 返回一个只读的 `chan struct{}`，这是 `Context` 的通道，用于传递上下文的取消或超时信号。
-    
-- **这个通道的行为**：
-    
-    - 当上下文被取消（例如通过调用 `cancel()` 函数）或达到超时时，`ctx.Done()` 通道会被关闭。
-    - 一旦通道关闭，任何监听 `ctx.Done()` 的 Goroutine 都会被唤醒，并收到一个信号表示取消或超时。
-- **独特性**：
-    
-    - 每个 `Context` 实例都有它自己的 `Done()` 通道，表示该上下文的生命周期。即使不同的上下文可能是基于相同的父上下文派生的，它们的 `Done()` 通道也是独立的，除非它们继承自同一个父上下文且没有新的取消机制。
-
-
-
 ## 1. 什么是“接收方 Context”？
 **“接收方 Context”** 是指在函数或 goroutine 中接收和使用 Context 的部分。当函数或 goroutine 接收到一个 Context 参数时，它就成为了这个 Context 的“接收方”。这些接收方通常会监听 Context 的取消信号，以便在需要时及时终止操作。
 
@@ -388,7 +356,7 @@ cancel()
 
 
 
-## Q 调用cancel时，调用的context会从其父context的map集合里删除，并且关闭其done通道？不过我好奇父子通道不是会监听一个通道吗？
+## Q 调用cancel时，调用的context会从其父context的map集合里删除，并且关闭其done通道？
 ### 1. 调用 cancel 时的行为
 当调用 cancel 方法时，会发生以下操作：
 
@@ -425,101 +393,6 @@ func (c *cancelCtx) cancel(removeFromParent bool, err error) {
 }
 ````
 
-### 2. 父子 Context 如何关联？
-
-父 Context 和子 Context 通过取消信号的传播来关联。子 Context 的 Done 通道不是直接监听父 Context 的 Done 通道，而是父 Context 被取消时，主动通知子 Context，关闭子 Context 的 Done 通道。
-
-**详细流程**：
-
-- **子 Context 创建**：使用 `WithCancel`、`WithTimeout` 或 `WithDeadline` 函数创建子 Context 时，子 Context 注册为父 Context 的子节点。
-- **取消信号传播**：父 Context 的 Done 通道被关闭时，它会遍历其子 Context 列表，调用每个子 Context 的 cancel 方法，关闭子 Context 的 Done 通道。
-- **父子通道独立**：父 Context 和子 Context 的 Done 通道是独立的，子 Context 的取消信号通过父 Context 主动传播。
-
-**示例代码**：
-
-go
-
-```go
-func main() {
-    parent, cancelParent := context.WithCancel(context.Background())
-    child, cancelChild := context.WithCancel(parent)
-
-    go func() {
-        <-child.Done()
-        fmt.Println("子 context 被取消")
-    }()
-
-    cancelParent()
-
-    time.Sleep(1 * time.Second)
-}
-```
-
-输出：
-
-```text
-子 context 被取消
-```
-
-### 3. 父子 Done 通道的关系
-
-父 Context 和子 Context 的 Done 通道独立存在，但父子上下文之间的取消信号通过以下方式传播：
-
-- **父 Context 取消**：父 Context 被取消时，遍历其子 Context，并调用它们的 cancel 方法。
-- **子 Context 取消**：子 Context 被取消时，不影响父 Context，因为子 Context 的 Done 通道是独立的。
-
-这确保了上下文的取消机制能够正确地传播和控制，不同上下文之间的信号不会混淆。
-
-### 总结
-
-- **取消行为**：调用 cancel 时，子 Context 从父 Context 的 children 集合中移除，并关闭其 Done 通道。
-- **父子关系**：父 Context 和子 Context 的 Done 通道独立，但父 Context 的取消信号会主动通知子 Context，关闭子 Context 的 Done 通道。
-- **信号传播**：取消信号通过遍历父 Context 的子 Context 集合，逐级传播，不是通过共享同一个 Done 通道实现的。
-
-### 4. 监听 Done 通道的方式
-
-监听 Done 通道的主要方式是通过 `select` 语句，此外还可以通过其他方式如单独的 goroutine 等。监听 Done 通道的责任主要在编程者（开发者）手动控制，而不是由 Go 语言本身自动管理。
-
-**常见的监听方式：**
-
-- 使用 `select` 语句：这是最常见的方式，通过 `select` 语句同时监听多个通道，包括 Done 通道。
-- 在 goroutine 中监听：通过在单独的 goroutine 中监听 Done 通道，进行相应的取消操作。
-- 直接通过 `<-ctx.Done()`：直接在代码中阻塞等待 Done 通道关闭。
-
-**示例：**
-
-go
-
-```go
-func main() {
-    // 创建一个可取消的 Context
-    ctx, cancel := context.WithCancel(context.Background())
-    defer cancel()
-
-    // 启动一个 goroutine 监听 Context 的取消信号
-    go func() {
-        select {
-        case <-ctx.Done():
-            fmt.Println("Context 被取消")
-        }
-    }()
-
-    // 模拟一些工作
-    time.Sleep(2 * time.Second)
-
-    // 取消 Context
-    cancel()
-
-    // 等待一会儿，确保 goroutine 能打印信息
-    time.Sleep(1 * time.Second)
-}
-```
-
-输出：
-
-```text
-Context 被取消
-```
 
 ### 5. 监听 Done 通道是由编程者自己控制还是 Go 管理？
 
@@ -578,15 +451,7 @@ func main() {
 - 传递 Context：将 Context 传递给需要取消信号的函数 `fetchData`。
 - 监听和响应：在 `fetchData` 函数中，HTTP 请求绑定到 Context，当 Context 被取消或超时时，HTTP 请求会自动取消。
 
-### 总结
 
-- “接收方 Context”：指在函数或 goroutine 中接收和使用 Context 的部分，通常通过监听 Done 通道来响应取消信号。
-- Done 通道的关闭：通过调用取消函数（如 `cancel`）或达到截止时间时关闭 Done 通道，从而通知所有监听者 Context 已被取消。
-- Done 通道的懒加载：Done 通道只有在首次调用 `Done()` 方法时才会被实际创建，节省资源。
-- 监听 Done 通道的方式：主要通过 `select` 语句、单独的 goroutine 或直接阻塞等待等方式，由开发者在代码中手动编写逻辑来监听和响应取消信号。
-- 管理取消信号：Go 提供了 Context 的相关函数和接口，帮助管理取消信号的传播，但具体的监听和响应逻辑需要开发者自行控制和实现。
-
-希望这些解释能帮助您更好地理解 Go context 包中 Done 通道的工作机制及其在实际编程中的应用。如果您还有其他疑问或需要进一步的示例，请随时提问！
 ### 3.4 Err 方法
 
 ```go
@@ -620,17 +485,89 @@ func (c *cancelCtx) Value(key any) any {
 
 
 ### 3.6 context.WithCancel()
+![[withcancel全流程.svg]]
 
 #### 3.6.1 context.WithCancel()
 
 ```go
-func WithCancel(parent Context) (ctx Context, cancel CancelFunc) {
-    if parent == nil { // 检查父 context 是否为 nil
-        panic("cannot create context from nil parent") // 如果是 nil，抛出 panic
-    }
-    c := newCancelCtx(parent) // 创建一个新的 cancelCtx，父 context 为 parent
-    propagateCancel(parent, &c) // 传播取消信号，将 cancelCtx 作为子 context 关联到 parent
-    return &c, func() { c.cancel(true, Canceled) } // 返回新的 cancelCtx 和一个取消函数
+func withCancel(parent Context) *cancelCtx {  
+    // 检查父 Context 是否为 nil，如果是则抛出恐慌  
+    if parent == nil {  
+       panic("cannot create context from nil parent") // 如果父 Context 为 nil，则抛出恐慌  
+    }  
+    // 创建一个新的 cancelCtx 实例  
+    c := &cancelCtx{}  
+    // 调用 propagateCancel 方法，将取消信号传播到子 Context    
+    c.propagateCancel(parent, c) // 传播取消信号  
+    // 返回新的 cancelCtx 实例  
+    return c  
+}
+
+
+func (c *cancelCtx) propagateCancel(parent Context, child canceler) {  
+    // 设置当前上下文的父级上下文  
+    c.Context = parent  
+  
+    // 获取父级上下文的 Done 通道  
+    done := parent.Done()  
+    if done == nil {  
+       // 如果父级上下文永不取消，直接返回  
+       return  
+    }  
+  
+    select {  
+    case <-done:  
+       // 如果父级上下文已被取消，取消子级上下文  
+       child.cancel(false, parent.Err(), Cause(parent))  
+       return  
+    default:  
+       // 如果父级上下文未被取消，继续执行  
+    }  
+  
+    // 检查父级上下文是否为 *cancelCtx 类型  
+    if p, ok := parentCancelCtx(parent); ok {  
+       p.mu.Lock()  
+       if p.err != nil {  
+          // 如果父级上下文已被取消，取消子级上下文  
+          child.cancel(false, p.err, p.cause)  
+       } else {  
+          // 如果父级上下文未被取消，将子级上下文添加到父级的子级集合中  
+          if p.children == nil {  
+             p.children = make(map[canceler]struct{})  
+          }  
+          p.children[child] = struct{}{}  
+       }  
+       p.mu.Unlock()  
+       return  
+    }  
+  
+    // 检查父级上下文是否实现了 afterFuncer 接口  
+    if a, ok := parent.(afterFuncer); ok {  
+       c.mu.Lock()  
+       // 调用父级上下文的 AfterFunc 方法，安排取消子级上下文  
+       stop := a.AfterFunc(func() {  
+          child.cancel(false, parent.Err(), Cause(parent))  
+       })  
+       // 设置当前上下文为 stopCtx 类型  
+       c.Context = stopCtx{  
+          Context: parent,  
+          stop:    stop,  
+       }  
+       c.mu.Unlock()  
+       return  
+    }  
+  
+    // 增加 goroutine 计数  
+    goroutines.Add(1)  
+    // 启动一个新的 goroutine，监听父级上下文的 Done 通道  
+    go func() {  
+       select {  
+       case <-parent.Done():  
+          // 如果父级上下文被取消，取消子级上下文  
+          child.cancel(false, parent.Err(), Cause(parent))  
+       case <-child.Done():  
+          // 如果子级上下文被取消，退出 goroutine       }  
+    }()  
 }
 ```
 
@@ -638,6 +575,8 @@ func WithCancel(parent Context) (ctx Context, cancel CancelFunc) {
 - 注入父 context 构造好一个新的 `cancelCtx`；
 - 在 `propagateCancel` 方法内启动一个守护协程，以保证父 context 终止时，该 `cancelCtx` 也会被终止；
 - 将 `cancelCtx` 返回，连带返回一个用以终止该 `cancelCtx` 的闭包函数。
+[[#3.6.3 propagateCancel]]
+
 
 #### 3.6.2 newCancelCtx
 
@@ -650,11 +589,12 @@ func newCancelCtx(parent Context) cancelCtx {
 - 注入父 context 后，返回一个新的 `cancelCtx`。
 
 #### 3.6.3 propagateCancel
+![[Pasted image 20241013235955.png]]
 
 ```go
 func propagateCancel(parent Context, child canceler) {
     done := parent.Done() // 获取父 context 的 Done channel
-    if done == nil { // 如果父 context 不会被取消
+    if done == nil { // 如果父 context 不会被取消 （emptyctx）
         return // 直接返回，因为没有取消需要传播
     }
 
@@ -665,7 +605,8 @@ func propagateCancel(parent Context, child canceler) {
     default: // 如果父 context 未被取消，继续执行
     }
 
-    if p, ok := parentCancelCtx(parent); ok { // 尝试将父 context 转换为 cancelCtx
+    if p, ok := parentCancelCtx(parent); ok { //寻找最近的父cancelctx （找有取消能力的ctx）
+    //IsparentCancelctx（）
         p.mu.Lock() // 加锁父 cancelCtx
         if p.err != nil { // 如果父 context 已经被取消
             child.cancel(false, p.err) // 立即取消子 context，并传递父 context 的错误
@@ -695,59 +636,80 @@ func propagateCancel(parent Context, child canceler) {
 - 假如 parent 是 `cancelCtx` 的类型，则加锁，并将子 context 添加到 parent 的 children map 当中；
 - 假如 parent 不是 `cancelCtx` 类型，但又存在 cancel 的能力（比如用户自定义实现的 context），则启动一个协程，通过多路复用的方式监控 parent 状态，倘若其终止，则同时终止子 context，并透传 parent 的 err。
 
-进一步观察 `parentCancelCtx` 是如何校验 parent 是否为 `cancelCtx` 的类型：
-
 ```go
-func parentCancelCtx(parent Context) (*cancelCtx, bool) {
-    done := parent.Done() // 获取父 context 的 Done channel
-    if done == closedchan || done == nil { // 如果 channel 已关闭或不存在
-        return nil, false // 返回 nil 和 false，表示不是 cancelCtx 类型
-    }
-    p, ok := parent.Value(&cancelCtxKey).(*cancelCtx) // 尝试从父 context 中获取 cancelCtx
-    if !ok { // 如果类型断言失败
-        return nil, false // 返回 nil 和 false
-    }
-    pdone, _ := p.done.Load().(chan struct{}) // 原子加载父 cancelCtx 的 done channel
-    if pdone != done { // 如果加载的 channel 不同
-        return nil, false // 返回 nil 和 false
-    }
-    return p, true // 返回父 cancelCtx 和 true
+func parentCancelCtx(parent Context) (*cancelCtx, bool) {  
+    // 获取父级 Context 的 Done 通道  
+    done := parent.Done()  
+    // 如果 Done 通道已关闭或为 nil，返回 nil 和 false    if done == closedchan || done == nil {  
+       return nil, false  
+    }  
+    // 尝试从父级 Context 中获取 *cancelCtx    p, ok := parent.Value(&cancelCtxKey).(*cancelCtx)  
+    // 如果获取失败，返回 nil 和 false    if !ok {  
+       return nil, false  
+    }  
+    // 获取 *cancelCtx 的 Done 通道  
+    pdone, _ := p.done.Load().(chan struct{})  
+    // 如果 Done 通道不匹配，返回 nil 和 false    if pdone != done {  
+       return nil, false  
+    }  
+    // 返回 *cancelCtx 和 true    return p, true  
 }
 ```
 
 - 倘若 parent 的 channel 已关闭或者是不会被 cancel 的类型，则返回 false；
 - 倘若以特定的 `cancelCtxKey` 从 parent 中取值，取得的 value 是 `cancelCtx`，则返回 true。
+- ![[Pasted image 20241014002410.png]]
+![[Pasted image 20241014003538.png]]![[Pasted image 20241014003607.png]]
+### 具体说明：
+
+1. **派生新的 `cancelCtx`**：
+    
+    - 当你调用 `context.WithCancel()`、`context.WithTimeout()` 或 `context.WithDeadline()` 时，会创建一个新的 `cancelCtx`。每个新的 `cancelCtx` 都会有一个**自己独立的 `Done` 通道**，用于处理取消信号。
+    - 这些新的 `cancelCtx` 会**不复用**父 `Context` 的 `Done` 通道。它们创建了新的取消机制，意味着它们的 `Done` 通道是独立的，且有各自的生命周期。
+2. **复用父级 `cancelCtx` 的 `Done` 通道**：
+    
+    - 如果没有派生新的 `cancelCtx`，子 `Context` 可能会复用父上下文的 `Done` 通道。这种情况发生在：
+        - 父级上下文已经有一个 `cancelCtx`，即父上下文本身是通过 `context.WithCancel()` 或其他类似方法创建的，并且已经有了一个 `Done` 通道。
+        - 当子 `Context` 没有通过 `context.WithCancel()` 等方法派生出新的取消上下文（例如直接用 `context.WithValue()` 派生子上下文时），子上下文会复用父级的 `Done` 通道。这意味着，当父上下文取消时，子上下文也会被取消。
+首先parentCancelCtx会从调用的context找到最近的父cancelctx，换句话说要不就是找到它本身，要不就是找到最近的cancelctx父级，并且第二种情况默认了此context是一个没有被新包装cancelctx字段的新context，比如valuectx这样新建时不会新包装cancelctx字段的context。而对于这两种情况，他们的两个通道就应该是同一个，第一张情况就是自身通道等于自身通道，第二种情况就是因为此context一路上没有新建包装新的cancelctx，自然复用了第一个父context的通道。
 
 ### 3.6.4 cancelCtx.cancel
 
 ```go
 func (c *cancelCtx) cancel(removeFromParent bool, err error) {
-    if err == nil { // 检查传入的 err 是否为 nil
-        panic("context: internal error: missing cancel error") // 如果是 nil，抛出 panic
+    if err == nil { // 检查传入的错误是否为 nil
+        panic("context: internal error: missing cancel error") // 如果是 nil，抛出 panic，表示内部错误
     }
-    c.mu.Lock() // 加锁，保护修改操作
-    if c.err != nil { // 如果已经被取消
-        c.mu.Unlock() // 解锁
-        return // 直接返回，避免重复取消
+    
+    c.mu.Lock() // 加锁以保护对共享状态的修改
+    if c.err != nil { // 如果当前 Context 已经被取消
+        c.mu.Unlock() // 解锁并返回，避免重复取消
+        return
     }
-    c.err = err // 设置取消的错误
-    d, _ := c.done.Load().(chan struct{}) // 加载 done channel
+    
+    c.err = err // 设置取消的错误信息
+    
+    d, _ := c.done.Load().(chan struct{}) // 加载当前的 done channel
     if d == nil { // 如果 done channel 尚未初始化
-        c.done.Store(closedchan) // 设置为已关闭的 channel
+        c.done.Store(closedchan) // 将其设置为已关闭的 channel，表示取消状态
     } else {
-        close(d) // 关闭 done channel，通知所有等待的 goroutine
+        close(d) // 关闭已初始化的 done channel，通知所有等待的 goroutine
     }
-    for child := range c.children { // 遍历所有子 context
-        // NOTE: acquiring the child's lock while holding parent's lock.
-        child.cancel(false, err) // 取消子 context，并传递相同的错误
+    
+    // 遍历所有子 context，递归取消它们
+    for child := range c.children { 
+        // NOTE: 在持有父级锁的同时获取子级的锁，这里需要小心避免死锁。
+        child.cancel(false, err) // 取消子 context，并传递父 context 的错误信息
     }
-    c.children = nil // 清空 children 集合
-    c.mu.Unlock() // 解锁
+    
+    c.children = nil // 清空 children 集合，释放引用
+    c.mu.Unlock() // 解锁，允许其他 goroutine 访问
 
-    if removeFromParent { // 如果需要从父 context 中移除
-        removeChild(c.Context, c) // 调用 removeChild 方法移除
+    if removeFromParent { // 如果需要从父 context 中移除当前 context
+        removeChild(c.Context, c) // 调用 removeChild 方法进行移除
     }
 }
+
 ```
 
 - `cancelCtx.cancel` 方法有两个入参，第一个 `removeFromParent` 是一个 bool 值，表示当前 context 是否需要从父 context 的 children set 中删除；第二个 `err` 则是 cancel 后需要展示的错误；
@@ -756,6 +718,33 @@ func (c *cancelCtx) cancel(removeFromParent bool, err error) {
 - 校验 `cancelCtx` 自带的 `err` 是否已经非空，若非空说明已被 cancel，则解锁返回；
 - 将传入的 `err` 赋给 `cancelCtx.err`；
 - 处理 `cancelCtx` 的 channel，若 channel 此前未初始化，则直接注入一个 `closedChan`，否则关闭该 channel；
+- ### **原因**
+```go
+func DoWork(ctx context.Context) {
+    // 接收方 Context
+    select {
+    case <-ctx.Done():
+        // Context 被取消，终止操作
+        return
+    default:
+        // 继续执行工作
+    }
+}
+````
+
+1. **如果 `done` 通道未初始化，说明还没有 goroutine 在等待，可以直接使用已关闭的共享通道 `closedchan`，节省资源。**
+    
+    - **未初始化的含义**：当 `done` 通道为 `nil` 时，表示尚未有人调用过 `c.Done()` 方法，也就是说，没有 goroutine 正在等待这个上下文的取消信号。
+    - **节省资源**：
+        - **避免创建新的通道**：如果没有 goroutine 在等待，我们无需为此上下文专门创建一个新的通道。
+        - **使用共享的已关闭通道**：`closedchan` 是一个全局共享的、已关闭的通道。将 `c.done` 设置为 `closedchan`，意味着所有未来调用 `c.Done()` 的 goroutine 都会立即收到取消信号，而无需额外的资源开销。
+    - **优化效果**：这种做法减少了内存分配和垃圾回收的压力，提高了程序的性能，尤其是在大量创建和取消上下文的场景下。
+2. **如果 `done` 通道已初始化，说明有 goroutine 在等待，关闭该通道会立即通知它们。**
+    
+    - **已初始化的含义**：当 `done` 通道不为 `nil` 时，表示已经有 goroutine 调用了 `c.Done()` 方法，并获取了该通道。这些 goroutine 正在等待通道的关闭信号，以得知上下文何时被取消。
+    - **需要通知等待者**：
+        - **关闭已有的通道**：通过调用 `close(d)`，关闭已初始化的 `done` 通道，所有等待在该通道上的 goroutine 都会立即从接收操作中返回，收到上下文已被取消的通知。
+        - **保证正确性**：确保所有已经开始等待的 goroutine 都能及时得知上下文的取消状态，避免逻辑上的错误或死锁。
 - 遍历当前 `cancelCtx` 的 children set，依次将 children context 都进行 cancel；
 - 解锁。
 - 根据传入的 `removeFromParent` flag 判断是否需要手动把 `cancelCtx` 从 parent 的 children set 中移除。
@@ -993,79 +982,9 @@ func WithValue(parent Context, key, val any) Context {
 
 ---
 
-## 5. **`Done()` 方法在 `cancelCtx` 中的实现原理是什么？**
 
-go
-
-Copy code
-
-`func (c *cancelCtx) Done() <-chan struct{} {     d := c.done.Load() // 原子加载 done 字段的当前值     if d != nil { // 如果 done 已经被初始化         return d.(chan struct{}) // 直接返回已存在的 channel     }     c.mu.Lock() // 加锁，保护后续操作     defer c.mu.Unlock() // 确保在函数结束时解锁     d = c.done.Load() // 再次加载 done，防止并发初始化     if d == nil { // 如果 done 仍未初始化         d = make(chan struct{}) // 创建一个新的 channel         c.done.Store(d) // 原子存储到 done 字段中     }     return d.(chan struct{}) // 返回初始化后的 channel }`
-
-### 解释：
-
-- `Done()` 方法的作用是返回一个只读的 `chan struct{}`，用于通知监听者 `Context` 是否已经被取消。
-- 该通道是懒加载的，也就是说，它只会在第一次调用 `Done()` 方法时被创建。
-- 使用了 `atomic.Value` 来确保在高并发场景下的安全访问。
-- 加锁机制保证了 `Done()` 通道的唯一性，确保 `Context` 在并发访问时不会创建多个通道。
 
 ---
-
-## 6. **如何理解 Go 中的管道信号编程？**
-
-在 Go 语言中，**通道（Channel）** 是用于在不同协程（goroutine）之间传递数据的机制。管道信号编程是通过通道来实现并发协作、任务同步的编程模式。
-
-- **通道的创建**：使用 `make(chan T)` 创建一个通道，其中 `T` 是通道传输的数据类型。
-- **发送数据**：通过 `ch <- value` 将数据发送到通道。
-- **接收数据**：通过 `value := <-ch` 从通道中接收数据。
-
-Go 的通道既可以用于传递数据，也可以作为信号机制，用于控制协程的状态和通信。`Context` 中的 `Done()` 通道就是一种管道信号的实现，用来传递取消信号。
-
----
-
-## 7. **`canceler` 接口的实现细节是什么？**
-
-`canceler` 接口是 `Go` 的 `context` 包内部用于实现取消逻辑的接口。它定义了两个方法：
-
-go
-
-Copy code
-
-`type canceler interface {     cancel(removeFromParent bool, err error) // 取消当前 Context     Done() <-chan struct{}                    // 返回 Done 通道，表示取消状态 }`
-
-### 实现细节：
-
-- **`cancel()`**：用于取消当前的 `Context`，并选择是否从父 `Context` 的 `children` 集合中移除。调用这个方法时会关闭 `Done()` 通道，通知所有监听者 `Context` 已经被取消。
-- **`Done()`**：返回一个只读的通道，表示 `Context` 的完成状态。通过监听 `Done()`，可以知道 `Context` 是否已被取消或到期。
-
-实现 `canceler` 接口的核心类型是 `cancelCtx`，它通过这些方法管理 `Context` 的取消状态和与父 `Context` 的关系。
-
----
-
-## 8. **`propagateCancel` 什么时候会调用？子 `Context` 是怎么通过 `propagateCancel` 接收到取消信号的？**
-
-### `propagateCancel` 的调用时机：
-
-`propagateCancel` 会在**创建子 `Context` 时**自动调用。常见场景是通过 `context.WithCancel()`、`context.WithTimeout()`、`context.WithDeadline()` 创建子 `Context` 时，`propagateCancel` 会将子 `Context` 与父 `Context` 关联。
-
-### 如何关联父子 `Context`：
-
-- `propagateCancel` 通过检查父 `Context` 的 `Done()` 通道，将子 `Context` 监听到父 `Context` 的取消状态。
-- 如果父 `Context` 的 `Done()` 通道已经关闭（父 `Context` 被取消），`propagateCancel` 会立即取消子 `Context`。
-- 如果父 `Context` 还没有被取消，子 `Context` 会被添加到父 `Context` 的 `children` 集合中，父 `Context` 被取消时，子 `Context` 会同步收到取消信号。
-
-### 取消信号的传递：
-
-- 当父 `Context` 被取消时，`cancel()` 方法会遍历父 `Context` 的 `children` 集合，递归取消所有子 `Context`，确保整个 `Context` 树都能正确响应取消操作。
-
----
-
-## 9. **子 `Context` 在父 `Context` 的 `Done` 通道懒加载的情况下是如何返回正确的 `Done` 通道的？**
-
-子 `Context` 通过 `propagateCancel` 机制，**延迟绑定父 `Context` 的 `Done` 通道**。即使父 `Context` 的 `Done` 通道是懒加载的，子 `Context` 仍然能够通过 `propagateCancel` 监听父 `Context` 的取消状态。
-
-- 子 `Context` 并不会立即创建自己的 `Done` 通道，而是通过 `parent.Done()` 继承父 `Context` 的 `Done` 通道。
-- 当父 `Context` 的 `Done` 通道被懒加载创建时，子 `Context` 的 `Done` 通道也会通过 `propagateCancel` 机制绑定，确保取消信号能够正确传递。
-
 
 ## 1. `Context` 的树设计是否使用了组合模式？
 
@@ -1127,61 +1046,6 @@ Copy code
 **答**：`value` 函数的主要任务是从当前的 `Context` 节点开始，向上遍历上下文链，查找与指定的 `key` 关联的值。如果找到匹配的值，则返回该值；如果没有找到，则返回 `nil`。
 
 ---
-
-## 8. 遇到父节点是非 `valueCtx` 时，如何处理？
-
-**问**：遇到父节点是非 `valueCtx` 时，如何处理？
-
-**答**：遇到非 `valueCtx` 类型的父节点时，`value` 函数会针对特定类型执行逻辑。例如，对于 `cancelCtx` 和 `timerCtx`，如果 `key` 匹配特定的取消相关键（`&cancelCtxKey`），则返回对应的 `cancelCtx`。这确保了能快速访问取消功能相关的信息。
-
----
-
-## 9. `value` 函数中查找的流程是怎样的？
-
-**问**：`value` 函数中查找的流程是怎样的？
-
-**答**：`value` 函数使用一个无限循环，逐层向上遍历 `Context` 链。通过类型断言检查当前上下文的类型，如果是 `valueCtx` 则查找键值对，如果是 `cancelCtx`、`timerCtx` 或其他类型，则根据需要检查 `key` 并执行相应的操作。如果到达 `backgroundCtx` 或 `todoCtx`，则返回 `nil`，表示没有找到匹配的值。
-
-
-
-
-1. **goroutine 监听 context 的通道是用户编程自定义的逻辑吗？**
-    
-    **不是的。** 在 Go 的 `context` 包实现中，监听上下文 (`Context`) 的 `Done` 通道的 goroutine 是由 `context` 包内部自动管理的，而不是由用户在应用程序中手动创建的。具体来说，当您调用诸如 `WithCancel`, `WithTimeout`, 或 `WithDeadline` 这样的函数创建子上下文时，`context` 包可能会在内部启动一个 goroutine 来监听父级上下文的 `Done` 通道，以便在父级上下文被取消时传播取消信号给子级上下文。
-    
-    用户在编写代码时，无需（也不应该）为上下文取消监听创建额外的 goroutine。`context` 包已经处理了取消传播的逻辑，确保在父级上下文取消时，所有相关的子级上下文也会被适当地取消。
-    
-    **示例说明：**
-    
-    在您之前提供的 `propagateCancel` 函数中，如果父级上下文不支持特定的接口（如 `*cancelCtx` 或 `afterFuncer`），`context` 包会自动启动一个新的 goroutine 来监听父级和子级的 `Done` 通道，以确保取消信号能够正确传播。这些 goroutine 是 `context` 包内部实现的一部分，而非用户代码的一部分。
-    
-2. **清空子 context 的 map 之后，这些子 context 的内存会被回收吗？**
-    
-    **是的，前提是没有其他引用存在。** Go 使用垃圾回收（Garbage Collection, GC）机制来自动管理内存。当您在 `cancel` 方法中清空 `c.children`（即将其设置为 `nil`）时，这意味着当前上下文不再持有对子级上下文的引用。如果没有其他地方（如用户的代码或其他数据结构）持有对子级上下文的引用，Go 的垃圾回收器将能够回收这些子上下文所占用的内存。
-    
-    **详细解释：**
-    
-    - **引用计数和垃圾回收：** Go 的垃圾回收器基于可达性分析，而不是传统的引用计数。当一个对象（如子上下文）没有任何可达的引用时，它会被标记为可回收，GC 在适当的时间点回收其内存。
-        
-    - **取消传播后的清理：** 在 `cancel` 方法中，取消当前上下文会导致所有子上下文也被取消。随后，`c.children` 被设置为 `nil`，这意味着父级上下文不再持有对子级上下文的引用。如果子级上下文的 `cancel` 方法也移除了它们对子级自身的引用（如果有的话），并且用户代码中也没有其他引用，那么这些子上下文将变为不可达，GC 会自动回收它们的内存。
-        
-    - **避免内存泄漏：** 确保在取消上下文后，没有持有对子级上下文的引用是防止内存泄漏的关键。如果用户在取消上下文后仍然持有对子级上下文的引用（例如，将它们存储在全局变量中），那么这些上下文将不会被垃圾回收，从而导致内存泄漏。
-        
-    
-    **注意事项：**
-    
-    - **引用保留：** 如果您的应用程序在取消上下文后仍然持有对子上下文的引用（例如，通过闭包、全局变量或其他数据结构），这些上下文将不会被垃圾回收，可能导致内存泄漏。
-        
-    - **确保取消传播：** 正确使用 `context` 包的取消函数（如 `cancel`）非常重要，以确保上下文的取消能够正确传播，并且相关的资源能够被及时释放。
-        
-
-### 总结
-
-- **goroutine 的管理：** 监听 `Context` 的 `Done` 通道的 goroutine 由 `context` 包内部自动管理，用户无需手动创建这些 goroutine。
-    
-- **内存回收：** 在取消上下文并清空子上下文的引用后，只要没有其他引用存在，子上下文的内存会被 Go 的垃圾回收器自动回收。****
-
-
 
 ## 解释一下：func Cause(c Context) error 
 
