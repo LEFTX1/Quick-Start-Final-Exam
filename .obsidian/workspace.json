@@ -89,7 +89,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "redis面试/redis面试.md",
+                "file": "mysql小林/mysql小林.md",
                 "mode": "source",
                 "source": false
               }
@@ -234,7 +234,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "redis面试/redis面试.md",
+                "file": "mysql小林/mysql小林.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -251,7 +251,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "redis面试/redis面试.md",
+                "file": "mysql小林/mysql小林.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -274,7 +274,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "redis面试/redis面试.md"
+                "file": "mysql小林/mysql小林.md"
               }
             }
           }
@@ -298,6 +298,11 @@
   },
   "active": "fdacc002a15a2a33",
   "lastOpenFiles": [
+    "Pasted image 20241026191233.png",
+    "mysql45讲/mysql45讲.md",
+    "mysql小林/mysql小林.md",
+    "mysql小林",
+    "redis面试/redis面试.md",
     "Pasted image 20241024202411.png",
     "Pasted image 20241024192023.png",
     "Pasted image 20241024181500.png",
@@ -307,7 +312,6 @@
     "Pasted image 20241024180445.png",
     "Pasted image 20241024180422.png",
     "每日学习记录/begin - 2024-09-19.md",
-    "redis面试/redis面试.md",
     "redis面试",
     "golang context/golang context.md",
     "gmp模型/gmp.md",
@@ -320,11 +324,9 @@
     "Excalidraw/context/cancel向下传播.svg",
     "Excalidraw/context/cancel方法.md",
     "Excalidraw/context/Drawing 2024-10-13 23.43.33.excalidraw.md",
-    "Excalidraw/context/withcancel全流程.svg",
     "Excalidraw/context/withcancel全流程.md",
     "Excalidraw/context/propagateCancel函数.md",
     "Excalidraw/context/context树组成图示.md",
-    "mysql45讲/mysql45讲.md",
     "Excalidraw/context/Drawing 2024-10-13 00.49.16.excalidraw.md",
     "Excalidraw/context",
     "Excalidraw/context/WithDeadlineCause.md",
@@ -335,14 +337,12 @@
     "Excalidraw/Drawing 2024-10-12 20.04.51.excalidraw.md",
     "Excalidraw/Drawing 2024-10-12 19.54.41.excalidraw.md",
     "Excalidraw/Drawing 2024-10-12 19.53.38.excalidraw.md",
-    "Excalidraw/Drawing 2024-10-12 19.53.26.excalidraw.md",
     "Excalidraw",
     "golang context",
     "gmp模型",
     "mysql45讲",
     "黑马点评项目",
     "每日学习记录",
-    "数值分析",
-    "static/2022-12-06 211735.heic"
+    "数值分析"
   ]
 }
