@@ -89,7 +89,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "每日学习记录/begin - 2024-09-19.md",
+                "file": "redis面试/redis面试.md",
                 "mode": "source",
                 "source": false
               }
@@ -234,7 +234,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "每日学习记录/begin - 2024-09-19.md",
+                "file": "redis面试/redis面试.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -251,7 +251,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "每日学习记录/begin - 2024-09-19.md",
+                "file": "redis面试/redis面试.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -274,7 +274,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "每日学习记录/begin - 2024-09-19.md"
+                "file": "redis面试/redis面试.md"
               }
             }
           }
@@ -298,6 +298,17 @@
   },
   "active": "fdacc002a15a2a33",
   "lastOpenFiles": [
+    "Pasted image 20241024202411.png",
+    "Pasted image 20241024192023.png",
+    "Pasted image 20241024181500.png",
+    "Pasted image 20241024180614.png",
+    "Pasted image 20241024180541.png",
+    "Pasted image 20241024180537.png",
+    "Pasted image 20241024180445.png",
+    "Pasted image 20241024180422.png",
+    "每日学习记录/begin - 2024-09-19.md",
+    "redis面试/redis面试.md",
+    "redis面试",
     "golang context/golang context.md",
     "gmp模型/gmp.md",
     "Excalidraw/context/context树双向连接.md",
@@ -311,14 +322,7 @@
     "Excalidraw/context/Drawing 2024-10-13 23.43.33.excalidraw.md",
     "Excalidraw/context/withcancel全流程.svg",
     "Excalidraw/context/withcancel全流程.md",
-    "image_1.png",
-    "Pasted image 20241014003607.png",
-    "Pasted image 20241014003538.png",
-    "Pasted image 20241014002410.png",
-    "image_0.png",
     "Excalidraw/context/propagateCancel函数.md",
-    "Pasted image 20241013235955.png",
-    "Pasted image 20241013235953.png",
     "Excalidraw/context/context树组成图示.md",
     "mysql45讲/mysql45讲.md",
     "Excalidraw/context/Drawing 2024-10-13 00.49.16.excalidraw.md",
@@ -332,8 +336,6 @@
     "Excalidraw/Drawing 2024-10-12 19.54.41.excalidraw.md",
     "Excalidraw/Drawing 2024-10-12 19.53.38.excalidraw.md",
     "Excalidraw/Drawing 2024-10-12 19.53.26.excalidraw.md",
-    "static/0,  1], [ 1,  1], [ 1, -1],  [-1, -1],  [-1,  4],  [ 0,  1], [ 0,  1.md",
-    "数值分析/数值分析.md",
     "Excalidraw",
     "golang context",
     "gmp模型",
@@ -341,7 +343,6 @@
     "黑马点评项目",
     "每日学习记录",
     "数值分析",
-    "static/2022-12-06 211735.heic",
-    "static/2022-12-06 211735 1.heic"
+    "static/2022-12-06 211735.heic"
   ]
 }
