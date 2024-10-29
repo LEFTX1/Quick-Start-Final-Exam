@@ -41,12 +41,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "golang context/golang context.md",
-                "mode": "preview",
+                "file": "mysql45讲/mysql45讲.md",
+                "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "golang context"
+              "title": "mysql45讲"
             }
           },
           {
@@ -212,7 +212,7 @@
             }
           }
         ],
-        "currentTab": 8
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -354,14 +354,15 @@
       "obsidian-excalidraw-plugin:新建绘图文件": false
     }
   },
-  "active": "20d27d12d4293ae0",
+  "active": "aca436c58378605c",
   "lastOpenFiles": [
+    "golang context/golang context.md",
+    "mysql45讲/mysql45讲.md",
     "Pasted image 20241028205418.png",
     "Pasted image 20241028205415.png",
     "mysql小林/mysql小林.md",
     "Pasted image 20241027192200.png",
     "Pasted image 20241026191233.png",
-    "mysql45讲/mysql45讲.md",
     "mysql小林",
     "redis面试/redis面试.md",
     "Pasted image 20241024202411.png",
@@ -370,10 +371,8 @@
     "Pasted image 20241024180614.png",
     "Pasted image 20241024180541.png",
     "Pasted image 20241024180537.png",
-    "Pasted image 20241024180445.png",
     "每日学习记录/begin - 2024-09-19.md",
     "redis面试",
-    "golang context/golang context.md",
     "gmp模型/gmp.md",
     "Excalidraw/context/context树双向连接.md",
     "Excalidraw/context/context树.md",
