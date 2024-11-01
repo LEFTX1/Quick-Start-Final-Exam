@@ -41,12 +41,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "mysql45讲/mysql45讲.md",
+                "file": "数值分析/数值分析.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "mysql45讲"
+              "title": "数值分析"
             }
           },
           {
@@ -330,10 +330,10 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "mysql45讲/mysql45讲.md"
+                "file": "数值分析/数值分析.md"
               },
               "icon": "lucide-list",
-              "title": "mysql45讲 的大纲"
+              "title": "数值分析 的大纲"
             }
           }
         ],
@@ -356,11 +356,12 @@
   },
   "active": "aca436c58378605c",
   "lastOpenFiles": [
+    "mysql45讲/mysql45讲.md",
+    "未命名",
     "Pasted image 20241030164944.png",
     "Pasted image 20241030164936.png",
     "Pasted image 20241030164930.png",
     "golang context/golang context.md",
-    "mysql45讲/mysql45讲.md",
     "Pasted image 20241028205418.png",
     "Pasted image 20241028205415.png",
     "mysql小林/mysql小林.md",
@@ -371,7 +372,6 @@
     "Pasted image 20241024202411.png",
     "Pasted image 20241024192023.png",
     "Pasted image 20241024181500.png",
-    "Pasted image 20241024180614.png",
     "每日学习记录/begin - 2024-09-19.md",
     "redis面试",
     "gmp模型/gmp.md",
@@ -400,7 +400,6 @@
     "gmp模型",
     "mysql45讲",
     "黑马点评项目",
-    "每日学习记录",
-    "数值分析"
+    "每日学习记录"
   ]
 }
