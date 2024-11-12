@@ -53,12 +53,40 @@
             "id": "8b3bafa6bf8cccf2",
             "type": "leaf",
             "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Excalidraw/leetcode/构造回文字符串.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "构造回文字符串"
+            }
+          },
+          {
+            "id": "63ea1d3c76a9f085",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Excalidraw/leetcode/构造回文字符串.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "构造回文字符串"
+            }
+          },
+          {
+            "id": "ac652aa95ef44831",
+            "type": "leaf",
+            "state": {
               "type": "excalidraw",
               "state": {
-                "file": "Excalidraw/Drawing 2024-11-07 11.11.42.excalidraw.md"
+                "file": "Excalidraw/Drawing 2024-11-12 17.37.09.excalidraw.md"
               },
               "icon": "excalidraw-icon",
-              "title": "Drawing 2024-11-07 11.11.42.excalidraw"
+              "title": "Drawing 2024-11-12 17.37.09.excalidraw"
             }
           },
           {
@@ -224,7 +252,7 @@
             }
           }
         ],
-        "currentTab": 3
+        "currentTab": 5
       }
     ],
     "direction": "vertical"
@@ -342,10 +370,10 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Excalidraw/Drawing 2024-11-07 11.11.42.excalidraw.md"
+                "file": "Excalidraw/Drawing 2024-11-12 17.37.09.excalidraw.md"
               },
               "icon": "lucide-list",
-              "title": "Drawing 2024-11-07 11.11.42.excalidraw 的大纲"
+              "title": "Drawing 2024-11-12 17.37.09.excalidraw 的大纲"
             }
           }
         ],
@@ -366,10 +394,16 @@
       "obsidian-excalidraw-plugin:新建绘图文件": false
     }
   },
-  "active": "8b3bafa6bf8cccf2",
+  "active": "ac652aa95ef44831",
   "lastOpenFiles": [
-    "100-GO-mistakes-main/chapter/2-Code-and-project-organization/2-1-unintended-variable-shadowing.md",
+    "Excalidraw/Drawing 2024-11-12 17.54.02.excalidraw.md",
+    "Excalidraw/Drawing 2024-11-12 17.37.09.excalidraw.md",
     "Excalidraw/Drawing 2024-11-07 11.11.42.excalidraw.md",
+    "Excalidraw/leetcode/构造回文字符串.md",
+    "Pasted image 20241112175512.png",
+    "Pasted image 20241112175509.png",
+    "1731404777835.png",
+    "100-GO-mistakes-main/chapter/2-Code-and-project-organization/2-1-unintended-variable-shadowing.md",
     "Excalidraw/leetcode",
     "100-GO-mistakes-main/chapter/2-Code-and-project-organization/2-2-unnecessary-nested-code.md",
     "100-GO-mistakes-main/chapter/2-Code-and-project-organization/2-0-Code-and-project-organization.md",
@@ -392,9 +426,6 @@
     "100-GO-mistakes-main/chapter/1-go-simple-to-learn-but-hard-to-master/1-2-simple-doesnt-mean-easy.md",
     "100-GO-mistakes-main/chapter/1-go-simple-to-learn-but-hard-to-master/1-1-go-outline.md",
     "100-GO-mistakes-main/chapter/1-go-simple-to-learn-but-hard-to-master/1-0-go-simple-to-learn-but-hard-to-master.md",
-    "100-GO-mistakes-main/README.md",
-    "100-GO-mistakes-main/_sidebar.md",
-    "100-GO-mistakes-main/_navbar.md",
     "static/b0cac8dc6ddb6b76685b073b7285159.jpg",
     "100-GO-mistakes-main/js/zoom-image.min.js",
     "100-GO-mistakes-main/js/vue.css",
@@ -409,10 +440,6 @@
     "100-GO-mistakes-main/chapter/images/96.png",
     "100-GO-mistakes-main/chapter/images/99.png",
     "100-GO-mistakes-main/chapter/images/97.png",
-    "100-GO-mistakes-main/chapter/images/95.png",
-    "100-GO-mistakes-main/chapter/images/94.png",
-    "100-GO-mistakes-main/chapter/images/92.png",
-    "100-GO-mistakes-main/chapter/images/93.png",
-    "100-GO-mistakes-main/chapter/9-Concurrency-Practice/9-9-Creating-data-races-with-append.md"
+    "100-GO-mistakes-main/chapter/images/95.png"
   ]
 }
