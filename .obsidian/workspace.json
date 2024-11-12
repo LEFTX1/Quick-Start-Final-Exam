@@ -50,6 +50,18 @@
             }
           },
           {
+            "id": "8b3bafa6bf8cccf2",
+            "type": "leaf",
+            "state": {
+              "type": "excalidraw",
+              "state": {
+                "file": "Excalidraw/Drawing 2024-11-07 11.11.42.excalidraw.md"
+              },
+              "icon": "excalidraw-icon",
+              "title": "Drawing 2024-11-07 11.11.42.excalidraw"
+            }
+          },
+          {
             "id": "c3e6d1b52e42c222",
             "type": "leaf",
             "state": {
@@ -212,7 +224,7 @@
             }
           }
         ],
-        "currentTab": 2
+        "currentTab": 3
       }
     ],
     "direction": "vertical"
@@ -330,10 +342,10 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "100-GO-mistakes-main/chapter/2-Code-and-project-organization/2-1-unintended-variable-shadowing.md"
+                "file": "Excalidraw/Drawing 2024-11-07 11.11.42.excalidraw.md"
               },
               "icon": "lucide-list",
-              "title": "2-1-unintended-variable-shadowing 的大纲"
+              "title": "Drawing 2024-11-07 11.11.42.excalidraw 的大纲"
             }
           }
         ],
@@ -354,10 +366,12 @@
       "obsidian-excalidraw-plugin:新建绘图文件": false
     }
   },
-  "active": "aca436c58378605c",
+  "active": "8b3bafa6bf8cccf2",
   "lastOpenFiles": [
-    "100-GO-mistakes-main/chapter/2-Code-and-project-organization/2-2-unnecessary-nested-code.md",
     "100-GO-mistakes-main/chapter/2-Code-and-project-organization/2-1-unintended-variable-shadowing.md",
+    "Excalidraw/Drawing 2024-11-07 11.11.42.excalidraw.md",
+    "Excalidraw/leetcode",
+    "100-GO-mistakes-main/chapter/2-Code-and-project-organization/2-2-unnecessary-nested-code.md",
     "100-GO-mistakes-main/chapter/2-Code-and-project-organization/2-0-Code-and-project-organization.md",
     "100-GO-mistakes-main/chapter/11-Testing/11-9-Not-exploring-all-the-Go-testing-features.md",
     "100-GO-mistakes-main/chapter/11-Testing/11-8-Writing-inaccurate-benchmarks.md",
@@ -390,7 +404,6 @@
     "100-GO-mistakes-main/js/prism-sql.min.js",
     "100-GO-mistakes-main/js/docsify.min.js",
     "100-GO-mistakes-main/js/katex.min.css",
-    "100-GO-mistakes-main/js/prism-bash.min.js",
     "100-GO-mistakes-main/chapter/images/Harsanyi-HI.png",
     "100-GO-mistakes-main/chapter/images/98.png",
     "100-GO-mistakes-main/chapter/images/96.png",
@@ -400,7 +413,6 @@
     "100-GO-mistakes-main/chapter/images/94.png",
     "100-GO-mistakes-main/chapter/images/92.png",
     "100-GO-mistakes-main/chapter/images/93.png",
-    "100-GO-mistakes-main/chapter/9-Concurrency-Practice/9-9-Creating-data-races-with-append.md",
-    "100-GO-mistakes-main/chapter/9-Concurrency-Practice/9-8-Forgetting-about-possible-side-effects.md"
+    "100-GO-mistakes-main/chapter/9-Concurrency-Practice/9-9-Creating-data-races-with-append.md"
   ]
 }
