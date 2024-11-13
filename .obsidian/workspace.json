@@ -83,10 +83,22 @@
             "state": {
               "type": "excalidraw",
               "state": {
-                "file": "Excalidraw/Drawing 2024-11-12 17.37.09.excalidraw.md"
+                "file": "Excalidraw/Drawing 2024-11-12 17.54.02.excalidraw.md"
               },
               "icon": "excalidraw-icon",
-              "title": "Drawing 2024-11-12 17.37.09.excalidraw"
+              "title": "Drawing 2024-11-12 17.54.02.excalidraw"
+            }
+          },
+          {
+            "id": "d91fbf61edebc978",
+            "type": "leaf",
+            "state": {
+              "type": "excalidraw",
+              "state": {
+                "file": "Excalidraw/Drawing 2024-11-13 18.19.18.excalidraw.md"
+              },
+              "icon": "excalidraw-icon",
+              "title": "Drawing 2024-11-13 18.19.18.excalidraw"
             }
           },
           {
@@ -252,7 +264,7 @@
             }
           }
         ],
-        "currentTab": 5
+        "currentTab": 6
       }
     ],
     "direction": "vertical"
@@ -370,10 +382,10 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Excalidraw/Drawing 2024-11-12 17.37.09.excalidraw.md"
+                "file": "Excalidraw/Drawing 2024-11-13 18.19.18.excalidraw.md"
               },
               "icon": "lucide-list",
-              "title": "Drawing 2024-11-12 17.37.09.excalidraw 的大纲"
+              "title": "Drawing 2024-11-13 18.19.18.excalidraw 的大纲"
             }
           }
         ],
@@ -394,9 +406,10 @@
       "obsidian-excalidraw-plugin:新建绘图文件": false
     }
   },
-  "active": "ac652aa95ef44831",
+  "active": "d91fbf61edebc978",
   "lastOpenFiles": [
     "Excalidraw/Drawing 2024-11-12 17.54.02.excalidraw.md",
+    "Excalidraw/Drawing 2024-11-13 18.19.18.excalidraw.md",
     "Excalidraw/Drawing 2024-11-12 17.37.09.excalidraw.md",
     "Excalidraw/Drawing 2024-11-07 11.11.42.excalidraw.md",
     "Excalidraw/leetcode/构造回文字符串.md",
