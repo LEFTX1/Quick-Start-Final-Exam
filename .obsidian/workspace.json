@@ -117,12 +117,14 @@
             "id": "c7e676b264ad6cde",
             "type": "leaf",
             "state": {
-              "type": "excalidraw",
+              "type": "markdown",
               "state": {
-                "file": "Excalidraw/Drawing 2024-11-16 17.37.30.excalidraw.md"
+                "file": "数值分析/数值分析.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "excalidraw-icon",
-              "title": "Drawing 2024-11-16 17.37.30.excalidraw"
+              "icon": "lucide-file",
+              "title": "数值分析"
             }
           },
           {
@@ -406,10 +408,10 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Excalidraw/Drawing 2024-11-16 17.37.30.excalidraw.md"
+                "file": "数值分析/数值分析.md"
               },
               "icon": "lucide-list",
-              "title": "Drawing 2024-11-16 17.37.30.excalidraw 的大纲"
+              "title": "数值分析 的大纲"
             }
           }
         ],
@@ -432,8 +434,17 @@
   },
   "active": "c7e676b264ad6cde",
   "lastOpenFiles": [
-    "Excalidraw/Drawing 2024-11-13 18.19.18.excalidraw.md",
+    "Pasted image 20241118202421.png",
+    "Pasted image 20241118201028.png",
+    "Pasted image 20241118201022.png",
+    "Pasted image 20241118201004.png",
+    "Pasted image 20241118200743.png",
+    "Pasted image 20241118200722.png",
+    "Pasted image 20241118200537.png",
+    "Pasted image 20241118200519.png",
+    "Pasted image 20241118200254.png",
     "Excalidraw/Drawing 2024-11-16 17.37.30.excalidraw.md",
+    "Excalidraw/Drawing 2024-11-13 18.19.18.excalidraw.md",
     "mysql45讲/mysql45讲.md",
     "Excalidraw/Drawing 2024-11-12 17.54.02.excalidraw.md",
     "Excalidraw/Drawing 2024-11-12 17.37.09.excalidraw.md",
@@ -441,7 +452,6 @@
     "Excalidraw/leetcode/构造回文字符串.md",
     "Pasted image 20241112175512.png",
     "Pasted image 20241112175509.png",
-    "1731404777835.png",
     "100-GO-mistakes-main/chapter/2-Code-and-project-organization/2-1-unintended-variable-shadowing.md",
     "Excalidraw/leetcode",
     "100-GO-mistakes-main/chapter/2-Code-and-project-organization/2-2-unnecessary-nested-code.md",
@@ -462,8 +472,6 @@
     "100-GO-mistakes-main/chapter/12-Optimizations",
     "100-GO-mistakes-main/chapter/1-go-simple-to-learn-but-hard-to-master/1-4-chapter-summary.md",
     "100-GO-mistakes-main/chapter/1-go-simple-to-learn-but-hard-to-master/1-3-100-go-mistakes.md",
-    "100-GO-mistakes-main/chapter/1-go-simple-to-learn-but-hard-to-master/1-2-simple-doesnt-mean-easy.md",
-    "static/b0cac8dc6ddb6b76685b073b7285159.jpg",
     "100-GO-mistakes-main/js/zoom-image.min.js",
     "100-GO-mistakes-main/js/vue.css",
     "100-GO-mistakes-main/js/search.min.js",
@@ -471,12 +479,6 @@
     "100-GO-mistakes-main/js/prism-yaml.min.js",
     "100-GO-mistakes-main/js/prism-sql.min.js",
     "100-GO-mistakes-main/js/docsify.min.js",
-    "100-GO-mistakes-main/js/katex.min.css",
-    "100-GO-mistakes-main/chapter/images/Harsanyi-HI.png",
-    "100-GO-mistakes-main/chapter/images/98.png",
-    "100-GO-mistakes-main/chapter/images/96.png",
-    "100-GO-mistakes-main/chapter/images/99.png",
-    "100-GO-mistakes-main/chapter/images/97.png",
-    "100-GO-mistakes-main/chapter/images/95.png"
+    "100-GO-mistakes-main/js/katex.min.css"
   ]
 }
