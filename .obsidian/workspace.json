@@ -105,14 +105,24 @@
             "id": "6169cb1577357126",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "excalidraw",
               "state": {
-                "file": "mysql45讲/mysql45讲.md",
-                "mode": "source",
-                "source": false
+                "file": "Excalidraw/Drawing 2024-11-13 18.19.18.excalidraw.md"
               },
-              "icon": "lucide-file",
-              "title": "mysql45讲"
+              "icon": "excalidraw-icon",
+              "title": "Drawing 2024-11-13 18.19.18.excalidraw"
+            }
+          },
+          {
+            "id": "c7e676b264ad6cde",
+            "type": "leaf",
+            "state": {
+              "type": "excalidraw",
+              "state": {
+                "file": "Excalidraw/Drawing 2024-11-16 17.37.30.excalidraw.md"
+              },
+              "icon": "excalidraw-icon",
+              "title": "Drawing 2024-11-16 17.37.30.excalidraw"
             }
           },
           {
@@ -278,7 +288,7 @@
             }
           }
         ],
-        "currentTab": 7
+        "currentTab": 8
       }
     ],
     "direction": "vertical"
@@ -396,10 +406,10 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "mysql45讲/mysql45讲.md"
+                "file": "Excalidraw/Drawing 2024-11-16 17.37.30.excalidraw.md"
               },
               "icon": "lucide-list",
-              "title": "mysql45讲 的大纲"
+              "title": "Drawing 2024-11-16 17.37.30.excalidraw 的大纲"
             }
           }
         ],
@@ -420,10 +430,12 @@
       "obsidian-excalidraw-plugin:新建绘图文件": false
     }
   },
-  "active": "6169cb1577357126",
+  "active": "c7e676b264ad6cde",
   "lastOpenFiles": [
-    "Excalidraw/Drawing 2024-11-12 17.54.02.excalidraw.md",
     "Excalidraw/Drawing 2024-11-13 18.19.18.excalidraw.md",
+    "Excalidraw/Drawing 2024-11-16 17.37.30.excalidraw.md",
+    "mysql45讲/mysql45讲.md",
+    "Excalidraw/Drawing 2024-11-12 17.54.02.excalidraw.md",
     "Excalidraw/Drawing 2024-11-12 17.37.09.excalidraw.md",
     "Excalidraw/Drawing 2024-11-07 11.11.42.excalidraw.md",
     "Excalidraw/leetcode/构造回文字符串.md",
@@ -451,8 +463,6 @@
     "100-GO-mistakes-main/chapter/1-go-simple-to-learn-but-hard-to-master/1-4-chapter-summary.md",
     "100-GO-mistakes-main/chapter/1-go-simple-to-learn-but-hard-to-master/1-3-100-go-mistakes.md",
     "100-GO-mistakes-main/chapter/1-go-simple-to-learn-but-hard-to-master/1-2-simple-doesnt-mean-easy.md",
-    "100-GO-mistakes-main/chapter/1-go-simple-to-learn-but-hard-to-master/1-1-go-outline.md",
-    "100-GO-mistakes-main/chapter/1-go-simple-to-learn-but-hard-to-master/1-0-go-simple-to-learn-but-hard-to-master.md",
     "static/b0cac8dc6ddb6b76685b073b7285159.jpg",
     "100-GO-mistakes-main/js/zoom-image.min.js",
     "100-GO-mistakes-main/js/vue.css",
