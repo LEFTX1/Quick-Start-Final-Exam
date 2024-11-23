@@ -25,16 +25,32 @@
             "id": "bc01847bbd30d4d8",
             "type": "leaf",
             "state": {
-              "type": "release-notes",
+              "type": "markdown",
               "state": {
-                "currentVersion": "1.7.7"
+                "file": "数值分析/数值分析.md",
+                "mode": "source",
+                "source": false
               },
               "icon": "lucide-file",
-              "title": "Release Notes 1.7.7"
+              "title": "数值分析"
+            }
+          },
+          {
+            "id": "25f037d5162d9478",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "数值分析/数值分析.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "数值分析"
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -151,9 +167,11 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {},
+              "state": {
+                "file": "数值分析/数值分析.md"
+              },
               "icon": "lucide-list",
-              "title": "大纲"
+              "title": "数值分析 的大纲"
             }
           }
         ],
@@ -174,22 +192,24 @@
       "obsidian-excalidraw-plugin:新建绘图文件": false
     }
   },
-  "active": "bc01847bbd30d4d8",
+  "active": "25f037d5162d9478",
   "lastOpenFiles": [
-    "Pasted image 20241119011127.png",
-    "Pasted image 20241119011122.png",
-    "Pasted image 20241119011116.png",
-    "Pasted image 20241119010551.png",
-    "Pasted image 20241119010413.png",
-    "Pasted image 20241119010328.png",
-    "Pasted image 20241119010253.png",
+    "Pasted image 20241123192355.png",
+    "Pasted image 20241123192322.png",
+    "Pasted image 20241123192318.png",
+    "Pasted image 20241123192313.png",
+    "Pasted image 20241123192257.png",
+    "Pasted image 20241123192056.png",
+    "Pasted image 20241123192028.png",
+    "Pasted image 20241123190954.png",
+    "Pasted image 20241123190946.png",
+    "Pasted image 20241123190929.png",
+    "Pasted image 20241123190925.png",
     "Excalidraw/Drawing 2024-11-19 01.00.40.excalidraw.md",
     "数值分析/数值分析.md",
-    "Excalidraw/context/context树组成图示.svg",
     "golang context/golang context.md",
     "Excalidraw/context/propagateCancel函数.md",
     "Excalidraw/context/cancel方法.md",
-    "Excalidraw/context/withcancel全流程.svg",
     "mysql45讲/mysql45讲.md",
     "Excalidraw/context/value方法.md",
     "Excalidraw/Drawing 2024-11-19 00.56.43.excalidraw.md",
@@ -199,8 +219,6 @@
     "Excalidraw/leetcode/构造回文字符串.md",
     "Excalidraw/Drawing 2024-11-16 17.37.30.excalidraw.md",
     "Excalidraw/Drawing 2024-11-19 00.59.59.excalidraw.md",
-    "Pasted image 20241119005934.png",
-    "Pasted image 20241119005459.png",
     "Excalidraw/Drawing 2024-11-12 17.37.09.excalidraw.md",
     "Excalidraw/Drawing 2024-11-07 11.11.42.excalidraw.md",
     "100-GO-mistakes-main/chapter/2-Code-and-project-organization/2-1-unintended-variable-shadowing.md",
