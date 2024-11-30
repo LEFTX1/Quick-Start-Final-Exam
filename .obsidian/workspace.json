@@ -41,12 +41,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "static/未命名.md",
+                "file": "数值分析/数值分析.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "未命名"
+              "title": "数值分析"
             }
           }
         ],
@@ -168,10 +168,10 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "static/未命名.md"
+                "file": "数值分析/数值分析.md"
               },
               "icon": "lucide-list",
-              "title": "未命名 的大纲"
+              "title": "数值分析 的大纲"
             }
           }
         ],
@@ -194,8 +194,8 @@
   },
   "active": "25f037d5162d9478",
   "lastOpenFiles": [
-    "数值分析/数值分析.md",
     "static/未命名.md",
+    "数值分析/数值分析.md",
     "Pasted image 20241124183048.png",
     "Pasted image 20241124160409.png",
     "Pasted image 20241124160404.png",
