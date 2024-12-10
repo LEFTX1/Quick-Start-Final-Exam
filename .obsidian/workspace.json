@@ -81,7 +81,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "Pasted image 20241123184638.png",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -192,8 +192,10 @@
       "obsidian-excalidraw-plugin:新建绘图文件": false
     }
   },
-  "active": "25f037d5162d9478",
+  "active": "a76c7b1782834285",
   "lastOpenFiles": [
+    "static/IMG_20240621_145227.jpg",
+    "数值分析/数值分析.md",
     "Pasted image 20241209180449.png",
     "Pasted image 20241209180441.png",
     "Pasted image 20241209174533.png",
@@ -204,9 +206,7 @@
     "Pasted image 20241207203800.png",
     "Pasted image 20241207203754.png",
     "Pasted image 20241207185212.png",
-    "Pasted image 20241207185205.png",
     "static/未命名.md",
-    "数值分析/数值分析.md",
     "Excalidraw/Drawing 2024-11-19 01.00.40.excalidraw.md",
     "golang context/golang context.md",
     "Excalidraw/context/propagateCancel函数.md",
