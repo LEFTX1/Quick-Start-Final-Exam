@@ -48,6 +48,30 @@
               "icon": "lucide-file",
               "title": "数值分析"
             }
+          },
+          {
+            "id": "b008ba0275632d94",
+            "type": "leaf",
+            "state": {
+              "type": "image",
+              "state": {
+                "file": "Pasted image 20241212003610.png"
+              },
+              "icon": "lucide-image",
+              "title": "Pasted image 20241212003610"
+            }
+          },
+          {
+            "id": "892c6d95dd0a0594",
+            "type": "leaf",
+            "state": {
+              "type": "image",
+              "state": {
+                "file": "Pasted image 20241211234949.png"
+              },
+              "icon": "lucide-image",
+              "title": "Pasted image 20241211234949"
+            }
           }
         ],
         "currentTab": 2
@@ -194,17 +218,17 @@
   },
   "active": "25f037d5162d9478",
   "lastOpenFiles": [
-    "Pasted image 20241211211723.png",
-    "Pasted image 20241211203648.png",
-    "Pasted image 20241211203623.png",
-    "Pasted image 20241211162021.png",
-    "Pasted image 20241211160928.png",
-    "Pasted image 20241211160750.png",
-    "Pasted image 20241211112338.png",
-    "Pasted image 20241211112322.png",
-    "Pasted image 20241211112318.png",
-    "Pasted image 20241211112312.png",
-    "Pasted image 20241211010940.png",
+    "Pasted image 20241212005048.png",
+    "Pasted image 20241212005044.png",
+    "Pasted image 20241212005043.png",
+    "Pasted image 20241212005039.png",
+    "Pasted image 20241212005028.png",
+    "Pasted image 20241212005021.png",
+    "Pasted image 20241212005019.png",
+    "Pasted image 20241212005011.png",
+    "Pasted image 20241212005003.png",
+    "Pasted image 20241212003617.png",
+    "Pasted image 20241212003610.png",
     "数值分析/数值分析.md",
     "static/未命名.md",
     "Excalidraw/Drawing 2024-11-19 01.00.40.excalidraw.md",
