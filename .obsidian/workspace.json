@@ -93,7 +93,8 @@
             "state": {
               "type": "file-explorer",
               "state": {
-                "sortOrder": "alphabetical"
+                "sortOrder": "alphabetical",
+                "autoReveal": false
               },
               "icon": "lucide-folder-closed",
               "title": "文件列表"
@@ -192,7 +193,10 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "数值分析/数值分析.md"
+                "file": "数值分析/数值分析.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
               },
               "icon": "lucide-list",
               "title": "数值分析 的大纲"
@@ -216,8 +220,16 @@
       "obsidian-excalidraw-plugin:新建绘图文件": false
     }
   },
-  "active": "25f037d5162d9478",
+  "active": "a76c7b1782834285",
   "lastOpenFiles": [
+    "小林coding 网络/网络.md",
+    "小林coding 网络",
+    "golang gc/golang gc.md",
+    "golang gc",
+    "面试/面试.md",
+    "面试",
+    "黑白整齐简历模板 (2).pdf",
+    "Pasted image 20250415194100.png",
     "Pasted image 20241212130023.png",
     "Pasted image 20241212005048.png",
     "Pasted image 20241212005044.png",
@@ -227,8 +239,6 @@
     "Pasted image 20241212005021.png",
     "Pasted image 20241212005019.png",
     "Pasted image 20241212005011.png",
-    "Pasted image 20241212005003.png",
-    "Pasted image 20241212003617.png",
     "数值分析/数值分析.md",
     "static/未命名.md",
     "Excalidraw/Drawing 2024-11-19 01.00.40.excalidraw.md",
@@ -253,16 +263,10 @@
     "100-GO-mistakes-main/chapter/11-Testing/11-9-Not-exploring-all-the-Go-testing-features.md",
     "100-GO-mistakes-main/chapter/11-Testing/11-8-Writing-inaccurate-benchmarks.md",
     "100-GO-mistakes-main/chapter/12-Optimizations/12-10-Not-understanding-the-impacts-of-running-Go-inside-of-Docker-and-Kubernetes.md",
-    "100-GO-mistakes-main/chapter/12-Optimizations/12-9-Not-understanding-how-the-GC-works.md",
-    "100-GO-mistakes-main/chapter/12-Optimizations/12-8-Not-using-Go-diagnostics-tooling.md",
     "100-GO-mistakes-main/chapter/12-Optimizations",
     "100-GO-mistakes-main/js/zoom-image.min.js",
     "100-GO-mistakes-main/js/vue.css",
     "100-GO-mistakes-main/js/search.min.js",
-    "100-GO-mistakes-main/js/prism-go.min.js",
-    "100-GO-mistakes-main/js/prism-yaml.min.js",
-    "100-GO-mistakes-main/js/prism-sql.min.js",
-    "100-GO-mistakes-main/js/docsify.min.js",
-    "100-GO-mistakes-main/js/katex.min.css"
+    "100-GO-mistakes-main/js/prism-go.min.js"
   ]
 }
