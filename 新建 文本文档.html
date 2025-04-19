@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Go 内存管理架构图</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* 自定义一些箭头样式 */
+        .arrow {
+            position: relative;
+            padding: 10px 0;
+            text-align: center;
+            font-size: 1.5rem; /* 增大箭头大小 */
+            color: #60a5fa; /* 蓝色箭头 */
+        }
+        .arrow-down::after { content: '↓'; display: block; }
+        .arrow-up::after { content: '↑'; display: block; }
+        .arrow-bidirectional::before { content: '↑'; display: block; margin-bottom: -10px; }
+        .arrow-bidirectional::after { content: '↓'; display: block; }
+
+        .component-box {
+            border: 2px solid;
+            border-radius: 0.5rem; /* rounded-lg */
+            padding: 1rem; /* p-4 */
+            margin: 0.5rem; /* m-2 */
+            text-align: center;
+            min-width: 180px;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        }
+        .label { font-size: 0.75rem; color: #4b5563; margin-top: 5px; }
+
+        /* 容器样式 */
+        .diagram-container { max-width: 900px; margin: 2rem auto; padding: 1rem; font-family: 'Inter', sans-serif; }
+
+        /* mheap 内部页样式 */
+        .page-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(25px, 1fr)); /* 自适应列数 */
+            gap: 4px;
+            padding: 8px;
+            margin-top: 8px;
+            border: 1px dashed #fda4af; /* red-200 dashed border */
+            border-radius: 0.25rem; /* rounded-sm */
+            max-width: 200px; /* 限制最大宽度 */
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .page {
+            font-size: 0.65rem; /* 更小的字体 */
+            padding: 2px;
+            border-radius: 2px;
+            line-height: 1.2;
+            text-align: center;
+            min-width: 20px; /* 最小宽度 */
+        }
+        .page-free { background-color: #e0f2fe; border: 1px solid #7dd3fc; color: #0c4a6e; } /* light blue */
+        .page-used { background-color: #fecaca; border: 1px solid #f87171; color: #991b1b; } /* light red */
+        .mspan-highlight {
+            /* 用于示意性地圈出一组连续的页 */
+            border: 2px solid #fb923c; /* orange border */
+            margin: -3px; /* 轻微外扩以包围页 */
+            padding: 1px;
+            border-radius: 4px;
+            display: inline-block; /* 使边框包裹内容 */
+        }
+
+
+        /* 移动设备优化 */
+        @media (max-width: 768px) {
+            /* .flex-container { flex-direction: column; } */ /* Removed as top level is already column */
+            .arrow-horizontal { transform: rotate(90deg); padding: 0 10px; }
+            .component-box { min-width: unset; width: 90%; margin-left: auto; margin-right: auto; }
+            .mcentral-container, .mcache-container { flex-direction: column; align-items: center; }
+            .page-grid { max-width: 80%; } /* 在小屏幕上调整页网格宽度 */
+        }
+    </style>
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-gray-50">
+
+<div class="diagram-container flex flex-col items-center"> <h1 class="text-2xl font-bold text-center mb-8 text-gray-800">Go 内存管理核心组件关系图</h1>
+
+    <div class="component-box border-gray-400 bg-gray-100 w-1/2 mb-4"> <h2 class="font-bold text-lg text-gray-800">操作系统 (OS)</h2>
+        <p class="text-sm text-gray-700">提供物理/虚拟内存</p>
+    </div>
+
+    <div class="arrow arrow-bidirectional">
+         <span class="label">申请/释放内存页 (e.g., mmap/munmap)</span>
+    </div>
+
+    <div class="component-box border-red-400 bg-red-100 mb-4"> <h2 class="font-bold text-lg text-red-800">mheap (全局堆)</h2>
+        <p class="text-sm text-red-700">管理从 OS 获取的内存页</p>
+        <p class="text-sm text-red-700">包含所有 mcentral</p>
+        <div class="page-grid">
+            <div class="page page-used">已用</div>
+            <div class="page page-used">已用</div>
+            <span class="mspan-highlight">
+                <div class="page page-free">空闲</div>
+                <div class="page page-free">空闲</div>
+                <div class="page page-free">空闲</div>
+            </span>
+            <div class="page page-used">已用</div>
+            <div class="page page-free">空闲</div>
+            <div class="page page-used">已用</div>
+            <div class="page page-free">空闲</div>
+            <div class="page page-free">空闲</div>
+             <div class="page page-used">已用</div>
+             <div class="page page-used">已用</div>
+        </div>
+        <p class="text-xs text-red-600 mt-1">内部页结构 (示意)</p>
+    </div>
+
+     <div class="arrow arrow-down">
+         <span class="label">分配 mspan (由一组连续页构成)</span>
+    </div>
+
+    <div class="flex flex-col items-center mb-4">
+        <div class="flex flex-wrap justify-center mcentral-container">
+            <div class="component-box border-blue-400 bg-blue-100">
+                <h2 class="font-bold text-lg text-blue-800">mcentral</h2>
+                <p class="text-sm text-blue-700">(Size Class 1)</p>
+                <p class="text-sm text-blue-700">管理特定尺寸的 mspan</p>
+                <p class="text-sm text-blue-700 font-semibold">区分 Scan / NoScan mspan</p>
+                <p class="text-xs text-blue-600">(各自有 non-empty/empty 链表)</p>
+            </div>
+            <div class="component-box border-blue-400 bg-blue-100">
+                <h2 class="font-bold text-lg text-blue-800">mcentral</h2>
+                <p class="text-sm text-blue-700">(Size Class N)</p>
+                 <p class="text-sm text-blue-700">管理特定尺寸的 mspan</p>
+                 <p class="text-sm text-blue-700 font-semibold">区分 Scan / NoScan mspan</p>
+                 <p class="text-xs text-blue-600">(各自有 non-empty/empty 链表)</p>
+            </div>
+             <div class="component-box border-blue-400 bg-blue-100 opacity-50">
+                <h2 class="font-bold text-lg text-blue-800">...</h2>
+                <p class="text-sm text-blue-700">(更多 Size Classes)</p>
+            </div>
+        </div>
+         <div class="arrow arrow-bidirectional">
+            <span class="label">mspan 分配/回收 (当 mcache 需要/归还时)</span>
+        </div>
+    </div>
+
+    <div class="flex flex-col items-center">
+         <p class="text-center text-gray-600 mb-2">每个 P (Processor) 独有 mcache，从对应的 mcentral 获取 mspan</p>
+        <div class="flex flex-wrap justify-center mcache-container">
+            <div class="component-box border-green-400 bg-green-100">
+                <h2 class="font-bold text-lg text-green-800">mcache (P1)</h2>
+                <p class="text-sm text-green-700">Per-P 缓存</p>
+                <p class="text-sm text-green-700">缓存所有 sizeclass 的 mspan</p>
+                <p class="text-sm text-green-700">(从 mcentral 获取 scan/noscan mspan)</p>
+                <p class="text-sm text-green-700">无锁分配小对象</p>
+                <div class="arrow arrow-down mt-2">
+                     <span class="label">分配给 Goroutine</span>
+                </div>
+                 <div class="component-box border-yellow-400 bg-yellow-100 mt-2">
+                    <h3 class="font-bold text-yellow-800">Goroutine (在 P1 上)</h3>
+                </div>
+            </div>
+            <div class="component-box border-green-400 bg-green-100">
+                <h2 class="font-bold text-lg text-green-800">mcache (P2)</h2>
+                <p class="text-sm text-green-700">Per-P 缓存</p>
+                <p class="text-sm text-green-700">缓存所有 sizeclass 的 mspan</p>
+                <p class="text-sm text-green-700">(从 mcentral 获取 scan/noscan mspan)</p>
+                <p class="text-sm text-green-700">无锁分配小对象</p>
+                 <div class="arrow arrow-down mt-2">
+                     <span class="label">分配给 Goroutine</span>
+                </div>
+                 <div class="component-box border-yellow-400 bg-yellow-100 mt-2">
+                    <h3 class="font-bold text-yellow-800">Goroutine (在 P2 上)</h3>
+                </div>
+            </div>
+             <div class="component-box border-green-400 bg-green-100 opacity-50">
+                <h2 class="font-bold text-lg text-green-800">...</h2>
+                 <p class="text-sm text-green-700">(每个 P 都有一个)</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-12 pt-6 border-t border-gray-300 text-sm text-gray-700 w-full max-w-4xl px-4"> <h3 class="font-bold text-lg mb-2 text-gray-800">说明:</h3>
+        <ul class="list-disc list-inside space-y-1">
+            <li><strong class="text-gray-700">操作系统 (OS):</strong> 内存的最终来源，Go 运行时通过系统调用 (如 `mmap`) 向其申请内存页。</li>
+            <li><strong class="text-red-700">mheap:</strong> Go 程序的全局堆内存管理器。它以**页 (Page)** 为单位向 OS 申请和管理内存。 <strong class="text-red-800">关键点: mheap 会将一组连续的空闲页组合成一个 mspan</strong>，然后分配给 mcentral。图中内部格子示意了页的状态 (空闲/已用)。当内存不再需要时，`mheap` 也可能通过系统调用 (如 `munmap`) 将内存归还给 OS。</li>
+            <li><strong class="text-blue-700">mcentral:</strong> 按 size class（对象大小等级）分类管理 mspan。每个 size class 对应一个 mcentral。它作为 mheap 和 mcache 之间的桥梁，为 mcache 提供特定大小的 mspan。 <strong class="text-blue-800">关键点: mcentral 内部会区分管理 scan (包含指针) 和 noscan (不含指针) 两种类型的 mspan，以便 GC 优化。</strong> 当 mcentral 没有可用 mspan 时，会向 mheap 申请。</li>
+            <li><strong class="text-green-700">mcache:</strong> 每个 P (Processor，可理解为运行 Go 代码的线程) 拥有一个 mcache。它缓存了从对应 mcentral 获取的各种 size class 的 scan/noscan mspan，用于满足运行在该 P 上的 Goroutine 的小对象内存分配需求。因为 mcache 是 P 私有的，所以分配过程几乎不需要加锁，速度很快。</li>
+            <li><strong class="text-gray-600">mspan:</strong> Go 内存管理的基本单元，由**一个或多个连续的页**组成，代表一段连续的内存。根据是否包含指针分为 scan 和 noscan 类型。</li>
+            <li><strong class="text-purple-700">箭头 (↑↓):</strong> 表示 mspan 或内存页的主要流向。</li>
+        </ul>
+    </div>
+
+</div>
+
+</body>
+</html>
