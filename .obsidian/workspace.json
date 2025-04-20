@@ -207,7 +207,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 489.5
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -222,6 +222,7 @@
   },
   "active": "25f037d5162d9478",
   "lastOpenFiles": [
+    "黑白整齐简历模板 (3).pdf",
     "Pasted image 20250419215707.png",
     "Pasted image 20250419215703.png",
     "Pasted image 20250419214222.png",
@@ -242,7 +243,6 @@
     "Pasted image 20241212005048.png",
     "Pasted image 20241212005044.png",
     "Pasted image 20241212005043.png",
-    "Pasted image 20241212005039.png",
     "static/未命名.md",
     "Excalidraw/Drawing 2024-11-19 01.00.40.excalidraw.md",
     "golang context/golang context.md",
