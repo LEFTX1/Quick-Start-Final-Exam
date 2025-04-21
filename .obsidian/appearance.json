@@ -1,10 +1,9 @@
 {
   "accentColor": "",
-  "enabledCssSnippets": [
-    "picture-border-line"
-  ],
+  "enabledCssSnippets": [],
   "theme": "system",
-  "baseFontSize": 17,
+  "baseFontSize": 20,
   "baseFontSizeAction": true,
-  "cssTheme": "Blue Topaz"
+  "cssTheme": "Royal Velvet",
+  "textFontFamily": "Big Caslon,Inter"
 }
