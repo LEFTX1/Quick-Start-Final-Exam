@@ -50,6 +50,18 @@
             }
           },
           {
+            "id": "ff549c5fc9830176",
+            "type": "leaf",
+            "state": {
+              "type": "release-notes",
+              "state": {
+                "currentVersion": "1.8.10"
+              },
+              "icon": "lucide-book-up",
+              "title": "Release Notes 1.8.10"
+            }
+          },
+          {
             "id": "b008ba0275632d94",
             "type": "leaf",
             "state": {
@@ -74,7 +86,7 @@
             }
           }
         ],
-        "currentTab": 2
+        "currentTab": 3
       }
     ],
     "direction": "vertical"
@@ -193,13 +205,12 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "面试/面试.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "面试 的大纲"
+              "title": "大纲"
             }
           }
         ],
@@ -207,7 +218,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 746.5
+    "width": 505.5
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -220,8 +231,9 @@
       "obsidian-excalidraw-plugin:新建绘图文件": false
     }
   },
-  "active": "25f037d5162d9478",
+  "active": "ff549c5fc9830176",
   "lastOpenFiles": [
+    "Pasted image 20250423010729.png",
     "计算机网络/计算机网络.md",
     "面试/面试.md",
     "Pasted image 20250421214954.png",
