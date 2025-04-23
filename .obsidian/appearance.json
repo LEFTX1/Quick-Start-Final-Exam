@@ -1,9 +1,10 @@
 {
   "accentColor": "",
   "enabledCssSnippets": [],
-  "theme": "obsidian",
-  "baseFontSize": 21,
+  "theme": "moonstone",
+  "baseFontSize": 15,
   "baseFontSizeAction": true,
-  "cssTheme": "Shimmering Focus",
-  "textFontFamily": "Big Caslon,Inter"
+  "cssTheme": "Border",
+  "textFontFamily": "微软雅黑",
+  "interfaceFontFamily": "微软雅黑"
 }

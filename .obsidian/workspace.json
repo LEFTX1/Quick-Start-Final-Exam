@@ -53,12 +53,14 @@
             "id": "ff549c5fc9830176",
             "type": "leaf",
             "state": {
-              "type": "release-notes",
+              "type": "markdown",
               "state": {
-                "currentVersion": "1.8.10"
+                "file": "面试/面试.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "lucide-book-up",
-              "title": "Release Notes 1.8.10"
+              "icon": "lucide-file",
+              "title": "面试"
             }
           },
           {
@@ -205,12 +207,13 @@
             "state": {
               "type": "outline",
               "state": {
+                "file": "面试/面试.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "大纲"
+              "title": "面试 的大纲"
             }
           }
         ],
@@ -233,6 +236,7 @@
   },
   "active": "ff549c5fc9830176",
   "lastOpenFiles": [
+    "Pasted image 20250423172515.png",
     "Pasted image 20250423010729.png",
     "计算机网络/计算机网络.md",
     "面试/面试.md",
@@ -246,7 +250,6 @@
     "Pasted image 20250419215703.png",
     "Pasted image 20250419214222.png",
     "Pasted image 20250419194134.png",
-    "svg.svg",
     "新建 文本文档.html",
     "Excalidraw/Drawing 2024-11-07 11.11.42.excalidraw.md",
     "数值分析/数值分析.md",
