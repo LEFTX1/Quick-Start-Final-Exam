@@ -120,7 +120,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "Pasted image 20241123184638.png",
+                "query": "\\n\\s*\\n(\\s+[*+-])",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -141,11 +141,12 @@
               "title": "书签"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 352.51103591918945
   },
   "right": {
     "id": "727f1dd7ebe622c8",
@@ -234,7 +235,7 @@
       "obsidian-excalidraw-plugin:新建绘图文件": false
     }
   },
-  "active": "ff549c5fc9830176",
+  "active": "3188ef97d946f1c9",
   "lastOpenFiles": [
     "mysql45讲/mysql45讲.md",
     "面试/面试.md",
