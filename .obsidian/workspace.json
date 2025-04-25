@@ -120,8 +120,8 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "\\n\\s*\\n(\\s+[*+-])",
-                "matchingCase": false,
+                "query": "",
+                "matchingCase": true,
                 "explainSearch": false,
                 "collapseAll": false,
                 "extraContext": false,
@@ -141,8 +141,7 @@
               "title": "书签"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
@@ -235,7 +234,7 @@
       "obsidian-excalidraw-plugin:新建绘图文件": false
     }
   },
-  "active": "3188ef97d946f1c9",
+  "active": "ff549c5fc9830176",
   "lastOpenFiles": [
     "mysql45讲/mysql45讲.md",
     "面试/面试.md",
