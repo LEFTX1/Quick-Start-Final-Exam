@@ -55,12 +55,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "未命名.md",
+                "file": "eino框架源码走读.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "未命名"
+              "title": "eino框架源码走读"
             }
           },
           {
@@ -233,13 +233,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "未命名.md",
+                "file": "eino框架源码走读.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "未命名 的大纲"
+              "title": "eino框架源码走读 的大纲"
             }
           }
         ],
@@ -264,7 +264,7 @@
   "active": "a7d0bb51a7e37ea7",
   "lastOpenFiles": [
     "面试/面试.md",
-    "未命名.md",
+    "eino框架源码走读.md",
     "temp/未命名.md",
     "temp",
     "static/1731404777835.png",
