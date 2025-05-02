@@ -55,12 +55,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "eino框架源码走读.md",
+                "file": "面试/面试.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "eino框架源码走读"
+              "title": "面试"
             }
           },
           {
@@ -233,13 +233,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "eino框架源码走读.md",
+                "file": "面试/面试.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "eino框架源码走读 的大纲"
+              "title": "面试 的大纲"
             }
           }
         ],
@@ -263,6 +263,7 @@
   },
   "active": "a7d0bb51a7e37ea7",
   "lastOpenFiles": [
+    "人工智能数学期末速成极速入门/人工智能数学期末复习.md",
     "面试/面试.md",
     "eino框架源码走读.md",
     "temp/未命名.md",
@@ -306,7 +307,6 @@
     "Excalidraw/Drawing 2024-11-12 17.37.09.excalidraw.md",
     "100-GO-mistakes-main/chapter/2-Code-and-project-organization/2-1-unintended-variable-shadowing.md",
     "Excalidraw/leetcode",
-    "100-GO-mistakes-main/chapter/2-Code-and-project-organization/2-2-unnecessary-nested-code.md",
     "100-GO-mistakes-main/chapter/12-Optimizations",
     "100-GO-mistakes-main/js/zoom-image.min.js"
   ]
