@@ -171,7 +171,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 352.51103591918945
+    "width": 223.51103591918945
   },
   "right": {
     "id": "727f1dd7ebe622c8",
@@ -247,7 +247,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 505.5
+    "width": 511.5
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -263,6 +263,9 @@
   },
   "active": "a7d0bb51a7e37ea7",
   "lastOpenFiles": [
+    "Pasted image 20250514005959.png",
+    "Pasted image 20250514005951.png",
+    "Pasted image 20250514005756.png",
     "Pasted image 20250503144145.png",
     "Pasted image 20250503143814.png",
     "Pasted image 20250503143808.png",
@@ -281,9 +284,6 @@
     "static/Pasted image 20250423172515.png",
     "static/Pasted image 20250423010729.png",
     "计算机网络/计算机网络.md",
-    "static/Pasted image 20250421214954.png",
-    "static/Pasted image 20250421214250.png",
-    "static/Pasted image 20250421214248.png",
     "新建 文本文档.html",
     "Excalidraw/Drawing 2024-11-07 11.11.42.excalidraw.md",
     "数值分析/数值分析.md",
