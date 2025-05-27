@@ -42,21 +42,7 @@
               "type": "markdown",
               "state": {
                 "file": "面试/面试.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "面试"
-            }
-          },
-          {
-            "id": "a7d0bb51a7e37ea7",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "面试/面试.md",
-                "mode": "source",
+                "mode": "preview",
                 "source": false
               },
               "icon": "lucide-file",
@@ -114,7 +100,7 @@
             }
           }
         ],
-        "currentTab": 3
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -241,13 +227,23 @@
               "icon": "lucide-list",
               "title": "面试 的大纲"
             }
+          },
+          {
+            "id": "8567258f0b568897",
+            "type": "leaf",
+            "state": {
+              "type": "git-view",
+              "state": {},
+              "icon": "git-pull-request",
+              "title": "Source Control"
+            }
           }
         ],
         "currentTab": 3
       }
     ],
     "direction": "horizontal",
-    "width": 511.5
+    "width": 232.5
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -261,8 +257,10 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "a7d0bb51a7e37ea7",
+  "active": "a76c7b1782834285",
   "lastOpenFiles": [
+    "未命名",
+    "面试/面试.md",
     "黑白整齐简历模板 (6).pdf",
     "黑白整齐简历模板 (5).pdf",
     "Pasted image 20250514005959.png",
@@ -274,7 +272,6 @@
     "Pasted image 20250502220625.png",
     "Pasted image 20250502214702.png",
     "人工智能数学期末速成极速入门/人工智能数学期末复习.md",
-    "面试/面试.md",
     "eino框架源码走读.md",
     "temp/未命名.md",
     "temp",
@@ -307,7 +304,6 @@
     "Excalidraw/Drawing 2024-11-16 17.37.30.excalidraw.md",
     "Excalidraw/Drawing 2024-11-19 00.59.59.excalidraw.md",
     "Excalidraw/Drawing 2024-11-12 17.37.09.excalidraw.md",
-    "Excalidraw/leetcode",
-    "100-GO-mistakes-main/chapter/12-Optimizations"
+    "Excalidraw/leetcode"
   ]
 }
