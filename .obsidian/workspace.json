@@ -41,12 +41,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "面试/简历.md",
+                "file": "面试/kafka.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "简历"
+              "title": "kafka"
             }
           },
           {
@@ -219,13 +219,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "面试/简历.md",
+                "file": "面试/kafka.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "简历 的大纲"
+              "title": "kafka 的大纲"
             }
           },
           {
@@ -243,7 +243,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 232.5
+    "width": 498.5
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -259,14 +259,14 @@
   },
   "active": "25f037d5162d9478",
   "lastOpenFiles": [
+    "面试/mysql.md",
+    "面试/GO相关.md",
+    "面试/面试鸭.md",
+    "面试/简历.md",
     "算法设计与分析/未命名.md",
     "面试/kafka.md",
-    "面试/简历.md",
     "面试/计算机网络.md",
     "面试/redis.md",
-    "面试/面试鸭.md",
-    "面试/GO相关.md",
-    "面试/mysql.md",
     "面试/prompt.md",
     "人工智能数学期末速成极速入门/人工智能数学期末复习.md",
     "redis面试/redis面试.md",
