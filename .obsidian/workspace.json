@@ -95,14 +95,12 @@
             "id": "d021e22d9ba9dda5",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "image",
               "state": {
-                "file": "嵌入式复习.md",
-                "mode": "source",
-                "source": false
+                "file": "static/e1523ebd929c777e3be1aa82da741c39.jpeg"
               },
-              "icon": "lucide-file",
-              "title": "嵌入式复习"
+              "icon": "lucide-image",
+              "title": "e1523ebd929c777e3be1aa82da741c39"
             }
           },
           {
@@ -275,13 +273,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "嵌入式复习.md",
+                "file": "static/e1523ebd929c777e3be1aa82da741c39.jpeg",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "嵌入式复习 的大纲"
+              "title": "e1523ebd929c777e3be1aa82da741c39 的大纲"
             }
           },
           {
@@ -313,12 +311,12 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "d021e22d9ba9dda5",
+  "active": "a76c7b1782834285",
   "lastOpenFiles": [
-    "e1523ebd929c777e3be1aa82da741c39.jpeg",
-    "嵌入式系统.jpg",
-    "马克思主义期末极速入门/未命名.md",
     "嵌入式复习.md",
+    "static/嵌入式系统.jpg",
+    "static/e1523ebd929c777e3be1aa82da741c39.jpeg",
+    "马克思主义期末极速入门/未命名.md",
     "未命名",
     "未命名 1",
     "temp/未命名.md",
@@ -354,7 +352,6 @@
     "static/Pasted image 20250604221615.png",
     "static/Pasted image 20250604221613.png",
     "static/Pasted image 20250604221559.png",
-    "static/Pasted image 20250604221501.png",
     "eino框架实战和源码走读",
     "temp",
     "static/黑白整齐简历模板 (3).pdf",
