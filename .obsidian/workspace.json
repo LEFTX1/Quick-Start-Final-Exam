@@ -95,12 +95,14 @@
             "id": "d021e22d9ba9dda5",
             "type": "leaf",
             "state": {
-              "type": "image",
+              "type": "markdown",
               "state": {
-                "file": "static/e1523ebd929c777e3be1aa82da741c39.jpeg"
+                "file": "嵌入式复习.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "lucide-image",
-              "title": "e1523ebd929c777e3be1aa82da741c39"
+              "icon": "lucide-file",
+              "title": "嵌入式复习"
             }
           },
           {
@@ -273,13 +275,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "static/e1523ebd929c777e3be1aa82da741c39.jpeg",
+                "file": "嵌入式复习.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "e1523ebd929c777e3be1aa82da741c39 的大纲"
+              "title": "嵌入式复习 的大纲"
             }
           },
           {
@@ -311,11 +313,12 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "a76c7b1782834285",
+  "active": "d021e22d9ba9dda5",
   "lastOpenFiles": [
+    "static/0,  1], [ 1,  1], [ 1, -1],  [-1, -1],  [-1,  4],  [ 0,  1], [ 0,  1.md",
+    "static/e1523ebd929c777e3be1aa82da741c39.jpeg",
     "嵌入式复习.md",
     "static/嵌入式系统.jpg",
-    "static/e1523ebd929c777e3be1aa82da741c39.jpeg",
     "马克思主义期末极速入门/未命名.md",
     "未命名",
     "未命名 1",
