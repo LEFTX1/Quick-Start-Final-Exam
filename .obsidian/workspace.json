@@ -97,12 +97,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "面试/大模型相关.md",
+                "file": "面试/快速过.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "大模型相关"
+              "title": "快速过"
             }
           },
           {
@@ -275,13 +275,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "面试/大模型相关.md",
+                "file": "面试/快速过.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "大模型相关 的大纲"
+              "title": "快速过 的大纲"
             }
           },
           {
@@ -299,7 +299,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 283.5
+    "width": 282.5
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -315,17 +315,26 @@
   },
   "active": "d021e22d9ba9dda5",
   "lastOpenFiles": [
-    "面试/计算机网络.md",
-    "面试/计算机网络 快速过.md",
+    "Pasted image 20250708031619.png",
+    "Pasted image 20250708015345.png",
+    "Pasted image 20250708015324.png",
+    "面试/简历.md",
+    "面试/快速过.md",
+    "面试/kafka.md",
+    "面试/面试鸭.md",
+    "面试/prompt.md",
+    "面试/redis.md",
     "面试/mysql.md",
     "面试/GO相关.md",
-    "面试/快速过.md",
-    "面试/面试鸭.md",
-    "面试/简历.md",
-    "面试/大模型相关.md",
     "面试/未命名.md",
-    "面试/prompt.md",
-    "面试/kafka.md",
+    "面试/计算机网络 快速过.md",
+    "Pasted image 20250708011604.png",
+    "Pasted image 20250707233923.png",
+    "Pasted image 20250707233757.png",
+    "Pasted image 20250707233056.png",
+    "Pasted image 20250707232754.png",
+    "面试/计算机网络.md",
+    "面试/大模型相关.md",
     "嵌入式复习.md",
     "static/0,  1], [ 1,  1], [ 1, -1],  [-1, -1],  [-1,  4],  [ 0,  1], [ 0,  1.md",
     "static/e1523ebd929c777e3be1aa82da741c39.jpeg",
@@ -343,18 +352,9 @@
     "小林coding 网络/网络.md",
     "golang context/golang context.md",
     "golang gc/golang gc.md",
-    "output/人工智能数学期末复习.md",
-    "redis面试/redis面试.md",
     "static/Pasted image 20250604221618.png",
-    "static/Pasted image 20250604221547.png",
-    "static/Pasted image 20250514005959.png",
-    "static/Pasted image 20250514005756.png",
-    "static/Pasted image 20250502214702.png",
     "static/黑白整齐简历模板 (5).pdf",
     "static/黑白整齐简历模板 (6).pdf",
-    "static/Pasted image 20250604221615.png",
-    "static/Pasted image 20250604221613.png",
-    "static/Pasted image 20250604221559.png",
     "eino框架实战和源码走读",
     "temp",
     "static/黑白整齐简历模板 (3).pdf",
