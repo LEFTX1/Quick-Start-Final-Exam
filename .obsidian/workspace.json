@@ -301,13 +301,12 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Excalidraw/Drawing 2025-07-08 19.53.41.excalidraw.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Drawing 2025-07-08 19.53.41.excalidraw 的大纲"
+              "title": "大纲"
             }
           },
           {
@@ -339,7 +338,7 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "c997724c28a584c4",
+  "active": "41b45a7d0b89c1f8",
   "lastOpenFiles": [
     "Excalidraw/Drawing 2025-07-08 19.53.41.excalidraw.md",
     "未命名/temp.md",
