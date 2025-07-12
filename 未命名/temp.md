@@ -12,4 +12,27 @@ type m struct {
 	p  puintptr  // 关联的 p，用于执行 go 代码 
 	//...//
 }
+
+
+src/runtime/proc.go
+
+//优先根据GOMAXPROCS的配置决定p的个数
+if n, ok := strconv.Atoi32(gogetenv("GOMAXPROCS")); ok && n > 0 {
+    procs = n
+    sched.customGOMAXPROCS = true
+} else {
+    //默认使用cpu核心数
+    procs = defaultGOMAXPROCS(numCPUStartup)
+}
+
+
+src/runtime/runtime2.go
+
+type schedt struct {
+    // …… //
+    pidle      puintptr       // 空闲 P 的链表头，保存可分配的工作上下文
+    npidle     atomic.Int32   // 空闲 P 的数量，用于快速判断是否有可用 P
+    // …… //
+}
+
 ```
