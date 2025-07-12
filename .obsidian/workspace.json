@@ -123,12 +123,14 @@
             "id": "c997724c28a584c4",
             "type": "leaf",
             "state": {
-              "type": "excalidraw",
+              "type": "markdown",
               "state": {
-                "file": "Excalidraw/Drawing 2025-07-08 19.53.41.excalidraw.md"
+                "file": "面试/快速过.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "excalidraw-icon",
-              "title": "Drawing 2025-07-08 19.53.41.excalidraw"
+              "icon": "lucide-file",
+              "title": "快速过"
             }
           },
           {
@@ -301,12 +303,13 @@
             "state": {
               "type": "outline",
               "state": {
+                "file": "面试/快速过.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "大纲"
+              "title": "快速过 的大纲"
             }
           },
           {
@@ -338,12 +341,12 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "41b45a7d0b89c1f8",
+  "active": "c997724c28a584c4",
   "lastOpenFiles": [
+    "面试/GO相关.md",
     "Excalidraw/Drawing 2025-07-08 19.53.41.excalidraw.md",
     "未命名/temp.md",
     "算法设计与分析/未命名.md",
-    "面试/GO相关.md",
     "Excalidraw/Drawing 2025-07-08 19.03.41.excalidraw.md",
     "面试/快速过.md",
     "未命名 1",
