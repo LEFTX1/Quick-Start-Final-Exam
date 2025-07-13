@@ -35,4 +35,10 @@ type schedt struct {
     // …… //
 }
 
+
+
+src/runtime/proc.go
+
+// 从当前的 g 的栈，切换到当前 M 的 g0 栈，并执行 fn(g)。
+func mcall(fn func(*g))
 ```
