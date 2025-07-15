@@ -39,28 +39,36 @@
             "id": "25f037d5162d9478",
             "type": "leaf",
             "state": {
+              "type": "excalidraw",
+              "state": {
+                "file": "Excalidraw/Drawing 2025-07-08 19.53.41.excalidraw.md"
+              },
+              "icon": "excalidraw-icon",
+              "title": "Drawing 2025-07-08 19.53.41.excalidraw"
+            }
+          },
+          {
+            "id": "d021e22d9ba9dda5",
+            "type": "leaf",
+            "state": {
               "type": "markdown",
               "state": {
-                "file": "面试/kafka.md",
+                "file": "未命名/temp.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "kafka"
+              "title": "temp"
             }
           },
           {
             "id": "4bda7ab70c69067e",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "ATSLLM-go.md",
-                "mode": "source",
-                "source": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "ATSLLM-go"
+              "title": "新标签页"
             }
           },
           {
@@ -89,18 +97,6 @@
               },
               "icon": "lucide-file",
               "title": "计算机网络"
-            }
-          },
-          {
-            "id": "d021e22d9ba9dda5",
-            "type": "leaf",
-            "state": {
-              "type": "excalidraw",
-              "state": {
-                "file": "Excalidraw/Drawing 2025-07-08 19.53.41.excalidraw.md"
-              },
-              "icon": "excalidraw-icon",
-              "title": "Drawing 2025-07-08 19.53.41.excalidraw"
             }
           },
           {
@@ -157,28 +153,24 @@
             "id": "b008ba0275632d94",
             "type": "leaf",
             "state": {
-              "type": "image",
-              "state": {
-                "file": "Pasted image 20241212003610.png"
-              },
-              "icon": "lucide-image",
-              "title": "Pasted image 20241212003610"
+              "type": "empty",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "新标签页"
             }
           },
           {
             "id": "892c6d95dd0a0594",
             "type": "leaf",
             "state": {
-              "type": "image",
-              "state": {
-                "file": "Pasted image 20241211234949.png"
-              },
-              "icon": "lucide-image",
-              "title": "Pasted image 20241211234949"
+              "type": "empty",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "新标签页"
             }
           }
         ],
-        "currentTab": 6
+        "currentTab": 3
       }
     ],
     "direction": "vertical"
@@ -297,13 +289,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Excalidraw/Drawing 2025-07-08 19.53.41.excalidraw.md",
+                "file": "未命名/temp.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Drawing 2025-07-08 19.53.41.excalidraw 的大纲"
+              "title": "temp 的大纲"
             }
           },
           {
@@ -337,24 +329,25 @@
   },
   "active": "d021e22d9ba9dda5",
   "lastOpenFiles": [
-    "Excalidraw/Drawing 2025-07-08 19.03.41.excalidraw.md",
     "Excalidraw/Drawing 2025-07-08 19.53.41.excalidraw.md",
-    "面试/快速过.md",
-    "面试/mysql.md",
-    "static/1731404777835.png",
+    "未命名/temp.md",
+    "golang context/golang context.md",
+    "面试/kafka.md",
     "面试/GO相关.md",
+    "面试/计算机网络.md",
+    "static/1731404777835.png",
+    "面试/mysql.md",
+    "Excalidraw/Drawing 2025-07-08 19.03.41.excalidraw.md",
+    "面试/快速过.md",
     "面试/面试鸭.md",
     "面试/大模型相关.md",
-    "面试/计算机网络.md",
     "面试/计算机网络 快速过.md",
     "面试/简历.md",
     "面试/redis.md",
     "面试/prompt.md",
-    "未命名/temp.md",
     "Excalidraw/context/WithDeadlineCause.md",
     "Excalidraw/context/cancel向下传播.svg",
     "Excalidraw/Drawing 2024-11-07 11.11.42.excalidraw.md",
-    "面试/kafka.md",
     "算法设计与分析/未命名.md",
     "未命名 1",
     "Pasted image 20250708031619.png",
