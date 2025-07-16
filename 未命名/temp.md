@@ -1,4 +1,55 @@
 ``` Go
+
+// src/runtime/proc.go ready函数
+func ready(gp *g, traceskip int, next bool) {
+    // ... 状态处理 ...
+    
+    // 步骤1：标记goroutine为runnable
+    casgstatus(gp, _Gwaiting, _Grunnable)
+    
+    // 步骤2：放入runnext字段
+    runqput(mp.p.ptr(), gp, next)
+    
+    // 步骤3：立即检查是否需要唤醒空闲P
+    wakep()
+    
+    releasem(mp)
+}
+
+
+
+
+// src/runtime/proc.go runqget函数
+func runqget(pp *p) (gp *g, inheritTime bool) {
+    // 1. 首先检查runnext（最高优先级）
+    next := pp.runnext
+    if next != 0 && pp.runnext.cas(next, 0) {
+        return next.ptr(), true  // 继承时间片
+    }
+
+    // 2. 然后从runq队列头部取
+    for {
+        h := atomic.LoadAcq(&pp.runqhead)
+        t := pp.runqtail
+        if t == h {
+            return nil, false  // 队列为空
+        }
+        gp := pp.runq[h%uint32(len(pp.runq))].ptr()
+        if atomic.CasRel(&pp.runqhead, h, h+1) {
+            return gp, false  // 新的时间片
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
 src/runtime/runtime2.go
 
 type p struct {
@@ -92,52 +143,12 @@ type g struct {
 type p struct {  
     id     int32  // P 的唯一标识符  
     status uint32 // P 的状态（空闲、运行中等）  
-  
-    // ========================================================================  
-    // 本地运行队列（Local Run Queue）核心字段  
-    // ========================================================================  
-  
-    // 本地运行队列 - 这是一个无锁的环形缓冲区  
-    // 设计理念：  
-    // 1. 避免锁竞争：每个 P 拥有独立的本地队列，减少线程间竞争  
-    // 2. 缓存友好：连续的内存布局提高 CPU 缓存命中率  
-    // 3. 固定大小：256 个槽位既能容纳足够的 goroutine，又不会占用过多内存  
+    //...//
     runqhead uint32        // 队列头部索引（消费者读取位置）  
     runqtail uint32        // 队列尾部索引（生产者写入位置）  
     runq     [256]guintptr // 环形缓冲区，存储等待运行的 goroutine 指针  
-  
-    // ========================================================================  
-    // runnext 特殊优先队列  
-    // ========================================================================  
-  
-    // runnext 是一个特殊的单槽优先队列  
-    // 设计理念与优化目标：  
-    //  
-    // 1. 【局部性优化】  
-    //    当前正在运行的 goroutine 创建新的 goroutine 时，新创建的  
-    //    goroutine 很可能需要访问相同的数据结构和内存区域。  
-    //    将其放入 runnext 可以立即执行，提高缓存命中率。  
-    //  
-    // 2. 【减少调度延迟】  
-    //    生产者-消费者模式中，如果将新就绪的 goroutine 放到队列末尾，  
-    //    它可能需要等待队列中所有其他 goroutine 执行完毕。  
-    //    runnext 提供了一个"快速通道"。  
-    //  
-    // 3. 【时间片继承】  
-    //    runnext 中的 goroutine 会继承当前 goroutine 剩余的时间片，  
-    //    这样可以减少上下文切换的开销。  
-    //  
-    // 4. 【通信模式优化】  
-    //    在请求-响应或生产者-消费者等通信密集的场景中，  
-    //    相关的 goroutine 往往需要频繁交互，runnext 使它们能够  
-    //    作为一个整体被调度，减少延迟。  
-    //  
-    // 安全性保证：  
-    // - 只有拥有该 P 的线程可以将 goroutine 设置到 runnext  
-    // - 其他 P 只能通过 CAS 操作将 runnext 置为 0（窃取工作）  
-    // - 这种设计避免了复杂的同步机制  
+    //...//
     runnext guintptr  
-  
     // ... 其他字段  
 }  
   
@@ -482,4 +493,32 @@ type p struct {
     runnext guintptr
     // ... 其他字段
 }
+
+
+func currGoroutineDo (){
+    go func() { // <-- 在这行代码的背后，一个_Gidle的G被初始化并变为_Grunnable
+    fmt.Println("Hello from a new goroutine!")
+    }()
+}
+
+
+
+
+// src/runtime/proc.go findRunnable函数片段
+func findRunnable() (gp *g, inheritTime, tryWakeP bool) {
+//...//
+if pp.schedtick%61 == 0 && !sched.runq.empty() {
+    // %61 == 0: 每61次调度检查一次，这是一个经验值，用于平衡性能和公平性
+    lock(&sched.lock)           // 获取调度器全局锁，保护全局队列操作
+    gp := globrunqget()         // 从全局队列获取一个goroutine
+    unlock(&sched.lock)         // 释放调度器全局锁
+    if gp != nil {
+        // 成功获取到goroutine，立即返回执行
+        // 第二个参数false: 不继承时间片，使用完整的时间片
+        // 第三个参数false: 不需要唤醒额外的P
+        return gp, false, false
+    }
+    }
+    //...//
+    }
 ```

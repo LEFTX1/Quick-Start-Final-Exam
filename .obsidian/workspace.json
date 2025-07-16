@@ -51,14 +51,12 @@
             "id": "d021e22d9ba9dda5",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "excalidraw",
               "state": {
-                "file": "未命名/temp.md",
-                "mode": "source",
-                "source": false
+                "file": "Excalidraw/Drawing 2025-07-08 19.53.41.excalidraw.md"
               },
-              "icon": "lucide-file",
-              "title": "temp"
+              "icon": "excalidraw-icon",
+              "title": "Drawing 2025-07-08 19.53.41.excalidraw"
             }
           },
           {
@@ -289,13 +287,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "未命名/temp.md",
+                "file": "Excalidraw/Drawing 2025-07-08 19.53.41.excalidraw.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "temp 的大纲"
+              "title": "Drawing 2025-07-08 19.53.41.excalidraw 的大纲"
             }
           },
           {
@@ -329,8 +327,12 @@
   },
   "active": "d021e22d9ba9dda5",
   "lastOpenFiles": [
-    "Excalidraw/Drawing 2025-07-08 19.53.41.excalidraw.md",
     "未命名/temp.md",
+    "未命名/goroutine_status_fields.md",
+    "Excalidraw/Drawing 2025-07-08 19.53.41.excalidraw.md",
+    "Excalidraw/context/withcancel全流程.svg",
+    "Excalidraw/context/WithDeadlineCause.md",
+    "Pasted Image 20250716185543_700.png",
     "golang context/golang context.md",
     "面试/kafka.md",
     "面试/GO相关.md",
@@ -345,7 +347,6 @@
     "面试/简历.md",
     "面试/redis.md",
     "面试/prompt.md",
-    "Excalidraw/context/WithDeadlineCause.md",
     "Excalidraw/context/cancel向下传播.svg",
     "Excalidraw/Drawing 2024-11-07 11.11.42.excalidraw.md",
     "算法设计与分析/未命名.md",
@@ -357,16 +358,12 @@
     "Pasted image 20250708011604.png",
     "Pasted image 20250707233923.png",
     "Pasted image 20250707233757.png",
-    "Pasted image 20250707233056.png",
-    "Pasted image 20250707232754.png",
     "嵌入式复习.md",
     "static/0,  1], [ 1,  1], [ 1, -1],  [-1, -1],  [-1,  4],  [ 0,  1], [ 0,  1.md",
     "马克思主义期末极速入门/未命名.md",
     "未命名",
     "temp/未命名.md",
     "编译原理期末极速入门/编译原理期末复习.md",
-    "操作系统/操作系统.md",
-    "黑马点评项目/黑马点评.md",
     "static/黑白整齐简历模板 (5).pdf",
     "static/黑白整齐简历模板 (6).pdf",
     "eino框架实战和源码走读",
