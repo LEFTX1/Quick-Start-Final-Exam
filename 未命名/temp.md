@@ -1,5 +1,21 @@
 ``` Go
-
+func runqputslow(pp *p, gp *g, h, t uint32) bool {
+    //..//
+    // 从本地队列取出前128个goroutine
+    for i := uint32(0); i < n; i++ {
+        batch[i] = pp.
+        runq[(h+i)%uint32(len(pp.runq))].
+        ptr()
+    }
+    //...//
+    // 关键：把新的goroutine也加入批次
+    batch[n] = gp  // 第129个就是新要放入的goroutine
+    // 将129个goroutine一起放到全局队列
+    q := gQueue{batch[0].guintptr(), 
+    batch[n].guintptr(), int32(n + 1)}
+    //..//
+    return true
+}
 // src/runtime/proc.go ready函数
 func ready(gp *g, traceskip int, next bool) {
     // ... 状态处理 ...

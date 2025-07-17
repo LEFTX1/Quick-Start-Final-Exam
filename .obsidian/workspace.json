@@ -63,10 +63,12 @@
             "id": "4bda7ab70c69067e",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
-              "icon": "lucide-file",
-              "title": "新标签页"
+              "type": "excalidraw",
+              "state": {
+                "file": "Excalidraw/Drawing 2025-07-08 19.53.41.excalidraw.md"
+              },
+              "icon": "excalidraw-icon",
+              "title": "Drawing 2025-07-08 19.53.41.excalidraw"
             }
           },
           {
@@ -168,7 +170,7 @@
             }
           }
         ],
-        "currentTab": 3
+        "currentTab": 4
       }
     ],
     "direction": "vertical"
@@ -325,20 +327,21 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "d021e22d9ba9dda5",
+  "active": "4bda7ab70c69067e",
   "lastOpenFiles": [
     "未命名/temp.md",
-    "未命名/goroutine_status_fields.md",
+    "未命名/未命名.md",
     "Excalidraw/Drawing 2025-07-08 19.53.41.excalidraw.md",
-    "Excalidraw/context/withcancel全流程.svg",
     "Excalidraw/context/WithDeadlineCause.md",
+    "面试/mysql.md",
+    "未命名/goroutine_status_fields.md",
+    "Excalidraw/context/withcancel全流程.svg",
     "Pasted Image 20250716185543_700.png",
     "golang context/golang context.md",
     "面试/kafka.md",
     "面试/GO相关.md",
     "面试/计算机网络.md",
     "static/1731404777835.png",
-    "面试/mysql.md",
     "Excalidraw/Drawing 2025-07-08 19.03.41.excalidraw.md",
     "面试/快速过.md",
     "面试/面试鸭.md",
