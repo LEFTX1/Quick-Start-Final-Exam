@@ -325,13 +325,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Excalidraw/Drawing 2025-07-21 22.17.03.excalidraw.md",
+                "file": "面试/快速过.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Drawing 2025-07-21 22.17.03.excalidraw 的大纲"
+              "title": "快速过 的大纲"
             }
           },
           {
@@ -345,7 +345,7 @@
             }
           }
         ],
-        "currentTab": 4
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
@@ -365,6 +365,8 @@
   },
   "active": "30dd78caa3504a01",
   "lastOpenFiles": [
+    "面试/计算机网络 快速过.md",
+    "面试/快速过.md",
     "面试/redis.md",
     "Excalidraw/Drawing 2025-07-21 22.17.03.excalidraw.md",
     "Pasted Image 20250722044448_028.png",
@@ -385,10 +387,8 @@
     "面试/kafka.md",
     "面试/计算机网络.md",
     "static/1731404777835.png",
-    "面试/快速过.md",
     "面试/面试鸭.md",
     "面试/大模型相关.md",
-    "面试/计算机网络 快速过.md",
     "面试/简历.md",
     "面试/prompt.md",
     "Excalidraw/context/cancel向下传播.svg",
