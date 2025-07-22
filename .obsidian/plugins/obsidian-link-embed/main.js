@@ -309,7 +309,211 @@ var require_he = __commonJS({
 __export(exports, {
   default: () => ObsidianLinkEmbedPlugin
 });
-var import_obsidian5 = __toModule(require("obsidian"));
+var import_obsidian10 = __toModule(require("obsidian"));
+
+// src/constants.ts
+var MarkdownTemplate = `\`\`\`embed
+title: "{{{title}}}"
+image: "{{{image}}}"
+description: "{{{description}}}"
+url: "{{{url}}}"
+favicon: "{{{favicon}}}"{{#aspectRatio}}
+aspectRatio: "{{aspectRatio}}"{{/aspectRatio}}{{#metadata}}
+{{{metadata}}}{{/metadata}}
+\`\`\``;
+var HTMLTemplate = `<div class="embed">
+  <div class="w _lc _sm _od _lh14 _ts">
+    <div class="embed-buttons">
+      <div class="refresh-button">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2"/>
+        </svg>
+      </div>
+      <div class="copy-button">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+        </svg>
+      </div>
+    </div>
+    <div class="wf">
+      <div class="wc{{#respectAR}} _wi{{/respectAR}}" {{#respectAR}}style="width: {{calculatedWidth}}px;"{{/respectAR}}>
+        <div class="e">
+          <div class="em">
+            <a
+              href="{{{url}}}"
+              target="_blank"
+              rel="noopener"
+              data-do-not-bind-click
+              class="c"
+              style="
+                background-image: url('{{{image}}}');
+                background-size: contain;
+                background-position: center;
+              "
+            ></a>
+          </div>
+        </div>
+      </div>
+      <div class="wt">
+        <div class="t _f0 _ffsa _fsn _fwn">
+          <div class="th _f1p _fsn _fwb">
+            <a href="{{{url}}}" target="_blank" rel="noopener" class="thl">
+              {{title}}
+            </a>
+          </div>
+          <div class="td">{{description}}</div>
+          <div class="tf _f1m">
+            <div class="tc">
+              <a href="{{{url}}}" target="_blank" rel="noopener" class="tw _f1m">
+                {{#favicon}}<img src="{{{favicon}}}" alt="favicon" style="height: 16px; width: 16px; margin-right: 6px; vertical-align: middle;">{{/favicon}}
+                <span>{{{url}}}</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>`;
+var REGEX = {
+  URL: "^(http|ftp|https):\\/\\/([\\w_-]+(?:(?:\\.[\\w_-]+)+))([\\w.,@?^=%&:\\/~+#-]*[\\w@?^=%&\\/~+#-])$",
+  HTML: `<div
+  style="
+    border: 1px solid rgb\\(222, 222, 222\\);
+    box-shadow: rgba\\(0, 0, 0, 0\\.06\\) 0px 1px 3px;
+  "
+>
+  <div class="w __if _lc _sm _od _alsd _alcd _lh14 _xm _xi _ts _dm">
+    <div class="wf">
+      <div class="wc">
+        <div class="e" style="padding-bottom: 100%">
+          <div class="em">
+            <a
+              href="(.+)"
+              target="_blank"
+              rel="noopener"
+              data-do-not-bind-click
+              class="c"
+              style="
+                background-image: url\\(\\'(.*)\\'\\);
+              "
+            ><\\/a>
+          <\\/div>
+        <\\/div>
+      <\\/div>
+      <div class="wt">
+        <div class="t _f0 _ffsa _fsn _fwn">
+          <div class="th _f1p _fsn _fwb">
+            <a href="(.+)" target="_blank" rel="noopener" class="thl"
+              >(.*)<\\/a
+            >
+          <\\/div>
+          <div class="td">([\\S\\s]*?)<\\/div>
+          <div class="tf _f1m">
+            <div class="tc">
+              <a href="(.+)" target="_blank" rel="noopener" class="tw _f1m"
+                ><span class="twt">(.+)<\\/span
+                ><span class="twd">(.+)<\\/span><\\/a
+              >
+            <\\/div>
+          <\\/div>
+        <\\/div>
+      <\\/div>
+    <\\/div>
+  <\\/div>
+<\\/div>`,
+  ERROR: '<div class="em">'
+};
+var SPINNER = "data:image/svg+xml;base64,PHN2ZyBjbGFzcz0ibGRzLW1pY3Jvc29mdCIgd2lkdGg9IjgwcHgiICBoZWlnaHQ9IjgwcHgiICB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJ4TWlkWU1pZCI+PGcgdHJhbnNmb3JtPSJyb3RhdGUoMCkiPjxjaXJjbGUgY3g9IjgxLjczNDEzMzYxMTY0OTQxIiBjeT0iNzQuMzUwNDU3MTYwMzQ4ODIiIGZpbGw9IiNlMTViNjQiIHI9IjUiIHRyYW5zZm9ybT0icm90YXRlKDM0MC4wMDEgNDkuOTk5OSA1MCkiPgogIDxhbmltYXRlVHJhbnNmb3JtIGF0dHJpYnV0ZU5hbWU9InRyYW5zZm9ybSIgdHlwZT0icm90YXRlIiBjYWxjTW9kZT0ic3BsaW5lIiB2YWx1ZXM9IjAgNTAgNTA7MzYwIDUwIDUwIiB0aW1lcz0iMDsxIiBrZXlTcGxpbmVzPSIwLjUgMCAwLjUgMSIgcmVwZWF0Q291bnQ9ImluZGVmaW5pdGUiIGR1cj0iMS41cyIgYmVnaW49IjBzIj48L2FuaW1hdGVUcmFuc2Zvcm0+CjwvY2lyY2xlPjxjaXJjbGUgY3g9Ijc0LjM1MDQ1NzE2MDM0ODgyIiBjeT0iODEuNzM0MTMzNjExNjQ5NDEiIGZpbGw9IiNmNDdlNjAiIHI9IjUiIHRyYW5zZm9ybT0icm90YXRlKDM0OC4zNTIgNTAuMDAwMSA1MC4wMDAxKSI+CiAgPGFuaW1hdGVUcmFuc2Zvcm0gYXR0cmlidXRlTmFtZT0idHJhbnNmb3JtIiB0eXBlPSJyb3RhdGUiIGNhbGNNb2RlPSJzcGxpbmUiIHZhbHVlcz0iMCA1MCA1MDszNjAgNTAgNTAiIHRpbWVzPSIwOzEiIGtleVNwbGluZXM9IjAuNSAwIDAuNSAxIiByZXBlYXRDb3VudD0iaW5kZWZpbml0ZSIgZHVyPSIxLjVzIiBiZWdpbj0iLTAuMDYyNXMiPjwvYW5pbWF0ZVRyYW5zZm9ybT4KPC9jaXJjbGU+PGNpcmNsZSBjeD0iNjUuMzA3MzM3Mjk0NjAzNiIgY3k9Ijg2Ljk1NTE4MTMwMDQ1MTQ3IiBmaWxsPSIjZjhiMjZhIiByPSI1IiB0cmFuc2Zvcm09InJvdGF0ZSgzNTQuMjM2IDUwIDUwKSI+CiAgPGFuaW1hdGVUcmFuc2Zvcm0gYXR0cmlidXRlTmFtZT0idHJhbnNmb3JtIiB0eXBlPSJyb3RhdGUiIGNhbGNNb2RlPSJzcGxpbmUiIHZhbHVlcz0iMCA1MCA1MDszNjAgNTAgNTAiIHRpbWVzPSIwOzEiIGtleVNwbGluZXM9IjAuNSAwIDAuNSAxIiByZXBlYXRDb3VudD0iaW5kZWZpbml0ZSIgZHVyPSIxLjVzIiBiZWdpbj0iLTAuMTI1cyI+PC9hbmltYXRlVHJhbnNmb3JtPgo8L2NpcmNsZT48Y2lyY2xlIGN4PSI1NS4yMjEwNDc2ODg4MDIwNyIgY3k9Ijg5LjY1Nzc5NDQ1NDk1MjQxIiBmaWxsPSIjYWJiZDgxIiByPSI1IiB0cmFuc2Zvcm09InJvdGF0ZSgzNTcuOTU4IDUwLjAwMDIgNTAuMDAwMikiPgogIDxhbmltYXRlVHJhbnNmb3JtIGF0dHJpYnV0ZU5hbWU9InRyYW5zZm9ybSIgdHlwZT0icm90YXRlIiBjYWxjTW9kZT0ic3BsaW5lIiB2YWx1ZXM9IjAgNTAgNTA7MzYwIDUwIDUwIiB0aW1lcz0iMDsxIiBrZXlTcGxpbmVzPSIwLjUgMCAwLjUgMSIgcmVwZWF0Q291bnQ9ImluZGVmaW5pdGUiIGR1cj0iMS41cyIgYmVnaW49Ii0wLjE4NzVzIj48L2FuaW1hdGVUcmFuc2Zvcm0+CjwvY2lyY2xlPjxjaXJjbGUgY3g9IjQ0Ljc3ODk1MjMxMTE5NzkzIiBjeT0iODkuNjU3Nzk0NDU0OTUyNDEiIGZpbGw9IiM4NDliODciIHI9IjUiIHRyYW5zZm9ybT0icm90YXRlKDM1OS43NiA1MC4wMDY0IDUwLjAwNjQpIj4KICA8YW5pbWF0ZVRyYW5zZm9ybSBhdHRyaWJ1dGVOYW1lPSJ0cmFuc2Zvcm0iIHR5cGU9InJvdGF0ZSIgY2FsY01vZGU9InNwbGluZSIgdmFsdWVzPSIwIDUwIDUwOzM2MCA1MCA1MCIgdGltZXM9IjA7MSIga2V5U3BsaW5lcz0iMC41IDAgMC41IDEiIHJlcGVhdENvdW50PSJpbmRlZmluaXRlIiBkdXI9IjEuNXMiIGJlZ2luPSItMC4yNXMiPjwvYW5pbWF0ZVRyYW5zZm9ybT4KPC9jaXJjbGU+PGNpcmNsZSBjeD0iMzQuNjkyNjYyNzA1Mzk2NDE1IiBjeT0iODYuOTU1MTgxMzAwNDUxNDciIGZpbGw9IiNlMTViNjQiIHI9IjUiIHRyYW5zZm9ybT0icm90YXRlKDAuMTgzNTUyIDUwIDUwKSI+CiAgPGFuaW1hdGVUcmFuc2Zvcm0gYXR0cmlidXRlTmFtZT0idHJhbnNmb3JtIiB0eXBlPSJyb3RhdGUiIGNhbGNNb2RlPSJzcGxpbmUiIHZhbHVlcz0iMCA1MCA1MDszNjAgNTAgNTAiIHRpbWVzPSIwOzEiIGtleVNwbGluZXM9IjAuNSAwIDAuNSAxIiByZXBlYXRDb3VudD0iaW5kZWZpbml0ZSIgZHVyPSIxLjVzIiBiZWdpbj0iLTAuMzEyNXMiPjwvYW5pbWF0ZVRyYW5zZm9ybT4KPC9jaXJjbGU+PGNpcmNsZSBjeD0iMjUuNjQ5NTQyODM5NjUxMTc2IiBjeT0iODEuNzM0MTMzNjExNjQ5NDEiIGZpbGw9IiNmNDdlNjAiIHI9IjUiIHRyYW5zZm9ybT0icm90YXRlKDEuODY0NTcgNTAgNTApIj4KICA8YW5pbWF0ZVRyYW5zZm9ybSBhdHRyaWJ1dGVOYW1lPSJ0cmFuc2Zvcm0iIHR5cGU9InJvdGF0ZSIgY2FsY01vZGU9InNwbGluZSIgdmFsdWVzPSIwIDUwIDUwOzM2MCA1MCA1MCIgdGltZXM9IjA7MSIga2V5U3BsaW5lcz0iMC41IDAgMC41IDEiIHJlcGVhdENvdW50PSJpbmRlZmluaXRlIiBkdXI9IjEuNXMiIGJlZ2luPSItMC4zNzVzIj48L2FuaW1hdGVUcmFuc2Zvcm0+CjwvY2lyY2xlPjxjaXJjbGUgY3g9IjE4LjI2NTg2NjM4ODM1MDYiIGN5PSI3NC4zNTA0NTcxNjAzNDg4NCIgZmlsbD0iI2Y4YjI2YSIgcj0iNSIgdHJhbnNmb3JtPSJyb3RhdGUoNS40NTEyNiA1MCA1MCkiPgogIDxhbmltYXRlVHJhbnNmb3JtIGF0dHJpYnV0ZU5hbWU9InRyYW5zZm9ybSIgdHlwZT0icm90YXRlIiBjYWxjTW9kZT0ic3BsaW5lIiB2YWx1ZXM9IjAgNTAgNTA7MzYwIDUwIDUwIiB0aW1lcz0iMDsxIiBrZXlTcGxpbmVzPSIwLjUgMCAwLjUgMSIgcmVwZWF0Q291bnQ9ImluZGVmaW5pdGUiIGR1cj0iMS41cyIgYmVnaW49Ii0wLjQzNzVzIj48L2FuaW1hdGVUcmFuc2Zvcm0+CjwvY2lyY2xlPjxhbmltYXRlVHJhbnNmb3JtIGF0dHJpYnV0ZU5hbWU9InRyYW5zZm9ybSIgdHlwZT0icm90YXRlIiBjYWxjTW9kZT0ic3BsaW5lIiB2YWx1ZXM9IjAgNTAgNTA7MCA1MCA1MCIgdGltZXM9IjA7MSIga2V5U3BsaW5lcz0iMC41IDAgMC41IDEiIHJlcGVhdENvdW50PSJpbmRlZmluaXRlIiBkdXI9IjEuNXMiPjwvYW5pbWF0ZVRyYW5zZm9ybT48L2c+PC9zdmc+";
+
+// src/exEditor.ts
+var ExEditor = class {
+  static getText(editor, debug) {
+    return __async(this, null, function* () {
+      let selected = ExEditor.getSelectedText(editor, debug);
+      let cursor = editor.getCursor();
+      if (!selected.can) {
+        selected.text = yield navigator.clipboard.readText();
+        selected.boundary = {
+          start: cursor,
+          end: cursor
+        };
+      }
+      return selected;
+    });
+  }
+  static getSelectedText(editor, debug) {
+    if (debug) {
+      console.log(`Link Embed: editor.somethingSelected() ${editor.somethingSelected()}`);
+    }
+    let cursor = editor.getCursor();
+    let wordBoundary = {
+      start: cursor,
+      end: cursor
+    };
+    if (!editor.somethingSelected()) {
+      wordBoundary = this.getWordBoundaries(editor, debug);
+      editor.setSelection(wordBoundary.start, wordBoundary.end);
+    }
+    if (editor.somethingSelected()) {
+      return {
+        can: true,
+        text: editor.getSelection(),
+        boundary: {
+          start: editor.getCursor("from"),
+          end: editor.getCursor("to")
+        }
+      };
+    }
+    return {
+      can: false,
+      text: editor.getSelection(),
+      boundary: wordBoundary
+    };
+  }
+  static cursorWithinBoundaries(cursor, match, debug) {
+    let startIndex = match.index;
+    let endIndex = match.index + match[0].length;
+    if (debug) {
+      console.log(`Link Embed: cursorWithinBoundaries ${startIndex}, ${cursor.ch}, ${endIndex}`);
+    }
+    return startIndex <= cursor.ch && cursor.ch <= endIndex;
+  }
+  static getWordBoundaries(editor, debug) {
+    let cursor = editor.getCursor();
+    let lineText = editor.getLine(cursor.line);
+    const urlRegex = new RegExp(REGEX.URL, "g");
+    let linksInLine = lineText.matchAll(urlRegex);
+    if (debug) {
+      console.log("Link Embed: cursor", cursor, "lineText", lineText);
+    }
+    for (let match of linksInLine) {
+      if (debug) {
+        console.log("Link Embed: match", match);
+      }
+      if (this.cursorWithinBoundaries(cursor, match, debug)) {
+        return {
+          start: { line: cursor.line, ch: match.index },
+          end: {
+            line: cursor.line,
+            ch: match.index + match[0].length
+          }
+        };
+      }
+    }
+    return {
+      start: cursor,
+      end: cursor
+    };
+  }
+};
+
+// src/settings.ts
+var import_obsidian4 = __toModule(require("obsidian"));
+
+// src/parsers/parser.ts
+var import_obsidian2 = __toModule(require("obsidian"));
 
 // node_modules/mustache/mustache.mjs
 var objectToString = Object.prototype.toString;
@@ -765,18 +969,31 @@ mustache.Context = Context;
 mustache.Writer = Writer;
 var mustache_default = mustache;
 
-// parser.ts
+// src/parsers/utils/imageUtils.ts
 var import_obsidian = __toModule(require("obsidian"));
-var import_obsidian2 = __toModule(require("obsidian"));
 var path = __toModule(require("path"));
 var crypto = __toModule(require("crypto"));
-var electronPkg = require("electron");
-function getImageDimensions(imageUrl, cache) {
+var DEFAULT_IMAGE_DIMENSIONS = {
+  width: 160,
+  height: 160,
+  aspectRatio: 100
+};
+var MAX_LOAD_ATTEMPTS = 5;
+function getImageDimensions(imageUrl, cache, imageLoadAttempts) {
   return __async(this, null, function* () {
     try {
       if (cache && cache.has(imageUrl)) {
         console.log("[Link Embed] Using cached image dimensions for:", imageUrl.substring(0, 50) + (imageUrl.length > 50 ? "..." : ""));
         return cache.get(imageUrl);
+      }
+      const attempts = imageLoadAttempts && imageLoadAttempts.has(imageUrl) ? imageLoadAttempts.get(imageUrl) : 0;
+      if (attempts >= MAX_LOAD_ATTEMPTS) {
+        console.log(`[Link Embed] Image load failed ${attempts} times, using default dimensions: ${imageUrl.substring(0, 50)}${imageUrl.length > 50 ? "..." : ""}`);
+        if (cache) {
+          cache.set(imageUrl, DEFAULT_IMAGE_DIMENSIONS);
+          console.log("[Link Embed] Cached default dimensions for problematic image");
+        }
+        return DEFAULT_IMAGE_DIMENSIONS;
       }
       return new Promise((resolve, reject) => {
         const img = new Image();
@@ -791,10 +1008,27 @@ function getImageDimensions(imageUrl, cache) {
             cache.set(imageUrl, dimensions);
             console.log("[Link Embed] Cached image dimensions for:", imageUrl.substring(0, 50) + (imageUrl.length > 50 ? "..." : ""));
           }
+          if (attempts > 0 && imageLoadAttempts) {
+            imageLoadAttempts.delete(imageUrl);
+          }
           resolve(dimensions);
         };
         img.onerror = () => {
-          reject(new Error(`Failed to load image: ${imageUrl.substring(0, 150)}${imageUrl.length > 150 ? "..." : ""}`));
+          const newAttempts = attempts + 1;
+          if (imageLoadAttempts) {
+            imageLoadAttempts.set(imageUrl, newAttempts);
+          }
+          console.log(`[Link Embed] Failed to load image (attempt ${newAttempts}/${MAX_LOAD_ATTEMPTS}): ${imageUrl.substring(0, 150)}${imageUrl.length > 150 ? "..." : ""}`);
+          if (newAttempts >= MAX_LOAD_ATTEMPTS) {
+            console.log("[Link Embed] Max attempts reached, using default dimensions");
+            if (cache) {
+              cache.set(imageUrl, DEFAULT_IMAGE_DIMENSIONS);
+              console.log("[Link Embed] Cached default dimensions for problematic image");
+            }
+            resolve(DEFAULT_IMAGE_DIMENSIONS);
+          } else {
+            reject(new Error(`Failed to load image: ${imageUrl.substring(0, 150)}${imageUrl.length > 150 ? "..." : ""}`));
+          }
         };
         img.src = imageUrl;
       });
@@ -825,7 +1059,7 @@ function downloadImageToVault(url, vault, folderPath) {
         const nameWithoutExt = path.basename(fileName, ext);
         fileName = `${nameWithoutExt}-${urlHash}${ext}`;
       }
-      const response = yield (0, import_obsidian2.requestUrl)({ url });
+      const response = yield (0, import_obsidian.requestUrl)({ url });
       const filePath = (0, import_obsidian.normalizePath)(`${folderPath}/${fileName}`);
       const buffer = response.arrayBuffer;
       const existingFile = vault.getAbstractFileByPath(filePath);
@@ -875,6 +1109,8 @@ function getMimeType(extension) {
   };
   return mimeTypes[extension.toLowerCase()] || "image/jpeg";
 }
+
+// src/parsers/parser.ts
 var Parser = class {
   constructor() {
     this.location = "unknown";
@@ -885,11 +1121,21 @@ var Parser = class {
     this.saveImagesToVault = false;
     this.imageFolderPath = "";
   }
+  debugLog(...args) {
+    if (this.debug) {
+      console.log(...args);
+    }
+  }
+  debugError(...args) {
+    if (this.debug) {
+      console.error(...args);
+    }
+  }
   parseUrl(url) {
     return __async(this, null, function* () {
       const parseUrl = mustache_default.render(this.api, { url });
       const parserType = this.constructor.name;
-      new import_obsidian.Notice(`Fetching ${url} with ${parserType}`);
+      new import_obsidian2.Notice(`Fetching ${url} with ${parserType}`);
       try {
         const requestOptions = {
           url: parseUrl,
@@ -912,9 +1158,23 @@ var Parser = class {
   }
   handleImageProcessing(processedData, url) {
     return __async(this, null, function* () {
-      var _a, _b;
+      var _a, _b, _c, _d, _e;
       const result = __spreadProps(__spreadValues({}, processedData), { url });
       const parserType = this.constructor.name;
+      if (!result.favicon && this.constructor.name !== "LocalParser") {
+        try {
+          const plugin = (_b = (_a = window.app) == null ? void 0 : _a.plugins) == null ? void 0 : _b.plugins["obsidian-link-embed"];
+          if (plugin && plugin.fetchFavicon) {
+            const favicon = yield plugin.fetchFavicon(url);
+            if (favicon) {
+              result.favicon = favicon;
+              this.debugLog(`[Link Embed] Added favicon: ${result.favicon}`);
+            }
+          }
+        } catch (error) {
+          console.error("[Link Embed] Error getting favicon:", error);
+        }
+      }
       if (this.saveImagesToVault && processedData.image && this.vault) {
         try {
           const localPath = yield downloadImageToVault(processedData.image, this.vault, this.imageFolderPath);
@@ -925,17 +1185,15 @@ var Parser = class {
       }
       if (result.image && result.image.length > 0) {
         try {
-          const plugin = (_b = (_a = window.app) == null ? void 0 : _a.plugins) == null ? void 0 : _b.plugins["obsidian-link-embed"];
-          const cache = plugin == null ? void 0 : plugin.imageDimensionsCache;
+          const plugin = (_d = (_c = window.app) == null ? void 0 : _c.plugins) == null ? void 0 : _d.plugins["obsidian-link-embed"];
+          const cache = ((_e = plugin == null ? void 0 : plugin.settings) == null ? void 0 : _e.useCache) ? plugin == null ? void 0 : plugin.cache : null;
           const dimensions = yield getImageDimensions(result.image, cache);
           if (dimensions) {
             result.aspectRatio = dimensions.aspectRatio;
-            if (this.debug) {
-              console.log("[Link Embed] Image dimensions:", dimensions);
-            }
+            this.debugLog("[Link Embed] Image dimensions:", dimensions);
           }
         } catch (error) {
-          console.error(`[Link Embed] Error calculating image aspect ratio in ${parserType} at ${this.location}]:`, error);
+          console.error(`[Link Embed] Error calculating image aspect ratio in ${parserType} at ${this.location}:`, error);
         }
       }
       return result;
@@ -944,14 +1202,14 @@ var Parser = class {
   parse(url) {
     return __async(this, null, function* () {
       const rawData = yield this.parseUrl(url);
-      if (this.debug) {
-        console.log("[Link Embed] Raw data:", rawData);
-      }
+      this.debugLog("[Link Embed] Raw data:", rawData);
       const processedData = this.process(rawData);
       return yield this.handleImageProcessing(processedData, url);
     });
   }
 };
+
+// src/parsers/LinkPreviewParser.ts
 var LinkPreviewParser = class extends Parser {
   constructor(apiKey = "") {
     super();
@@ -969,10 +1227,12 @@ var LinkPreviewParser = class extends Parser {
     return { title, image, description };
   }
 };
+
+// src/parsers/JSONLinkParser.ts
 var JSONLinkParser = class extends Parser {
-  constructor() {
+  constructor(apiKey = "") {
     super();
-    this.api = "https://jsonlink.io/api/extract?url={{{url}}}";
+    this.api = `https://jsonlink.io/api/extract?url={{{url}}}&api_key=${apiKey}`;
   }
   process(data) {
     const title = data.title || "";
@@ -982,6 +1242,8 @@ var JSONLinkParser = class extends Parser {
     return { title, image, description };
   }
 };
+
+// src/parsers/MicroLinkParser.ts
 var MicroLinkParser = class extends Parser {
   constructor() {
     super();
@@ -996,6 +1258,8 @@ var MicroLinkParser = class extends Parser {
     return { title, image, description };
   }
 };
+
+// src/parsers/IframelyParser.ts
 var IframelyParser = class extends Parser {
   constructor() {
     super();
@@ -1010,14 +1274,66 @@ var IframelyParser = class extends Parser {
     return { title, image, description };
   }
 };
-var LocalParser = class extends Parser {
+
+// src/parsers/LocalParser.ts
+var import_obsidian3 = __toModule(require("obsidian"));
+
+// src/utils/concurrencyLimiter.ts
+var ConcurrencyLimiter = class {
+  constructor(maxConcurrency) {
+    this.queue = [];
+    this.runningTasks = 0;
+    this.maxConcurrency = maxConcurrency;
+  }
+  enqueue(task) {
+    return __async(this, null, function* () {
+      return new Promise((resolve, reject) => {
+        this.queue.push({ task, resolve, reject });
+        this.processQueue();
+      });
+    });
+  }
+  setMaxConcurrency(max) {
+    this.maxConcurrency = max;
+    this.processQueue();
+  }
+  processQueue() {
+    if (this.runningTasks < this.maxConcurrency && this.queue.length > 0) {
+      const { task, resolve, reject } = this.queue.shift();
+      this.runningTasks++;
+      Promise.resolve().then(() => __async(this, null, function* () {
+        try {
+          const result = yield task();
+          resolve(result);
+        } catch (error) {
+          reject(error);
+        } finally {
+          this.runningTasks--;
+          this.processQueue();
+        }
+      }));
+    }
+  }
+};
+
+// src/parsers/LocalParser.ts
+var electronPkg = require("electron");
+var _LocalParser = class extends Parser {
+  static initLimiter(maxConcurrency) {
+    if (!_LocalParser.limiter) {
+      _LocalParser.limiter = new ConcurrencyLimiter(maxConcurrency);
+    } else {
+      _LocalParser.limiter.setMaxConcurrency(maxConcurrency);
+    }
+  }
   process(data) {
     let title = data.title || "";
     const image = data.image || "";
     let description = data.description || "";
+    const favicon = data.favicon || "";
     description = description.replace(/\n/g, " ").replace(/\\/g, "\\\\");
     title = title.replace(/\n/g, " ").replace(/\\/g, "\\\\");
-    return { title, image, description };
+    return { title, image, description, favicon };
   }
   getTitle(doc, url) {
     let element = doc.querySelector('head meta[property="og:title"]');
@@ -1034,13 +1350,21 @@ var LocalParser = class extends Parser {
     if (/display:\s*none/.test(element.getAttribute("style"))) {
       return false;
     }
+    if (element instanceof HTMLImageElement) {
+      const src = element.getAttribute("src") || "";
+      const alt = element.getAttribute("alt") || "";
+      if (src.toLowerCase().includes("logo") || alt.toLowerCase().includes("logo") || src.endsWith(".svg")) {
+        this.debugLog("[Link Embed] Image - Allowing logo image:", src);
+        return true;
+      }
+    }
     let contains_header = false;
     element.classList.forEach((val) => {
-      if (val.toLowerCase().contains("header")) {
+      if (val.toLowerCase().includes("header")) {
         contains_header = true;
       }
     });
-    if (element.id.toLowerCase().contains("header") || contains_header) {
+    if ((element.id.toLowerCase().includes("header") || contains_header) && !(element instanceof HTMLImageElement)) {
       return false;
     }
     if (element.parentElement != null) {
@@ -1048,44 +1372,80 @@ var LocalParser = class extends Parser {
     }
     return true;
   }
-  getImage(doc, url) {
-    const baseEl = doc.querySelector("base[href]");
-    const base = baseEl && baseEl.href || url.href;
-    const og = doc.querySelector('head meta[property="og:image"]');
-    if (og == null ? void 0 : og.content) {
+  verifyImageUrl(imgUrl, failedUrls) {
+    return __async(this, null, function* () {
+      if (failedUrls.has(imgUrl))
+        return null;
       try {
-        return new URL(og.content, base).href;
-      } catch (e) {
-        return og.content;
+        const dimensions = yield getImageDimensions(imgUrl);
+        if (dimensions) {
+          this.debugLog("[Link Embed] Image - Successfully verified image loads:", imgUrl);
+          return imgUrl;
+        } else {
+          this.debugLog("[Link Embed] Image - Image failed to load properly:", imgUrl);
+          failedUrls.add(imgUrl);
+        }
+      } catch (error) {
+        this.debugError("[Link Embed] Image - Failed to load image:", imgUrl, error);
+        failedUrls.add(imgUrl);
       }
-    }
-    const selectors = [
-      'div[itemtype$="://schema.org/Product"] noscript img',
-      'div[itemtype$="://schema.org/Product"] img',
-      "#main noscript img",
-      "#main img",
-      "main noscript img",
-      "main img",
-      '*[role="main"] img',
-      "body noscript img",
-      "body img"
-    ];
-    for (const sel of selectors) {
-      const imgs = Array.from(doc.querySelectorAll(sel));
-      for (const img of imgs) {
-        if (!this.meetsCriteria(img))
-          continue;
-        const src = img.getAttribute("src");
-        if (src) {
-          try {
-            return new URL(src, base).href;
-          } catch (e) {
-            return src;
+      return null;
+    });
+  }
+  getImage(doc, url) {
+    return __async(this, null, function* () {
+      const base = url.href;
+      const failedUrls = new Set();
+      this.debugLog("[Link Embed] Image - Looking for image for:", url.href);
+      this.debugLog("[Link Embed] Image - Base URL:", base);
+      const og = doc.querySelector('head meta[property="og:image"]');
+      if (og && og.content) {
+        this.debugLog("[Link Embed] Image - Found Open Graph image:", og.content);
+        try {
+          const resolvedUrl = new URL(og.content, base).href;
+          this.debugLog("[Link Embed] Image - Resolved OG image URL:", resolvedUrl);
+          const verifiedUrl = yield this.verifyImageUrl(resolvedUrl, failedUrls);
+          if (verifiedUrl)
+            return verifiedUrl;
+        } catch (error) {
+          this.debugError("[Link Embed] Image - Error resolving OG image URL:", error);
+        }
+      }
+      const selectors = [
+        'div[itemtype$="://schema.org/Product"] noscript img',
+        'div[itemtype$="://schema.org/Product"] img',
+        "#main noscript img",
+        "#main img",
+        "main noscript img",
+        "main img",
+        '*[role="main"] img',
+        "body noscript img",
+        "body img"
+      ];
+      for (const sel of selectors) {
+        const imgs = Array.from(doc.querySelectorAll(sel));
+        this.debugLog(`[Link Embed] Image - Found ${imgs.length} images for selector "${sel}"`);
+        for (const img of imgs) {
+          if (!this.meetsCriteria(img))
+            continue;
+          const src = img.getAttribute("src");
+          if (src) {
+            this.debugLog("[Link Embed] Image - Found valid image src:", src);
+            try {
+              const resolvedUrl = new URL(src, base).href;
+              this.debugLog("[Link Embed] Image - Resolved image URL:", resolvedUrl);
+              const verifiedUrl = yield this.verifyImageUrl(resolvedUrl, failedUrls);
+              if (verifiedUrl)
+                return verifiedUrl;
+            } catch (error) {
+              this.debugError("[Link Embed] Image - Error resolving image URL:", error);
+            }
           }
         }
       }
-    }
-    return "";
+      this.debugLog("[Link Embed] Image - No suitable image found or all images failed to load");
+      return "";
+    });
   }
   getDescription(doc) {
     let element = doc.querySelector('head meta[property="og:description"]');
@@ -1098,73 +1458,148 @@ var LocalParser = class extends Parser {
     }
     return "";
   }
+  getFavicon(doc, url) {
+    const base = url.href;
+    this.debugLog("[Link Embed] Favicon - Looking for favicon for:", url.href);
+    this.debugLog("[Link Embed] Favicon - Base URL:", base);
+    const faviconLink = doc.querySelector('link[rel="icon"], link[rel="shortcut icon"]');
+    if (faviconLink) {
+      const hrefAttr = faviconLink.getAttribute("href");
+      this.debugLog("[Link Embed] Favicon - Found standard favicon link:", hrefAttr);
+      if (hrefAttr) {
+        try {
+          const resolvedUrl = new URL(hrefAttr, base).href;
+          this.debugLog("[Link Embed] Favicon - Resolved standard favicon URL:", resolvedUrl);
+          return resolvedUrl;
+        } catch (error) {
+          this.debugError("[Link Embed] Favicon - Error resolving standard favicon URL:", error);
+          return hrefAttr;
+        }
+      }
+    }
+    const appleIcon = doc.querySelector('link[rel="apple-touch-icon"]');
+    if (appleIcon) {
+      const hrefAttr = appleIcon.getAttribute("href");
+      this.debugLog("[Link Embed] Favicon - Found apple-touch-icon:", hrefAttr);
+      if (hrefAttr) {
+        try {
+          const resolvedUrl = new URL(hrefAttr, base).href;
+          this.debugLog("[Link Embed] Favicon - Resolved apple-touch-icon URL:", resolvedUrl);
+          return resolvedUrl;
+        } catch (error) {
+          this.debugError("[Link Embed] Favicon - Error resolving apple-touch-icon URL:", error);
+          return hrefAttr;
+        }
+      }
+    }
+    const defaultFaviconDataUri = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABRklEQVR42mKgOqjq75ds7510YNL0uV9nAGqniqwKYiCIHIIjcAK22BGQLRdgBWvc3fnWk/FJhrkPO1xPgGvqPfLfJMHhT1yqurvS48bPaJhjD2efgidnVwa2yv59xecvEvi0UWCXq9t0ItfP2MMZ7nwIpkA8F1n8uLxZHM6yrBH7FIl2gFXDHYsErkn2hyKLHtcKrFntk58uVQJ+kSdQnmjhID4cwLLa8+K0BXsfNWCqBOsFdo2Yldv43DBrkxd30cjnNyYBhK0SQGkI9pG4Mu40D5b374DRCAyhHqXVfTmOwivivMkJxBz5wnHCtBfGgNFC+ChWKWRf3hsQIlyEoIv4IYEo5wkgtBLRekY9DE4Uin4Keae6hydGnljPmE8kRcCine6827AMsJ1IuW9ibnlQpXLBCR/WC875m2BP+VSu3c/0m+8V08OBngc0pxcAAAAASUVORK5CYII=";
+    this.debugLog("[Link Embed] Favicon - Using default favicon data URI");
+    return defaultFaviconDataUri;
+  }
   getHtmlByRequest(url) {
     return __async(this, null, function* () {
-      const html = yield (0, import_obsidian2.requestUrl)({ url }).then((site) => {
-        return site.text;
-      });
-      return html;
+      var _a;
+      return (yield (_a = _LocalParser.limiter) == null ? void 0 : _a.enqueue(() => __async(this, null, function* () {
+        try {
+          this.debugLog("[Link Embed] getHtmlByRequest - Fetching URL:", url);
+          const response = yield (0, import_obsidian3.requestUrl)({ url });
+          const html = response.text;
+          this.debugLog("[Link Embed] getHtmlByRequest - Successfully fetched HTML, size:", html.length);
+          this.debugLog("[Link Embed] getHtmlByRequest - Response headers:", response.headers);
+          return html;
+        } catch (error) {
+          this.debugError("[Link Embed] getHtmlByRequest - Error fetching HTML:", error);
+          return null;
+        }
+      }))) || null;
     });
   }
   getHtmlByElectron(url) {
     return __async(this, null, function* () {
-      let window2 = null;
-      try {
-        const { remote } = electronPkg;
-        const { BrowserWindow } = remote;
-        window2 = new BrowserWindow({
-          width: 1366,
-          height: 768,
-          webPreferences: {
-            nodeIntegration: false,
-            contextIsolation: true,
-            sandbox: true,
-            images: false
-          },
-          show: false
-        });
-        window2.webContents.setAudioMuted(true);
-        yield new Promise((resolve, reject) => {
-          window2.webContents.on("did-finish-load", (e) => resolve(e));
-          window2.webContents.on("did-fail-load", (e) => reject(e));
-          window2.loadURL(url);
-        });
-        let doc = yield window2.webContents.executeJavaScript("document.documentElement.outerHTML;");
-        window2.close();
-        return doc;
-      } catch (ex) {
-        if (this.debug) {
-          console.log("[Link Embed] Failed to use electron: ", ex);
-        }
-        if (window2) {
+      var _a;
+      return (yield (_a = _LocalParser.limiter) == null ? void 0 : _a.enqueue(() => __async(this, null, function* () {
+        let window2 = null;
+        try {
+          this.debugLog("[Link Embed] getHtmlByElectron - Attempting to fetch URL:", url);
+          const { remote } = electronPkg;
+          const { BrowserWindow } = remote;
+          window2 = new BrowserWindow({
+            width: 1366,
+            height: 768,
+            webPreferences: {
+              nodeIntegration: false,
+              contextIsolation: true,
+              sandbox: true,
+              images: false
+            },
+            show: false
+          });
+          window2.webContents.setAudioMuted(true);
+          yield new Promise((resolve, reject) => {
+            window2.webContents.on("did-finish-load", (e) => {
+              this.debugLog("[Link Embed] getHtmlByElectron - Page loaded successfully");
+              resolve(e);
+            });
+            window2.webContents.on("did-fail-load", (e) => {
+              this.debugError("[Link Embed] getHtmlByElectron - Page failed to load:", e);
+              reject(e);
+            });
+            this.debugLog("[Link Embed] getHtmlByElectron - Loading URL:", url);
+            window2.loadURL(url);
+          });
+          this.debugLog("[Link Embed] getHtmlByElectron - Executing JavaScript to get HTML content");
+          let doc = yield window2.webContents.executeJavaScript("document.documentElement.outerHTML;");
           window2.close();
+          return doc;
+        } catch (ex) {
+          this.debugError("[Link Embed] getHtmlByElectron - Failed to use electron:", ex);
+          if (window2) {
+            window2.close();
+          }
+          return null;
         }
-        return null;
-      }
+      }))) || null;
     });
   }
   parse(url) {
     return __async(this, null, function* () {
       let html = (yield this.getHtmlByElectron(url)) || (yield this.getHtmlByRequest(url));
+      if (!html) {
+        this.debugError("[Link Embed] Failed to fetch HTML content for:", url);
+        throw new Error(`Failed to fetch HTML content from ${url}`);
+      }
       let parser = new DOMParser();
       const doc = parser.parseFromString(html, "text/html");
       let uRL = new URL(url);
-      if (this.debug) {
-        console.log("[Link Embed] Doc:", doc);
-      }
+      this.debugLog("[Link Embed] Doc:", doc);
       let title = this.getTitle(doc, uRL);
-      let image = this.getImage(doc, uRL);
       let description = this.getDescription(doc);
-      let processedData = this.process({ title, image, description });
+      let favicon = this.getFavicon(doc, uRL);
+      let image = yield this.getImage(doc, uRL);
+      let processedData = this.process({
+        title,
+        image,
+        description,
+        favicon
+      });
       return yield this.handleImageProcessing(processedData, url);
     });
   }
 };
+var LocalParser = _LocalParser;
+LocalParser.limiter = null;
+
+// src/parsers/index.ts
 function createParser(parserType, settings, vault = null) {
   let parser;
   switch (parserType) {
     case "jsonlink":
-      parser = new JSONLinkParser();
+      const jsonlinkApiKey = settings.jsonlinkApiKey;
+      if (!jsonlinkApiKey) {
+        console.log("[Link Embed] JSONLink API key is not set");
+        throw new Error("JSONLink API key is not set");
+      }
+      parser = new JSONLinkParser(jsonlinkApiKey);
       break;
     case "microlink":
       parser = new MicroLinkParser();
@@ -1179,7 +1614,6 @@ function createParser(parserType, settings, vault = null) {
       const apiKey = settings.linkpreviewApiKey;
       if (!apiKey) {
         console.log("[Link Embed] LinkPreview API key is not set");
-        new import_obsidian.Notice("LinkPreview API key is not set. Please provide an API key in the settings.");
         throw new Error("LinkPreview API key is not set");
       }
       parser = new LinkPreviewParser(apiKey);
@@ -1200,130 +1634,29 @@ var parseOptions = {
   linkpreview: "LinkPreview"
 };
 
-// constants.ts
-var MarkdownTemplate = `\`\`\`embed
-title: "{{{title}}}"
-image: "{{{image}}}"
-description: "{{{description}}}"
-url: "{{{url}}}"{{#aspectRatio}}
-aspectRatio: "{{aspectRatio}}"{{/aspectRatio}}{{#metadata}}
-{{{metadata}}}{{/metadata}}
-\`\`\``;
-var HTMLTemplate = `<div class="embed">
-  <div class="w _lc _sm _od _lh14 _ts">
-    <div class="wf">
-      <div class="wc{{#respectAR}} _wi{{/respectAR}}" {{#respectAR}}style="width: {{calculatedWidth}}px;"{{/respectAR}}>
-        <div class="e">
-          <div class="em">
-            <a
-              href="{{{url}}}"
-              target="_blank"
-              rel="noopener"
-              data-do-not-bind-click
-              class="c"
-              style="
-                background-image: url('{{{image}}}');
-                background-size: contain;
-                background-position: center;
-              "
-            ></a>
-          </div>
-        </div>
-      </div>
-      <div class="wt">
-        <div class="t _f0 _ffsa _fsn _fwn">
-          <div class="th _f1p _fsn _fwb">
-            <a href="{{{url}}}" target="_blank" rel="noopener" class="thl"
-              >{{title}}</a
-            >
-          </div>
-          <div class="td">{{description}}</div>
-          <div class="tf _f1m">
-            <div class="tc">
-              <a href="{{{url}}}" target="_blank" rel="noopener" class="tw _f1m"
-                ><span class="twt">{{{url}}}</span
-                ><span class="twd">{{{url}}}</span></a
-              >
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>`;
-var REGEX = {
-  URL: "(http|ftp|https):\\/\\/([\\w_-]+(?:(?:\\.[\\w_-]+)+))([\\w.,@?^=%&:\\/~+#-]*[\\w@?^=%&\\/~+#-])",
-  HTML: `<div
-  style="
-    border: 1px solid rgb\\(222, 222, 222\\);
-    box-shadow: rgba\\(0, 0, 0, 0\\.06\\) 0px 1px 3px;
-  "
->
-  <div class="w __if _lc _sm _od _alsd _alcd _lh14 _xm _xi _ts _dm">
-    <div class="wf">
-      <div class="wc">
-        <div class="e" style="padding-bottom: 100%">
-          <div class="em">
-            <a
-              href="(.+)"
-              target="_blank"
-              rel="noopener"
-              data-do-not-bind-click
-              class="c"
-              style="
-                background-image: url\\(\\'(.*)\\'\\);
-              "
-            ><\\/a>
-          <\\/div>
-        <\\/div>
-      <\\/div>
-      <div class="wt">
-        <div class="t _f0 _ffsa _fsn _fwn">
-          <div class="th _f1p _fsn _fwb">
-            <a href="(.+)" target="_blank" rel="noopener" class="thl"
-              >(.*)<\\/a
-            >
-          <\\/div>
-          <div class="td">([\\S\\s]*?)<\\/div>
-          <div class="tf _f1m">
-            <div class="tc">
-              <a href="(.+)" target="_blank" rel="noopener" class="tw _f1m"
-                ><span class="twt">(.+)<\\/span
-                ><span class="twd">(.+)<\\/span><\\/a
-              >
-            <\\/div>
-          <\\/div>
-        <\\/div>
-      <\\/div>
-    <\\/div>
-  <\\/div>
-<\\/div>`,
-  ERROR: '<div class="em">'
-};
-var SPINNER = "data:image/svg+xml;base64,PHN2ZyBjbGFzcz0ibGRzLW1pY3Jvc29mdCIgd2lkdGg9IjgwcHgiICBoZWlnaHQ9IjgwcHgiICB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJ4TWlkWU1pZCI+PGcgdHJhbnNmb3JtPSJyb3RhdGUoMCkiPjxjaXJjbGUgY3g9IjgxLjczNDEzMzYxMTY0OTQxIiBjeT0iNzQuMzUwNDU3MTYwMzQ4ODIiIGZpbGw9IiNlMTViNjQiIHI9IjUiIHRyYW5zZm9ybT0icm90YXRlKDM0MC4wMDEgNDkuOTk5OSA1MCkiPgogIDxhbmltYXRlVHJhbnNmb3JtIGF0dHJpYnV0ZU5hbWU9InRyYW5zZm9ybSIgdHlwZT0icm90YXRlIiBjYWxjTW9kZT0ic3BsaW5lIiB2YWx1ZXM9IjAgNTAgNTA7MzYwIDUwIDUwIiB0aW1lcz0iMDsxIiBrZXlTcGxpbmVzPSIwLjUgMCAwLjUgMSIgcmVwZWF0Q291bnQ9ImluZGVmaW5pdGUiIGR1cj0iMS41cyIgYmVnaW49IjBzIj48L2FuaW1hdGVUcmFuc2Zvcm0+CjwvY2lyY2xlPjxjaXJjbGUgY3g9Ijc0LjM1MDQ1NzE2MDM0ODgyIiBjeT0iODEuNzM0MTMzNjExNjQ5NDEiIGZpbGw9IiNmNDdlNjAiIHI9IjUiIHRyYW5zZm9ybT0icm90YXRlKDM0OC4zNTIgNTAuMDAwMSA1MC4wMDAxKSI+CiAgPGFuaW1hdGVUcmFuc2Zvcm0gYXR0cmlidXRlTmFtZT0idHJhbnNmb3JtIiB0eXBlPSJyb3RhdGUiIGNhbGNNb2RlPSJzcGxpbmUiIHZhbHVlcz0iMCA1MCA1MDszNjAgNTAgNTAiIHRpbWVzPSIwOzEiIGtleVNwbGluZXM9IjAuNSAwIDAuNSAxIiByZXBlYXRDb3VudD0iaW5kZWZpbml0ZSIgZHVyPSIxLjVzIiBiZWdpbj0iLTAuMDYyNXMiPjwvYW5pbWF0ZVRyYW5zZm9ybT4KPC9jaXJjbGU+PGNpcmNsZSBjeD0iNjUuMzA3MzM3Mjk0NjAzNiIgY3k9Ijg2Ljk1NTE4MTMwMDQ1MTQ3IiBmaWxsPSIjZjhiMjZhIiByPSI1IiB0cmFuc2Zvcm09InJvdGF0ZSgzNTQuMjM2IDUwIDUwKSI+CiAgPGFuaW1hdGVUcmFuc2Zvcm0gYXR0cmlidXRlTmFtZT0idHJhbnNmb3JtIiB0eXBlPSJyb3RhdGUiIGNhbGNNb2RlPSJzcGxpbmUiIHZhbHVlcz0iMCA1MCA1MDszNjAgNTAgNTAiIHRpbWVzPSIwOzEiIGtleVNwbGluZXM9IjAuNSAwIDAuNSAxIiByZXBlYXRDb3VudD0iaW5kZWZpbml0ZSIgZHVyPSIxLjVzIiBiZWdpbj0iLTAuMTI1cyI+PC9hbmltYXRlVHJhbnNmb3JtPgo8L2NpcmNsZT48Y2lyY2xlIGN4PSI1NS4yMjEwNDc2ODg4MDIwNyIgY3k9Ijg5LjY1Nzc5NDQ1NDk1MjQxIiBmaWxsPSIjYWJiZDgxIiByPSI1IiB0cmFuc2Zvcm09InJvdGF0ZSgzNTcuOTU4IDUwLjAwMDIgNTAuMDAwMikiPgogIDxhbmltYXRlVHJhbnNmb3JtIGF0dHJpYnV0ZU5hbWU9InRyYW5zZm9ybSIgdHlwZT0icm90YXRlIiBjYWxjTW9kZT0ic3BsaW5lIiB2YWx1ZXM9IjAgNTAgNTA7MzYwIDUwIDUwIiB0aW1lcz0iMDsxIiBrZXlTcGxpbmVzPSIwLjUgMCAwLjUgMSIgcmVwZWF0Q291bnQ9ImluZGVmaW5pdGUiIGR1cj0iMS41cyIgYmVnaW49Ii0wLjE4NzVzIj48L2FuaW1hdGVUcmFuc2Zvcm0+CjwvY2lyY2xlPjxjaXJjbGUgY3g9IjQ0Ljc3ODk1MjMxMTE5NzkzIiBjeT0iODkuNjU3Nzk0NDU0OTUyNDEiIGZpbGw9IiM4NDliODciIHI9IjUiIHRyYW5zZm9ybT0icm90YXRlKDM1OS43NiA1MC4wMDY0IDUwLjAwNjQpIj4KICA8YW5pbWF0ZVRyYW5zZm9ybSBhdHRyaWJ1dGVOYW1lPSJ0cmFuc2Zvcm0iIHR5cGU9InJvdGF0ZSIgY2FsY01vZGU9InNwbGluZSIgdmFsdWVzPSIwIDUwIDUwOzM2MCA1MCA1MCIgdGltZXM9IjA7MSIga2V5U3BsaW5lcz0iMC41IDAgMC41IDEiIHJlcGVhdENvdW50PSJpbmRlZmluaXRlIiBkdXI9IjEuNXMiIGJlZ2luPSItMC4yNXMiPjwvYW5pbWF0ZVRyYW5zZm9ybT4KPC9jaXJjbGU+PGNpcmNsZSBjeD0iMzQuNjkyNjYyNzA1Mzk2NDE1IiBjeT0iODYuOTU1MTgxMzAwNDUxNDciIGZpbGw9IiNlMTViNjQiIHI9IjUiIHRyYW5zZm9ybT0icm90YXRlKDAuMTgzNTUyIDUwIDUwKSI+CiAgPGFuaW1hdGVUcmFuc2Zvcm0gYXR0cmlidXRlTmFtZT0idHJhbnNmb3JtIiB0eXBlPSJyb3RhdGUiIGNhbGNNb2RlPSJzcGxpbmUiIHZhbHVlcz0iMCA1MCA1MDszNjAgNTAgNTAiIHRpbWVzPSIwOzEiIGtleVNwbGluZXM9IjAuNSAwIDAuNSAxIiByZXBlYXRDb3VudD0iaW5kZWZpbml0ZSIgZHVyPSIxLjVzIiBiZWdpbj0iLTAuMzEyNXMiPjwvYW5pbWF0ZVRyYW5zZm9ybT4KPC9jaXJjbGU+PGNpcmNsZSBjeD0iMjUuNjQ5NTQyODM5NjUxMTc2IiBjeT0iODEuNzM0MTMzNjExNjQ5NDEiIGZpbGw9IiNmNDdlNjAiIHI9IjUiIHRyYW5zZm9ybT0icm90YXRlKDEuODY0NTcgNTAgNTApIj4KICA8YW5pbWF0ZVRyYW5zZm9ybSBhdHRyaWJ1dGVOYW1lPSJ0cmFuc2Zvcm0iIHR5cGU9InJvdGF0ZSIgY2FsY01vZGU9InNwbGluZSIgdmFsdWVzPSIwIDUwIDUwOzM2MCA1MCA1MCIgdGltZXM9IjA7MSIga2V5U3BsaW5lcz0iMC41IDAgMC41IDEiIHJlcGVhdENvdW50PSJpbmRlZmluaXRlIiBkdXI9IjEuNXMiIGJlZ2luPSItMC4zNzVzIj48L2FuaW1hdGVUcmFuc2Zvcm0+CjwvY2lyY2xlPjxjaXJjbGUgY3g9IjE4LjI2NTg2NjM4ODM1MDYiIGN5PSI3NC4zNTA0NTcxNjAzNDg4NCIgZmlsbD0iI2Y4YjI2YSIgcj0iNSIgdHJhbnNmb3JtPSJyb3RhdGUoNS40NTEyNiA1MCA1MCkiPgogIDxhbmltYXRlVHJhbnNmb3JtIGF0dHJpYnV0ZU5hbWU9InRyYW5zZm9ybSIgdHlwZT0icm90YXRlIiBjYWxjTW9kZT0ic3BsaW5lIiB2YWx1ZXM9IjAgNTAgNTA7MzYwIDUwIDUwIiB0aW1lcz0iMDsxIiBrZXlTcGxpbmVzPSIwLjUgMCAwLjUgMSIgcmVwZWF0Q291bnQ9ImluZGVmaW5pdGUiIGR1cj0iMS41cyIgYmVnaW49Ii0wLjQzNzVzIj48L2FuaW1hdGVUcmFuc2Zvcm0+CjwvY2lyY2xlPjxhbmltYXRlVHJhbnNmb3JtIGF0dHJpYnV0ZU5hbWU9InRyYW5zZm9ybSIgdHlwZT0icm90YXRlIiBjYWxjTW9kZT0ic3BsaW5lIiB2YWx1ZXM9IjAgNTAgNTA7MCA1MCA1MCIgdGltZXM9IjA7MSIga2V5U3BsaW5lcz0iMC41IDAgMC41IDEiIHJlcGVhdENvdW50PSJpbmRlZmluaXRlIiBkdXI9IjEuNXMiPjwvYW5pbWF0ZVRyYW5zZm9ybT48L2c+PC9zdmc+";
-
-// settings.ts
-var import_obsidian3 = __toModule(require("obsidian"));
+// src/settings.ts
 var import_he = __toModule(require_he());
 var DEFAULT_SETTINGS = {
   popup: true,
   rmDismiss: false,
   autoEmbedWhenEmpty: false,
-  primary: "microlink",
-  backup: "jsonlink",
+  primary: "local",
+  backup: "microlink",
   inPlace: false,
   debug: false,
   delay: 0,
   linkpreviewApiKey: "",
-  metadataTemplate: 'createdby: "linkembed"\nparser: "{{parser}}"\ndate: "{{date}}"\ncustom_date: "{{#formatDate}}YYYY-MM-DD HH:mm:ss{{/formatDate}}"',
+  jsonlinkApiKey: "",
+  metadataTemplate: 'parser: "{{parser}}"\ndate: "{{date}}"\ncustom_date: "{{#formatDate}}YYYY-MM-DD HH:mm:ss{{/formatDate}}"',
   useMetadataTemplate: false,
   saveImagesToVault: false,
   imageFolderPath: "link-embed-images",
   respectImageAspectRatio: true,
-  defaultImageWidth: 160,
-  maxImageWidth: 320
+  useCache: true,
+  enableFavicon: false,
+  maxConcurrentLocalParsers: 1
 };
-var ObsidianLinkEmbedSettingTab = class extends import_obsidian3.PluginSettingTab {
+var ObsidianLinkEmbedSettingTab = class extends import_obsidian4.PluginSettingTab {
   constructor(app, plugin) {
     super(app, plugin);
     this.plugin = plugin;
@@ -1333,48 +1666,48 @@ var ObsidianLinkEmbedSettingTab = class extends import_obsidian3.PluginSettingTa
     containerEl.empty();
     containerEl.createEl("h2", { text: "Link Embed" });
     containerEl.createEl("h3", { text: "User Option" });
-    new import_obsidian3.Setting(containerEl).setName("Popup Menu").setDesc("Auto popup embed menu after pasting url.").addToggle((value) => {
+    new import_obsidian4.Setting(containerEl).setName("Popup Menu").setDesc("Auto popup embed menu after pasting url.").addToggle((value) => {
       value.setValue(this.plugin.settings.popup).onChange((value2) => {
         this.plugin.settings.popup = value2;
         this.plugin.saveSettings();
       });
     });
-    new import_obsidian3.Setting(containerEl).setName("Remove Dismiss").setDesc("Remove dismiss from popup menu. You can always use ESC to dismiss the popup menu.").addToggle((value) => {
+    new import_obsidian4.Setting(containerEl).setName("Remove Dismiss").setDesc("Remove dismiss from popup menu. You can always use ESC to dismiss the popup menu.").addToggle((value) => {
       value.setValue(this.plugin.settings.rmDismiss).onChange((value2) => {
         this.plugin.settings.rmDismiss = value2;
         this.plugin.saveSettings();
       });
     });
-    new import_obsidian3.Setting(containerEl).setName("Auto Embed").setDesc("Auto embed link when pasting a link into an empty line.").addToggle((value) => {
+    new import_obsidian4.Setting(containerEl).setName("Auto Embed").setDesc("Auto embed link when pasting a link into an empty line.").addToggle((value) => {
       value.setValue(this.plugin.settings.autoEmbedWhenEmpty).onChange((value2) => {
         this.plugin.settings.autoEmbedWhenEmpty = value2;
         this.plugin.saveSettings();
       });
     });
-    new import_obsidian3.Setting(containerEl).setName("Primary Parser").setDesc("Select a primary parser to use for link embeds.").addDropdown((value) => {
+    new import_obsidian4.Setting(containerEl).setName("Primary Parser").setDesc("Select a primary parser to use for link embeds.").addDropdown((value) => {
       value.addOptions(parseOptions).setValue(this.plugin.settings.primary).onChange((value2) => {
         this.plugin.settings.primary = value2;
         this.plugin.saveSettings();
       });
     });
-    new import_obsidian3.Setting(containerEl).setName("Secondary Parser").setDesc("Select a secondary parser. It will be used if the primary parser fails.").addDropdown((value) => {
+    new import_obsidian4.Setting(containerEl).setName("Secondary Parser").setDesc("Select a secondary parser. It will be used if the primary parser fails.").addDropdown((value) => {
       value.addOptions(parseOptions).setValue(this.plugin.settings.backup).onChange((value2) => {
         this.plugin.settings.backup = value2;
         this.plugin.saveSettings();
       });
     });
-    new import_obsidian3.Setting(containerEl).setName("In Place").setDesc("Always replace selection with embed.").addToggle((value) => {
+    new import_obsidian4.Setting(containerEl).setName("In Place").setDesc("Always replace selection with embed.").addToggle((value) => {
       value.setValue(this.plugin.settings.inPlace).onChange((value2) => {
         this.plugin.settings.inPlace = value2;
         this.plugin.saveSettings();
       });
     });
-    new import_obsidian3.Setting(containerEl).setName("Convert Old Embed").setDesc("Convert old html element into new code block. Warning: Use with caution.").addButton((component) => {
+    new import_obsidian4.Setting(containerEl).setName("Convert Old Embed").setDesc("Convert old html element into new code block. Warning: Use with caution.").addButton((component) => {
       component.setButtonText("Convert");
       component.setTooltip("Use with caution");
       component.setWarning();
       component.onClick(() => __async(this, null, function* () {
-        new import_obsidian3.Notice(`Start Conversion`);
+        new import_obsidian4.Notice(`Start Conversion`);
         let listFiles = this.app.vault.getMarkdownFiles();
         for (const file of listFiles) {
           let content = yield this.app.vault.read(file);
@@ -1410,7 +1743,7 @@ ${content.split(origin).join(embed)}`);
           }
           const errorMatch = content.match(new RegExp(REGEX.ERROR, "gm"));
           if (bReplace && errorMatch != null && errorMatch.length) {
-            new import_obsidian3.Notice(`Conversion Fail on ${file.path}`);
+            new import_obsidian4.Notice(`Conversion Fail on ${file.path}`);
             if (this.plugin.settings.debug) {
               console.log("[Link Embed] Convert:", content);
             }
@@ -1418,17 +1751,17 @@ ${content.split(origin).join(embed)}`);
             yield this.app.vault.modify(file, content);
           }
         }
-        new import_obsidian3.Notice(`Conversion End`);
+        new import_obsidian4.Notice(`Conversion End`);
       }));
     });
     containerEl.createEl("h3", { text: "Embed Metadata" });
-    new import_obsidian3.Setting(containerEl).setName("Use Metadata Template").setDesc("Add metadata about what created the embed (plugin name, parser type, date).").addToggle((value) => {
+    new import_obsidian4.Setting(containerEl).setName("Use Metadata Template").setDesc("Add metadata about what created the embed (plugin name, parser type, date).").addToggle((value) => {
       value.setValue(this.plugin.settings.useMetadataTemplate).onChange((value2) => {
         this.plugin.settings.useMetadataTemplate = value2;
         this.plugin.saveSettings();
       });
     });
-    new import_obsidian3.Setting(containerEl).setName("Metadata Template").setDesc("Customize metadata template. Variables: {{parser}} for parser type, {{date}} for date in YYYY-MM-DD format. For custom date format use {{#formatDate}}YYYY-MM-DD HH:mm:ss{{/formatDate}}.").addTextArea((text) => {
+    new import_obsidian4.Setting(containerEl).setName("Metadata Template").setDesc("Customize metadata template. Variables: {{parser}} for parser type, {{date}} for date in YYYY-MM-DD format. For custom date format use {{#formatDate}}YYYY-MM-DD HH:mm:ss{{/formatDate}}.").addTextArea((text) => {
       text.inputEl.rows = 4;
       text.inputEl.cols = 50;
       text.setValue(this.plugin.settings.metadataTemplate).onChange((value) => {
@@ -1451,39 +1784,64 @@ ${content.split(origin).join(embed)}`);
       });
     });
     containerEl.createEl("h3", { text: "Image Settings" });
-    new import_obsidian3.Setting(containerEl).setName("Respect Image Aspect Ratio").setDesc("When enabled, embedded images will maintain their original aspect ratio instead of being forced into a square shape.").addToggle((value) => {
+    new import_obsidian4.Setting(containerEl).setName("Use Cache").setDesc("When enabled, the plugin will cache favicon images and aspect ratios to improve performance.").addToggle((value) => {
+      value.setValue(this.plugin.settings.useCache).onChange((value2) => {
+        this.plugin.settings.useCache = value2;
+        this.plugin.saveSettings();
+      });
+    });
+    new import_obsidian4.Setting(containerEl).setName("Enable Favicon").setDesc("When enabled, favicons will be displayed in link embeds.").addToggle((value) => {
+      value.setValue(this.plugin.settings.enableFavicon).onChange((value2) => {
+        this.plugin.settings.enableFavicon = value2;
+        this.plugin.saveSettings();
+      });
+    });
+    new import_obsidian4.Setting(containerEl).setName("Respect Image Aspect Ratio").setDesc("When enabled, embedded images will maintain their original aspect ratio instead of being forced into a square shape.").addToggle((value) => {
       value.setValue(this.plugin.settings.respectImageAspectRatio).onChange((value2) => {
         this.plugin.settings.respectImageAspectRatio = value2;
         this.plugin.saveSettings();
       });
     });
-    new import_obsidian3.Setting(containerEl).setName("Save Images to Vault").setDesc("When enabled, images from links will be saved to your vault.").addToggle((value) => {
+    new import_obsidian4.Setting(containerEl).setName("Save Images to Vault").setDesc("When enabled, images from links will be saved to your vault.").addToggle((value) => {
       value.setValue(this.plugin.settings.saveImagesToVault).onChange((value2) => {
         this.plugin.settings.saveImagesToVault = value2;
         this.plugin.saveSettings();
       });
     });
-    new import_obsidian3.Setting(containerEl).setName("Image Folder Path").setDesc("Folder in your vault where images will be saved. The folder will be created if it doesn't exist.").addText((value) => {
+    new import_obsidian4.Setting(containerEl).setName("Image Folder Path").setDesc("Folder in your vault where images will be saved. The folder will be created if it doesn't exist.").addText((value) => {
       value.setValue(this.plugin.settings.imageFolderPath).onChange((value2) => {
         this.plugin.settings.imageFolderPath = value2;
         this.plugin.saveSettings();
       });
     });
     containerEl.createEl("h3", { text: "Provider Settings" });
-    new import_obsidian3.Setting(containerEl).setName("LinkPreview API Key").setDesc("Enter your API key for the LinkPreview provider.").addText((value) => {
+    new import_obsidian4.Setting(containerEl).setName("LinkPreview API Key").setDesc("Enter your API key for the LinkPreview provider.").addText((value) => {
       value.setValue(this.plugin.settings.linkpreviewApiKey).onChange((value2) => {
         this.plugin.settings.linkpreviewApiKey = value2;
         this.plugin.saveSettings();
       });
     });
+    new import_obsidian4.Setting(containerEl).setName("JSONLink API Key").setDesc("Enter your API key for the JSONLink provider.").addText((value) => {
+      value.setValue(this.plugin.settings.jsonlinkApiKey).onChange((value2) => {
+        this.plugin.settings.jsonlinkApiKey = value2;
+        this.plugin.saveSettings();
+      });
+    });
+    containerEl.createEl("h3", { text: "Performance Settings" });
+    new import_obsidian4.Setting(containerEl).setName("Max Concurrent Local Parsers").setDesc("Maximum number of simultaneous local parsing operations. Lower values reduce system load but might make link embeds appear more slowly.").addSlider((slider) => {
+      slider.setLimits(1, 10, 1).setValue(this.plugin.settings.maxConcurrentLocalParsers).setDynamicTooltip().onChange((value) => {
+        this.plugin.settings.maxConcurrentLocalParsers = value;
+        this.plugin.saveSettings();
+      });
+    });
     containerEl.createEl("h3", { text: "Dev Option" });
-    new import_obsidian3.Setting(containerEl).setName("Debug").setDesc("Enable debug mode.").addToggle((value) => {
+    new import_obsidian4.Setting(containerEl).setName("Debug").setDesc("Enable debug mode.").addToggle((value) => {
       value.setValue(this.plugin.settings.debug).onChange((value2) => {
         this.plugin.settings.debug = value2;
         this.plugin.saveSettings();
       });
     });
-    new import_obsidian3.Setting(containerEl).setName("Delay").setDesc("Add delay before replacing preview.(ms)").addText((value) => {
+    new import_obsidian4.Setting(containerEl).setName("Delay").setDesc("Add delay before replacing preview.(ms)").addText((value) => {
       value.setValue(String(this.plugin.settings.delay)).onChange((value2) => {
         if (!isNaN(Number(value2))) {
           this.plugin.settings.delay = Number(value2);
@@ -1494,77 +1852,583 @@ ${content.split(origin).join(embed)}`);
   }
 };
 
-// exEditor.ts
-var ExEditor = class {
-  static getSelectedText(editor, debug) {
-    if (debug) {
-      console.log(`Link Embed: editor.somethingSelected() ${editor.somethingSelected()}`);
-    }
-    let cursor = editor.getCursor();
-    let wordBoundary = {
-      start: cursor,
-      end: cursor
-    };
-    if (!editor.somethingSelected()) {
-      wordBoundary = this.getWordBoundaries(editor, debug);
-      editor.setSelection(wordBoundary.start, wordBoundary.end);
-    }
-    if (editor.somethingSelected()) {
-      return {
-        can: true,
-        text: editor.getSelection(),
-        boundary: {
-          start: editor.getCursor("from"),
-          end: editor.getCursor("to")
-        }
-      };
-    }
-    return {
-      can: false,
-      text: editor.getSelection(),
-      boundary: wordBoundary
-    };
+// src/urlUtils.ts
+var import_obsidian5 = __toModule(require("obsidian"));
+function isUrl(text) {
+  const urlRegex = new RegExp(REGEX.URL, "g");
+  return urlRegex.test(text);
+}
+function checkUrlValid(selected) {
+  if (!(selected.text.length > 0 && isUrl(selected.text))) {
+    new import_obsidian5.Notice("Need a link to convert to embed.");
+    return false;
   }
-  static cursorWithinBoundaries(cursor, match, debug) {
-    let startIndex = match.index;
-    let endIndex = match.index + match[0].length;
-    if (debug) {
-      console.log(`Link Embed: cursorWithinBoundaries ${startIndex}, ${cursor.ch}, ${endIndex}`);
-    }
-    return startIndex <= cursor.ch && cursor.ch <= endIndex;
-  }
-  static getWordBoundaries(editor, debug) {
-    let cursor = editor.getCursor();
-    let lineText = editor.getLine(cursor.line);
-    const urlRegex = new RegExp(REGEX.URL, "g");
-    let linksInLine = lineText.matchAll(urlRegex);
-    if (debug) {
-      console.log("Link Embed: cursor", cursor, "lineText", lineText);
-    }
-    for (let match of linksInLine) {
-      if (debug) {
-        console.log("Link Embed: match", match);
-      }
-      if (this.cursorWithinBoundaries(cursor, match, debug)) {
-        return {
-          start: { line: cursor.line, ch: match.index },
-          end: {
-            line: cursor.line,
-            ch: match.index + match[0].length
-          }
-        };
-      }
-    }
-    return {
-      start: cursor,
-      end: cursor
-    };
-  }
-};
+  return true;
+}
 
-// suggest.ts
-var import_obsidian4 = __toModule(require("obsidian"));
-var EmbedSuggest = class extends import_obsidian4.EditorSuggest {
+// src/embedUtils.ts
+var import_obsidian7 = __toModule(require("obsidian"));
+
+// src/errorUtils.ts
+var import_obsidian6 = __toModule(require("obsidian"));
+function showNotice(message, typeOrDebugOrOptions, debugOrOptions) {
+  let type = "info";
+  let options = {};
+  if (typeof typeOrDebugOrOptions === "string") {
+    type = typeOrDebugOrOptions;
+    if (typeof debugOrOptions === "boolean") {
+      options = { debug: debugOrOptions };
+    } else if (debugOrOptions) {
+      options = debugOrOptions;
+    }
+  } else if (typeof typeOrDebugOrOptions === "boolean") {
+    options = { debug: typeOrDebugOrOptions };
+  } else if (typeOrDebugOrOptions) {
+    options = typeOrDebugOrOptions;
+    if (options.type) {
+      type = options.type;
+    }
+  }
+  const defaults = getDefaultsByType(type);
+  const {
+    debug = false,
+    duration = defaults.duration,
+    prefix = defaults.prefix,
+    defaultMessage = defaults.defaultMessage,
+    context = "Link Embed",
+    showNotice: showNotice2 = true
+  } = options;
+  let finalMessage;
+  if (message instanceof Error) {
+    finalMessage = message.message;
+  } else if (typeof message === "string") {
+    finalMessage = message;
+  } else if (message === null || message === void 0) {
+    finalMessage = defaultMessage;
+  } else {
+    try {
+      finalMessage = String(message);
+    } catch (e) {
+      finalMessage = defaultMessage;
+    }
+  }
+  if (debug) {
+    if (type === "error" && message instanceof Error) {
+      console.log(`[${context}] ${prefix}: ${finalMessage}`, message);
+    } else {
+      console.log(`[${context}] ${prefix}: ${finalMessage}`);
+    }
+  }
+  if (showNotice2) {
+    return new import_obsidian6.Notice(`${prefix}: ${finalMessage}`, duration);
+  }
+  return null;
+}
+function getDefaultsByType(type) {
+  switch (type) {
+    case "error":
+      return {
+        duration: 5e3,
+        prefix: "Error",
+        defaultMessage: "An operation failed"
+      };
+    case "success":
+      return {
+        duration: 3e3,
+        prefix: "Success",
+        defaultMessage: "Operation completed successfully"
+      };
+    case "warning":
+      return {
+        duration: 4e3,
+        prefix: "Warning",
+        defaultMessage: "Something needs attention"
+      };
+    case "info":
+    default:
+      return {
+        duration: 3e3,
+        prefix: "Info",
+        defaultMessage: "Information"
+      };
+  }
+}
+
+// src/utils.ts
+function formatDate() {
+  return (text) => {
+    const now = new Date();
+    try {
+      if (!text.trim())
+        return now.toISOString().split("T")[0];
+      return text.replace("YYYY", String(now.getFullYear())).replace("MM", String(now.getMonth() + 1).padStart(2, "0")).replace("DD", String(now.getDate()).padStart(2, "0")).replace("HH", String(now.getHours()).padStart(2, "0")).replace("mm", String(now.getMinutes()).padStart(2, "0")).replace("ss", String(now.getSeconds()).padStart(2, "0"));
+    } catch (e) {
+      console.log("[Link Embed] Error formatting date:", e);
+      return now.toISOString().split("T")[0];
+    }
+  };
+}
+
+// src/embedUtils.ts
+function getFavicon(url, settings, cache, debug = false) {
+  return __async(this, null, function* () {
+    if (settings.useCache && cache.has(url)) {
+      if (debug) {
+        console.log("[Link Embed] Using cached favicon for:", url);
+      }
+      return cache.get(url);
+    }
+    try {
+      const localParser = createParser("local", settings, null);
+      localParser.debug = debug;
+      let html = (yield localParser.getHtmlByElectron(url)) || (yield localParser.getHtmlByRequest(url));
+      if (!html) {
+        if (debug) {
+          console.log("[Link Embed] Failed to fetch HTML for favicon:", url);
+        }
+        return "";
+      }
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(html, "text/html");
+      const urlObj = new URL(url);
+      const favicon = localParser.getFavicon(doc, urlObj);
+      if (favicon && settings.useCache) {
+        cache.set(url, favicon);
+        if (debug) {
+          console.log("[Link Embed] Cached favicon for:", url);
+        }
+        return favicon;
+      }
+      if (favicon) {
+        return favicon;
+      }
+      return "";
+    } catch (error) {
+      showNotice(error instanceof Error ? error : `Error fetching favicon: ${String(error)}`, { debug, context: "Link Embed - Favicon", type: "error" });
+      return "";
+    }
+  });
+}
+function renderEmbed(renderInfo, imageUrl, aspectRatio, el, settings) {
+  const baseWidth = 160;
+  const calculatedWidth = aspectRatio ? Math.round(baseWidth * 100 / aspectRatio) : baseWidth * 100;
+  const templateData = {
+    title: renderInfo.title,
+    image: imageUrl,
+    description: renderInfo.description,
+    url: renderInfo.url,
+    respectAR: settings.respectImageAspectRatio,
+    calculatedWidth,
+    favicon: settings.enableFavicon ? renderInfo.favicon : ""
+  };
+  const html = mustache_default.render(HTMLTemplate, templateData);
+  let parser = new DOMParser();
+  var doc = parser.parseFromString(html, "text/html");
+  const newEl = doc.body.firstChild;
+  el.replaceWith(newEl);
+  return newEl;
+}
+function generateEmbedMarkdown(data, settings, parserName) {
+  let metadata = "";
+  if (settings.useMetadataTemplate) {
+    const now = new Date();
+    const templateContext = {
+      parser: parserName,
+      date: `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")}`,
+      formatDate
+    };
+    metadata = mustache_default.render(settings.metadataTemplate, templateContext);
+  }
+  const escapedData = {
+    title: data.title.replace(/"/g, '\\"'),
+    image: data.image,
+    description: data.description.replace(/"/g, '\\"'),
+    url: data.url,
+    metadata: metadata || false,
+    aspectRatio: data.aspectRatio,
+    favicon: settings.enableFavicon ? data.favicon : ""
+  };
+  return mustache_default.render(MarkdownTemplate, escapedData) + "\n";
+}
+function tryParsers(url, selectedParsers, settings, locationInfo) {
+  return __async(this, null, function* () {
+    let idx = 0;
+    while (idx < selectedParsers.length) {
+      const selectedParser = selectedParsers[idx];
+      if (settings.debug) {
+        console.log("[Link Embed] Parser:", selectedParser);
+      }
+      try {
+        const parser = createParser(selectedParser, settings, null);
+        parser.debug = settings.debug;
+        parser.location = locationInfo;
+        const data = yield parser.parse(url);
+        if (settings.debug) {
+          console.log("[Link Embed] Meta data:", data);
+        }
+        return { data, selectedParser };
+      } catch (error) {
+        showNotice(error instanceof Error ? error : String(error), {
+          debug: settings.debug,
+          context: "Link Embed - Parser",
+          type: "error"
+        });
+        idx += 1;
+        if (idx === selectedParsers.length) {
+          throw error;
+        }
+      }
+    }
+    throw new Error("All parsers failed");
+  });
+}
+function refreshEmbed(url, element, ctx, settings, vault) {
+  return __async(this, null, function* () {
+    try {
+      if (settings.debug) {
+        console.log("[Link Embed] Refreshing embed for URL:", url);
+      }
+      const file = vault.getAbstractFileByPath(ctx.sourcePath);
+      if (!file) {
+        showNotice(`File not found: ${ctx.sourcePath}`, {
+          debug: settings.debug,
+          context: "Link Embed - Refresh",
+          type: "error"
+        });
+        return false;
+      }
+      const sectionInfo = ctx.getSectionInfo(element);
+      if (!sectionInfo) {
+        showNotice("Could not get section info", {
+          debug: settings.debug,
+          context: "Link Embed - Refresh",
+          type: "error"
+        });
+        return false;
+      }
+      const locationInfo = `${ctx.sourcePath}:${sectionInfo.lineStart}`;
+      const content = yield vault.read(file);
+      const lines = content.split("\n");
+      const startLine = sectionInfo.lineStart;
+      const endLine = sectionInfo.lineEnd + 1;
+      const oldEmbed = lines.slice(startLine, endLine).join("\n");
+      try {
+        const { data, selectedParser } = yield tryParsers(url, [settings.primary, settings.backup], settings, locationInfo);
+        const newEmbed = generateEmbedMarkdown(data, settings, selectedParser);
+        let indentation = "";
+        const firstLineMatch = oldEmbed.match(/^(\s+)/);
+        if (firstLineMatch && firstLineMatch[1]) {
+          indentation = firstLineMatch[1];
+        }
+        const indentedNewEmbed = newEmbed.trimEnd().split("\n").map((line) => indentation + line).join("\n");
+        const newContent = content.replace(oldEmbed, indentedNewEmbed);
+        yield vault.modify(file, newContent);
+        if (settings.debug) {
+          console.log("[Link Embed] Successfully refreshed embed");
+        }
+        return true;
+      } catch (error) {
+        showNotice(error instanceof Error ? error : `All parsers failed to fetch metadata: ${String(error)}`, {
+          debug: settings.debug,
+          context: "Link Embed - Refresh",
+          type: "error"
+        });
+        return false;
+      }
+    } catch (error) {
+      showNotice(error instanceof Error ? error : `Error refreshing embed: ${String(error)}`, {
+        debug: settings.debug,
+        context: "Link Embed - Refresh",
+        type: "error"
+      });
+      return false;
+    }
+  });
+}
+function addRefreshButtonHandler(element, embedInfo, ctx, settings, vault) {
+  const refreshButton = element.querySelector(".refresh-button");
+  if (refreshButton && embedInfo.url) {
+    refreshButton.addEventListener("click", () => __async(this, null, function* () {
+      const success = yield refreshEmbed(embedInfo.url, element, ctx, settings, vault);
+      if (success) {
+        showNotice("Embed refreshed successfully", "success", {
+          debug: settings.debug,
+          context: "Link Embed - Refresh"
+        });
+      }
+    }));
+  }
+}
+function addCopyButtonHandler(element, embedInfo, ctx, vault, settings) {
+  const copyButton = element.querySelector(".copy-button");
+  if (copyButton) {
+    copyButton.addEventListener("click", () => __async(this, null, function* () {
+      try {
+        const file = vault.getAbstractFileByPath(ctx.sourcePath);
+        if (!file) {
+          showNotice(`File not found: ${ctx.sourcePath}`, {
+            debug: settings.debug,
+            context: "Link Embed - Copy",
+            type: "error"
+          });
+          return;
+        }
+        const sectionInfo = ctx.getSectionInfo(element);
+        if (!sectionInfo) {
+          showNotice("Could not get section info", {
+            debug: settings.debug,
+            context: "Link Embed - Copy",
+            type: "error"
+          });
+          return;
+        }
+        const content = yield vault.read(file);
+        const lines = content.split("\n");
+        const startLine = sectionInfo.lineStart;
+        const endLine = sectionInfo.lineEnd + 1;
+        const embedCode = lines.slice(startLine, endLine).join("\n");
+        navigator.clipboard.writeText(embedCode).then(() => {
+          showNotice("Embed code copied to clipboard", {
+            debug: (settings == null ? void 0 : settings.debug) || false,
+            context: "Link Embed - Copy",
+            type: "success"
+          });
+        }).catch((error) => {
+          showNotice(error instanceof Error ? error : `Error copying to clipboard: ${String(error)}`, {
+            debug: (settings == null ? void 0 : settings.debug) || false,
+            context: "Link Embed - Copy",
+            type: "error"
+          });
+        });
+      } catch (error) {
+        showNotice(error instanceof Error ? error : `Error copying embed code: ${String(error)}`, {
+          debug: (settings == null ? void 0 : settings.debug) || false,
+          context: "Link Embed - Copy",
+          type: "error"
+        });
+      }
+    }));
+  }
+}
+function embedUrl(editor, selected, selectedParsers, settings, inPlace = false) {
+  return __async(this, null, function* () {
+    const filePath = "unknown";
+    const cursorPos = editor.getCursor();
+    const lineNumber = cursorPos.line + 1;
+    const locationInfo = `${filePath}:${lineNumber}`;
+    let url = selected.text;
+    if (selected.can && inPlace) {
+      editor.replaceRange("", selected.boundary.start, selected.boundary.end);
+    }
+    const cursor = editor.getCursor();
+    const lineText = editor.getLine(cursor.line);
+    let newLine = false;
+    if (lineText.length > 0) {
+      newLine = true;
+    }
+    if (newLine) {
+      editor.setCursor({ line: cursor.line + 1, ch: 0 });
+    } else {
+      editor.setCursor({ line: cursor.line, ch: lineText.length });
+    }
+    const startCursor = editor.getCursor();
+    const dummyEmbed = mustache_default.render(MarkdownTemplate, {
+      title: "Fetching",
+      image: SPINNER,
+      description: `Fetching ${url}`,
+      url,
+      favicon: ""
+    }) + "\n";
+    editor.replaceSelection(dummyEmbed);
+    const endCursor = editor.getCursor();
+    try {
+      const { data, selectedParser } = yield tryParsers(url, selectedParsers, settings, locationInfo);
+      const embed = generateEmbedMarkdown(data, settings, selectedParser);
+      if (settings.delay > 0) {
+        yield new Promise((f) => setTimeout(f, settings.delay));
+      }
+      const dummy = editor.getRange(startCursor, endCursor);
+      if (dummy == dummyEmbed) {
+        editor.replaceRange(embed, startCursor, endCursor);
+        console.log(`[Link Embed] Parser ${selectedParser} done`);
+      } else {
+        new import_obsidian7.Notice(`Dummy preview has been deleted or modified. Replacing is cancelled.`);
+      }
+    } catch (error) {
+      console.log("[Link Embed] Error:", error);
+      showNotice(error instanceof Error ? error : String(error), {
+        debug: settings.debug,
+        context: "Link Embed - Embed URL",
+        type: "error"
+      });
+    }
+  });
+}
+
+// src/eventHandlers.ts
+var import_obsidian8 = __toModule(require("obsidian"));
+function handleEditorPaste(evt, editor, markdownView, pasteInfo, isUrl2) {
+  pasteInfo.trigger = false;
+  pasteInfo.text = "";
+  const text = evt.clipboardData.getData("text/plain");
+  if (isUrl2(text)) {
+    pasteInfo.trigger = true;
+    pasteInfo.text = text;
+  }
+}
+function handleEmbedCodeBlock(source, el, ctx, settings, cache, vault, imageLoadAttempts) {
+  return __async(this, null, function* () {
+    var _a;
+    const info = (0, import_obsidian8.parseYaml)(source.replace(/^\s+|\s+$/gm, ""));
+    const isDummyEmbed = info.title === "Fetching" && info.image === SPINNER && ((_a = info.description) == null ? void 0 : _a.startsWith("Fetching "));
+    if (isDummyEmbed) {
+      renderEmbed(info, info.image, 1, el, settings);
+      return;
+    }
+    const originalInfo = __spreadValues({}, info);
+    if (info.image && !info.image.startsWith("http") && !info.image.startsWith("data:")) {
+      try {
+        const base64Image = yield imageFileToBase64(vault, info.image);
+        if (base64Image) {
+          info.image = base64Image;
+          originalInfo.image = base64Image;
+        }
+      } catch (error) {
+        showNotice(error instanceof Error ? error : `Failed to convert local image to base64: ${String(error)}`, {
+          debug: settings.debug,
+          context: "Link Embed - Image",
+          duration: 8e3,
+          type: "error"
+        });
+      }
+    }
+    const promises = [];
+    if (!info.favicon && info.url && settings.enableFavicon) {
+      if (settings.debug) {
+        console.log("[Link Embed] Fetching missing favicon for:", info.url);
+      }
+      info.favicon = SPINNER;
+      try {
+        if (settings.useCache && cache.has(info.url)) {
+          const cachedFavicon = cache.get(info.url);
+          originalInfo.favicon = cachedFavicon;
+          info.favicon = cachedFavicon;
+          if (settings.debug) {
+            console.log("[Link Embed] Using cached favicon for:", info.url);
+          }
+        } else {
+          const faviconPromise = getFavicon(info.url, settings, cache, settings.debug).then((favicon) => {
+            originalInfo.favicon = favicon;
+            info.favicon = favicon;
+            if (settings.useCache && favicon) {
+              cache.set(info.url, favicon);
+              if (settings.debug) {
+                console.log("[Link Embed] Cached favicon for:", info.url);
+              }
+            }
+          }).catch((error) => {
+            showNotice(error instanceof Error ? error : `Error fetching favicon for existing embed: ${String(error)}`, {
+              debug: settings.debug,
+              context: "Link Embed - Favicon",
+              type: "error"
+            });
+          });
+          promises.push(faviconPromise);
+        }
+      } catch (error) {
+        showNotice(error instanceof Error ? error : `Error setting up favicon fetching: ${String(error)}`, {
+          debug: settings.debug,
+          context: "Link Embed - Favicon Setup",
+          type: "error"
+        });
+      }
+    }
+    if (settings.respectImageAspectRatio && !info.aspectRatio && info.image) {
+      info.aspectRatio = 100;
+      try {
+        if (settings.useCache && cache.has(info.image)) {
+          const dimensions = cache.get(info.image);
+          if (dimensions) {
+            originalInfo.aspectRatio = dimensions.aspectRatio;
+            info.aspectRatio = dimensions.aspectRatio;
+          }
+          if (settings.debug) {
+            console.log("[Link Embed] Using cached image dimensions for:", info.image);
+          }
+        } else {
+          const aspectRatioPromise = getImageDimensions(info.image, settings.useCache ? cache : null, imageLoadAttempts).then((dimensions) => {
+            if (dimensions) {
+              originalInfo.aspectRatio = dimensions.aspectRatio;
+              if (settings.useCache) {
+                cache.set(info.image, dimensions);
+              }
+              if (settings.debug) {
+                console.log("[Link Embed] Calculated image aspect ratio:", originalInfo.aspectRatio);
+              }
+            }
+          }).catch((error) => {
+            var _a2;
+            const location = ctx.sourcePath ? `${ctx.sourcePath}:${((_a2 = ctx.getSectionInfo(el)) == null ? void 0 : _a2.lineStart) + 1 || "unknown"}` : "unknown location";
+            showNotice(error instanceof Error ? error : `Error calculating dynamic aspect ratio at ${location}: ${String(error)}`, "error", {
+              debug: settings.debug,
+              context: "Link Embed - Aspect Ratio",
+              duration: 7e3
+            });
+          });
+          promises.push(aspectRatioPromise);
+        }
+      } catch (error) {
+        showNotice(error instanceof Error ? error : `Error setting up aspect ratio calculation: ${String(error)}`, {
+          debug: settings.debug,
+          context: "Link Embed - Aspect Ratio Setup",
+          type: "error"
+        });
+      }
+    }
+    const newEl = renderEmbed(info, info.image, info.aspectRatio, el, settings);
+    addRefreshButtonHandler(newEl, info, ctx, settings, vault);
+    addCopyButtonHandler(newEl, info, ctx, vault, settings);
+    if (promises.length > 0) {
+      Promise.all(promises).then(() => {
+        const finalEl = renderEmbed(originalInfo, originalInfo.image, originalInfo.aspectRatio, newEl, settings);
+        addRefreshButtonHandler(finalEl, originalInfo, ctx, settings, vault);
+        addCopyButtonHandler(finalEl, originalInfo, ctx, vault, settings);
+        if (settings.debug) {
+          console.log("[Link Embed] Final render completed with real values:", originalInfo);
+        }
+      }).catch((error) => {
+        showNotice(error instanceof Error ? error : `Error during data fetching: ${String(error)}`, {
+          debug: settings.debug,
+          context: "Link Embed - Data Fetch",
+          type: "warning",
+          prefix: "Warning"
+        });
+      });
+    }
+  });
+}
+function handleEmbedLinkCommand(editor, getText, checkUrlValid2, embedUrl2, settings) {
+  return __async(this, null, function* () {
+    let selected = yield getText(editor);
+    if (!checkUrlValid2(selected)) {
+      return;
+    }
+    yield embedUrl2(editor, selected, [settings.primary, settings.backup], settings, settings.inPlace);
+  });
+}
+function createParserCommandHandler(parserName, getText, checkUrlValid2, embedUrl2, settings) {
+  return (editor) => __async(this, null, function* () {
+    let selected = yield getText(editor);
+    if (!checkUrlValid2(selected)) {
+      return;
+    }
+    yield embedUrl2(editor, selected, [parserName], settings, settings.inPlace);
+  });
+}
+
+// src/suggest.ts
+var import_obsidian9 = __toModule(require("obsidian"));
+var EmbedSuggest = class extends import_obsidian9.EditorSuggest {
   constructor(app, plugin) {
     super(app);
     this.plugin = plugin;
@@ -1588,7 +2452,7 @@ var EmbedSuggest = class extends import_obsidian4.EditorSuggest {
   selectSuggestion(suggestion, event) {
     if (suggestion.choice == "Create Embed") {
       const cursor = this.editor.getCursor();
-      this.plugin.embedUrl(this.editor, {
+      embedUrl(this.editor, {
         can: true,
         text: this.plugin.pasteInfo.text,
         boundary: {
@@ -1598,7 +2462,7 @@ var EmbedSuggest = class extends import_obsidian4.EditorSuggest {
           },
           end: cursor
         }
-      }, [this.plugin.settings.primary, this.plugin.settings.backup], true);
+      }, [this.plugin.settings.primary, this.plugin.settings.backup], this.plugin.settings, true);
     } else if (suggestion.choice == "Create Markdown Link") {
       this.convertToMarkdownLink();
     }
@@ -1650,7 +2514,7 @@ var EmbedSuggest = class extends import_obsidian4.EditorSuggest {
     if (this.plugin.settings.autoEmbedWhenEmpty) {
       const currentCursor = this.editor.getCursor();
       if (currentCursor.ch - this.plugin.pasteInfo.text.length == 0) {
-        this.plugin.embedUrl(this.editor, {
+        embedUrl(this.editor, {
           can: true,
           text: this.plugin.pasteInfo.text,
           boundary: {
@@ -1660,7 +2524,7 @@ var EmbedSuggest = class extends import_obsidian4.EditorSuggest {
             },
             end: currentCursor
           }
-        }, [this.plugin.settings.primary, this.plugin.settings.backup], true);
+        }, [this.plugin.settings.primary, this.plugin.settings.backup], this.plugin.settings, true);
         return null;
       }
     }
@@ -1676,21 +2540,7 @@ var EmbedSuggest = class extends import_obsidian4.EditorSuggest {
 };
 
 // main.ts
-var ObsidianLinkEmbedPlugin = class extends import_obsidian5.Plugin {
-  getText(editor) {
-    return __async(this, null, function* () {
-      let selected = ExEditor.getSelectedText(editor, this.settings.debug);
-      let cursor = editor.getCursor();
-      if (!selected.can) {
-        selected.text = yield navigator.clipboard.readText();
-        selected.boundary = {
-          start: cursor,
-          end: cursor
-        };
-      }
-      return selected;
-    });
-  }
+var ObsidianLinkEmbedPlugin = class extends import_obsidian10.Plugin {
   onload() {
     return __async(this, null, function* () {
       yield this.loadSettings();
@@ -1698,103 +2548,41 @@ var ObsidianLinkEmbedPlugin = class extends import_obsidian5.Plugin {
         trigger: false,
         text: ""
       };
-      this.imageDimensionsCache = new Map();
+      this.cache = new Map();
+      this.imageLoadAttempts = new Map();
+      LocalParser.initLimiter(this.settings.maxConcurrentLocalParsers);
       this.registerEvent(this.app.workspace.on("editor-paste", (evt, editor, markdownView) => {
-        this.pasteInfo = {
-          trigger: false,
-          text: ""
-        };
-        const text = evt.clipboardData.getData("text/plain");
-        if (ObsidianLinkEmbedPlugin.isUrl(text)) {
-          this.pasteInfo.trigger = true;
-          this.pasteInfo.text = text;
-        }
+        handleEditorPaste(evt, editor, markdownView, this.pasteInfo, isUrl);
       }));
       this.registerEditorSuggest(new EmbedSuggest(this.app, this));
       this.addCommand({
         id: "embed-link",
         name: "Embed link",
         editorCallback: (editor) => __async(this, null, function* () {
-          let selected = yield this.getText(editor);
-          if (!this.checkUrlValid(selected)) {
-            return;
-          }
-          yield this.embedUrl(editor, selected, [
-            this.settings.primary,
-            this.settings.backup
-          ]);
+          yield handleEmbedLinkCommand(editor, ExEditor.getText.bind(ExEditor), checkUrlValid, embedUrl, this.settings);
         })
       });
       Object.keys(parseOptions).forEach((name) => {
         this.addCommand({
           id: `embed-link-${name}`,
           name: `Embed link with ${parseOptions[name]}`,
-          editorCallback: (editor) => __async(this, null, function* () {
-            let selected = yield this.getText(editor);
-            if (!this.checkUrlValid(selected)) {
-              return;
-            }
-            yield this.embedUrl(editor, selected, [name]);
-          })
+          editorCallback: createParserCommandHandler(name, ExEditor.getText.bind(ExEditor), checkUrlValid, embedUrl, this.settings)
         });
       });
       this.registerMarkdownCodeBlockProcessor("embed", (source, el, ctx) => __async(this, null, function* () {
-        var _a;
-        const info = (0, import_obsidian5.parseYaml)(source.replace(/^\s+|\s+$/gm, ""));
-        let imageUrl = info.image;
-        if (imageUrl && !imageUrl.startsWith("http") && !imageUrl.startsWith("data:")) {
-          try {
-            const base64Image = yield imageFileToBase64(this.app.vault, imageUrl);
-            if (base64Image) {
-              imageUrl = base64Image;
-            }
-          } catch (error) {
-            console.error("[Link Embed] Failed to convert local image to base64:", error);
-          }
-        }
-        let aspectRatio = info.aspectRatio;
-        if (this.settings.respectImageAspectRatio && !aspectRatio && imageUrl) {
-          try {
-            const dimensions = yield getImageDimensions(imageUrl, this.imageDimensionsCache);
-            if (dimensions) {
-              aspectRatio = dimensions.aspectRatio;
-              if (this.settings.debug) {
-                console.log("[Link Embed] Calculated image aspect ratio:", aspectRatio);
-              }
-            }
-          } catch (error) {
-            console.error("[Link Embed] Error calculating dynamic aspect ratio at " + (ctx.sourcePath ? ctx.sourcePath + ":" + (((_a = ctx.getSectionInfo(el)) == null ? void 0 : _a.lineStart) + 1 || "unknown") : "unknown location") + ":", error);
-          }
-        }
-        const baseWidth = 160;
-        const calculatedWidth = Math.round(baseWidth * 100 / aspectRatio);
-        const templateData = {
-          title: info.title,
-          image: imageUrl,
-          description: info.description,
-          url: info.url,
-          respectAR: this.settings.respectImageAspectRatio,
-          calculatedWidth
-        };
-        const html = mustache_default.render(HTMLTemplate, templateData);
-        let parser = new DOMParser();
-        var doc = parser.parseFromString(html, "text/html");
-        el.replaceWith(doc.body.firstChild);
-        if (this.settings.debug && (info.createdby || info.parser || info.date)) {
-          console.log("[Link Embed] Metadata:", {
-            createdby: info.createdby || "unknown",
-            parser: info.parser || "unknown",
-            date: info.date || "unknown"
-          });
-        }
+        yield handleEmbedCodeBlock(source, el, ctx, this.settings, this.cache, this.app.vault, this.imageLoadAttempts);
       }));
       this.addSettingTab(new ObsidianLinkEmbedSettingTab(this.app, this));
     });
   }
   onunload() {
-    if (this.imageDimensionsCache && this.imageDimensionsCache.size > 0) {
-      console.log("[Link Embed] Clearing image dimensions cache");
-      this.imageDimensionsCache.clear();
+    if (this.cache && this.cache.size > 0) {
+      console.log("[Link Embed] Clearing cache");
+      this.cache.clear();
+    }
+    if (this.imageLoadAttempts && this.imageLoadAttempts.size > 0) {
+      console.log("[Link Embed] Clearing image load attempts tracking");
+      this.imageLoadAttempts.clear();
     }
   }
   loadSettings() {
@@ -1805,122 +2593,11 @@ var ObsidianLinkEmbedPlugin = class extends import_obsidian5.Plugin {
   saveSettings() {
     return __async(this, null, function* () {
       yield this.saveData(this.settings);
-    });
-  }
-  checkUrlValid(selected) {
-    if (!(selected.text.length > 0 && ObsidianLinkEmbedPlugin.isUrl(selected.text))) {
-      new import_obsidian5.Notice("Need a link to convert to embed.");
-      return false;
-    }
-    return true;
-  }
-  embedUrl(_0, _1, _2) {
-    return __async(this, arguments, function* (editor, selected, selectedParsers, inPlace = this.settings.inPlace) {
-      const activeFile = this.app.workspace.getActiveFile();
-      const filePath = activeFile ? activeFile.path : "unknown";
-      const cursorPos = editor.getCursor();
-      const lineNumber = cursorPos.line + 1;
-      const locationInfo = `${filePath}:${lineNumber}`;
-      let url = selected.text;
-      if (selected.can && inPlace) {
-        editor.replaceRange("", selected.boundary.start, selected.boundary.end);
-      }
-      const cursor = editor.getCursor();
-      const lineText = editor.getLine(cursor.line);
-      let template = MarkdownTemplate;
-      let newLine = false;
-      if (lineText.length > 0) {
-        newLine = true;
-      }
-      if (newLine) {
-        editor.setCursor({ line: cursor.line + 1, ch: 0 });
-      } else {
-        editor.setCursor({ line: cursor.line, ch: lineText.length });
-      }
-      const startCursor = editor.getCursor();
-      const dummyEmbed = mustache_default.render(template, {
-        title: "Fetching",
-        image: SPINNER,
-        description: `Fetching ${url}`,
-        url
-      }) + "\n";
-      editor.replaceSelection(dummyEmbed);
-      const endCursor = editor.getCursor();
-      let idx = 0;
-      while (idx < selectedParsers.length) {
-        const selectedParser = selectedParsers[idx];
-        if (this.settings.debug) {
-          console.log("[Link Embed] Parser:", selectedParser);
-        }
-        try {
-          const parser = createParser(selectedParser, this.settings, this.app.vault);
-          parser.debug = this.settings.debug;
-          parser.location = locationInfo;
-          const data = yield parser.parse(url);
-          if (this.settings.debug) {
-            console.log("[Link Embed] Meta data:", data);
-          }
-          let metadata = "";
-          if (this.settings.useMetadataTemplate) {
-            const now = new Date();
-            const templateContext = {
-              parser: selectedParser,
-              date: `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")}`,
-              formatDate: () => {
-                return (text) => {
-                  try {
-                    if (!text.trim())
-                      return now.toISOString().split("T")[0];
-                    return text.replace("YYYY", String(now.getFullYear())).replace("MM", String(now.getMonth() + 1).padStart(2, "0")).replace("DD", String(now.getDate()).padStart(2, "0")).replace("HH", String(now.getHours()).padStart(2, "0")).replace("mm", String(now.getMinutes()).padStart(2, "0")).replace("ss", String(now.getSeconds()).padStart(2, "0"));
-                  } catch (e) {
-                    console.log("[Link Embed] Error formatting date:", e);
-                    return now.toISOString().split("T")[0];
-                  }
-                };
-              }
-            };
-            metadata = mustache_default.render(this.settings.metadataTemplate, templateContext);
-          }
-          const escapedData = {
-            title: data.title.replace(/"/g, '\\"'),
-            image: data.image,
-            description: data.description.replace(/"/g, '\\"'),
-            url: data.url,
-            metadata: metadata || false,
-            aspectRatio: data.aspectRatio
-          };
-          const embed = mustache_default.render(template, escapedData) + "\n";
-          if (this.settings.delay > 0) {
-            yield new Promise((f) => setTimeout(f, this.settings.delay));
-          }
-          const dummy = editor.getRange(startCursor, endCursor);
-          if (dummy == dummyEmbed) {
-            editor.replaceRange(embed, startCursor, endCursor);
-            console.log(`[Link Embed] Parser ${selectedParser} done`);
-          } else {
-            new import_obsidian5.Notice(`Dummy preview has been deleted or modified. Replacing is cancelled.`);
-          }
-          break;
-        } catch (error) {
-          console.log("[Link Embed] Error:", error);
-          idx += 1;
-          if (idx === selectedParsers.length) {
-            this.errorNotice(error instanceof Error ? error : new Error(String(error)));
-          }
-        }
+      LocalParser.initLimiter(this.settings.maxConcurrentLocalParsers);
+      if (this.settings.debug) {
+        console.log("[Link Embed] Settings saved:", this.settings);
       }
     });
-  }
-  static isUrl(text) {
-    const urlRegex = new RegExp(REGEX.URL, "g");
-    return urlRegex.test(text);
-  }
-  errorNotice(error) {
-    if (this.settings.debug) {
-      console.log("[Link Embed] Failed to fetch data:", error);
-    }
-    const errorMessage = (error == null ? void 0 : error.message) || "Failed to fetch data";
-    new import_obsidian5.Notice(`Error: ${errorMessage}`);
   }
 };
 /*!

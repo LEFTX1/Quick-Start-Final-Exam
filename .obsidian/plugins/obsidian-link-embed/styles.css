@@ -136,16 +136,6 @@
 		align-content: stretch;
 	}
 }
-@media (max-width: 459px) {
-	._lc .twt {
-		display: none;
-	}
-}
-@media (min-width: 460px) {
-	._lc .twd {
-		display: none;
-	}
-}
 ._lc._ts .th {
 	-webkit-line-clamp: 1;
 }
@@ -333,4 +323,41 @@
 	overflow: hidden;
 	border-radius: var(--radius-s);
 	box-shadow: rgba(0, 0, 0, 0.06) 0px 1px 3px;
+	transition: border-color 0.2s ease;
+}
+
+.embed:hover {
+	border-color: var(--background-modifier-border-hover);
+}
+.embed:focus {
+	border-color: var(--background-modifier-border-focus);
+}
+
+/* Embed buttons styling */
+.embed-buttons {
+	position: absolute;
+	bottom: 5px;
+	right: 5px;
+	z-index: 10;
+	opacity: 0;
+	transition: opacity 0.2s ease;
+	display: flex;
+	gap: 10px;
+}
+
+/* Button styling */
+.refresh-button,
+.copy-button {
+	cursor: pointer;
+}
+
+/* Show buttons on hover over the embed element */
+.embed:hover .embed-buttons {
+	opacity: 0.8;
+}
+
+/* Full opacity when hovering over the buttons */
+.refresh-button:hover,
+.copy-button:hover {
+	opacity: 1 !important;
 }
