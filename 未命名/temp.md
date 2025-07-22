@@ -1,4 +1,76 @@
 ``` Go
+
+func makemap(t *maptype, hint int, h *hmap) *hmap {
+    // ... // 
+    B := uint8(0)
+    for overLoadFactor(hint, B) {
+        B++
+    }
+    h.B = B
+    // 分配初始桶数组
+    // 当B=0时，buckets会延迟分配（懒加载）
+    if h.B != 0 {
+        var nextOverflow *bmap
+        h.
+     buckets, nextOverflow = makeBucketArray(t, h.B, nil)
+        if nextOverflow != nil {
+            h.extra = new(mapextra)
+            h.extra.nextOverflow = nextOverflow
+        }
+    }
+    // 返回初始化好的map
+    return h
+}
+
+
+
+
+type bmap struct {
+    tophash [8]uint8      // key的哈希值高8位
+    keys [8]keytype       // 存储的key，8个连续排列
+    values [8]valuetype   // 存储的value，8个连续排列
+    overflow uintptr      // 指向溢出桶的指针
+}
+
+
+
+type hmap struct {
+    count     int       // map中元素的个数（被内置的len()函数使用）
+    flags     uint8     // 标志位，表示map的状态（如迭代器、写入状态等）
+    B         uint8     // 桶数量的对数，表示有2^B个桶
+    noverflow uint16    // 溢出桶的大致数量
+    hash0     uint32    // 哈希种子，用于计算哈希值时添加随机性
+
+    buckets    unsafe.Pointer // 指向2^B个桶的数组
+    oldbuckets unsafe.Pointer // 扩容时指向旧的桶数组
+    nevacuate  uintptr        // 扩容进度，小于此值的桶已经完成迁移
+    clearSeq   uint64         // 清除序列号，用于跟踪map的清除操作
+    
+    extra *mapextra // 额外字段，仅在需要时使用
+}
+
+
+// Go map 的桶结构
+type bmap struct {
+    tophash [abi.OldMapBucketCount]uint8
+
+}
+
+
+
+
+// Map constants common to several packages// runtime/runtime-gdb.py:MapTypePrinter contains its own copy  
+const (  
+    // Maximum number of key/elem pairs a bucket can hold.  
+    OldMapBucketCountBits = 3 // log2 of number of elements in a bucket.  
+    OldMapBucketCount     = 1 << OldMapBucketCountBits  
+    // Maximum key or elem size to keep inline (instead of mallocing per element).  
+    // Must fit in a uint8.    // Note: fast map functions cannot handle big elems (bigger than MapMaxElemBytes).    OldMapMaxKeyBytes  = 128  
+    OldMapMaxElemBytes = 128 // Must fit in a uint8.  
+)
+
+
+
 func runqputslow(pp *p, gp *g, h, t uint32) bool {
     //..//
     // 从本地队列取出前128个goroutine

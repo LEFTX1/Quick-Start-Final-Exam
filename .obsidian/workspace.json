@@ -99,12 +99,14 @@
             "id": "b672382f55b62974",
             "type": "leaf",
             "state": {
-              "type": "excalidraw",
+              "type": "markdown",
               "state": {
-                "file": "Excalidraw/Drawing 2025-07-21 22.17.02.excalidraw.md"
+                "file": "未命名/temp.md",
+                "mode": "source",
+                "source": false
               },
               "icon": "lucide-file",
-              "title": "插件不再活动"
+              "title": "temp"
             }
           },
           {
@@ -363,27 +365,27 @@
   },
   "active": "30dd78caa3504a01",
   "lastOpenFiles": [
+    "未命名/temp.md",
+    "Excalidraw/Drawing 2025-07-21 22.17.03.excalidraw.md",
+    "面试/计算机网络.md",
+    "Excalidraw/Drawing 2025-07-21 22.17.02.excalidraw.md",
+    "golang context/golang context.md",
     "Excalidraw/context/WithDeadlineCause.md",
     "面试/快速过.md",
     "面试/计算机网络 快速过.md",
     "面试/redis.md",
-    "Excalidraw/Drawing 2025-07-21 22.17.03.excalidraw.md",
     "Pasted Image 20250722044448_028.png",
     "Pasted Image 20250722041715_429.png",
-    "Excalidraw/Drawing 2025-07-21 22.17.02.excalidraw.md",
     "Excalidraw/Drawing 2025-07-08 19.53.41.excalidraw.md",
     "Excalidraw/Drawing 2025-07-08 19.03.41.excalidraw.md",
     "Excalidraw/Drawing 2024-11-19 01.00.40.excalidraw.md",
     "面试/GO相关.md",
-    "未命名/temp.md",
     "未命名/未命名.md",
     "面试/mysql.md",
     "未命名/goroutine_status_fields.md",
     "Excalidraw/context/withcancel全流程.svg",
     "Pasted Image 20250716185543_700.png",
-    "golang context/golang context.md",
     "面试/kafka.md",
-    "面试/计算机网络.md",
     "static/1731404777835.png",
     "面试/面试鸭.md",
     "面试/大模型相关.md",
