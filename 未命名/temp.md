@@ -28,7 +28,8 @@ again: //─────────────────
 		growWork(t, h, bucket)
 	}
 	// 3.3 取得该桶指针
-	b := (*bmap)(add(h.buckets, bucket*uintptr(t.BucketSize)))
+	b := (*bmap)(add(h.buckets,
+	 bucket*uintptr(t.BucketSize)))
 	// 3.4 提取哈希高 8 位存放到 top
 	top := tophash(hash)
 	// 3.5 初始化三个插入用指针
@@ -60,7 +61,8 @@ bucketloop: //─────────────
 				continue // 4.1.1.3 检查下一槽
 			}
 			// 4.1.2 tophash 相同 → 检查完整 key
-			k := add(unsafe.Pointer(b), dataOffset+i*uintptr(t.KeySize))
+			k := add(unsafe.Pointer(b), 
+			dataOffset+i*uintptr(t.KeySize))
 			// 4.1.2.1 解引用间接 key
 			if t.IndirectKey() {
 				k = *((*unsafe.Pointer)(k))
@@ -133,10 +135,6 @@ bucketloop: //─────────────
 	h.count++
 
 done: //───────────────────
-	//──────────────────────────────────────────────────────────
-	// 7 收尾：清写标志 & 返回 value 指针
-	//──────────────────────────────────────────────────────────
-
 	// 7.1 理论上仍在写：若已被清零说明并发写 → 崩溃
 	if h.flags&hashWriting == 0 {
 		fatal("concurrent map writes")

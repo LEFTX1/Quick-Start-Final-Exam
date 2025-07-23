@@ -206,7 +206,7 @@
             }
           }
         ],
-        "currentTab": 8
+        "currentTab": 7
       }
     ],
     "direction": "vertical"
@@ -325,13 +325,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Excalidraw/Drawing 2025-07-21 22.17.03.excalidraw.md",
+                "file": "未命名/temp.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Drawing 2025-07-21 22.17.03.excalidraw 的大纲"
+              "title": "temp 的大纲"
             }
           },
           {
@@ -363,12 +363,12 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "30dd78caa3504a01",
+  "active": "b672382f55b62974",
   "lastOpenFiles": [
+    "Excalidraw/Drawing 2025-07-21 22.17.03.excalidraw.md",
     "未命名/temp.md",
     "Pasted image 20250723032208.png",
     "面试/计算机网络.md",
-    "Excalidraw/Drawing 2025-07-21 22.17.03.excalidraw.md",
     "Excalidraw/Drawing 2025-07-21 22.17.02.excalidraw.md",
     "golang context/golang context.md",
     "Excalidraw/context/WithDeadlineCause.md",
