@@ -1,5 +1,246 @@
 ``` Go
 
+inserti -> &b.tophash[1]		
+insertk -> &b.keys[1]
+elem    -> &b.values[1]
+
+inserti -> &b.tophash[0]		
+insertk -> &b.keys[0]
+elem    -> &b.values[0]
+
+func mapassign(t *maptype, 
+h *hmap, key unsafe.Pointer) 
+unsafe.Pointer {
+	// 安全检查...
+	// 2.2 计算键的哈希值（含随机种子）
+	hash := t.Hasher(key, uintptr(h.hash0))
+	// 2.3 设置“正在写入”标志
+	h.flags ^= hashWriting
+	// 2.4 懒加载：若还没分配任何桶,先分配1个主桶
+	if h.buckets == nil {
+		h.buckets = newobject(t.Bucket) 
+	}
+again: //─────────────────
+	// 3.1 取哈希低 B 位，得到主桶索引
+	bucket := hash & bucketMask(h.B)
+	// 3.2 若处于扩容期，顺手迁移此桶
+	if h.growing() {
+		growWork(t, h, bucket)
+	}
+	// 3.3 取得该桶指针
+	b := (*bmap)(add(h.buckets, bucket*uintptr(t.BucketSize)))
+	// 3.4 提取哈希高 8 位存放到 top
+	top := tophash(hash)
+	// 3.5 初始化三个插入用指针
+	var inserti *uint8
+	var insertk unsafe.Pointer
+	var elem unsafe.Pointer
+bucketloop: //─────────────
+	//──────────────────────────────────────────────────────────
+	// 4 遍历主桶 + 溢出桶，查找 key 或记首个空槽
+	//──────────────────────────────────────────────────────────
+	for {
+		// 4.1 桶内线性扫描 8 槽
+		for i := uintptr(0); i < abi.OldMapBucketCount; i++ {
+			// 4.1.1 tophash 不等：不是同一哈希片段
+			if b.tophash[i] != top {
+				// 4.1.1.1 槽为空且尚未记录空位 → 记下
+				if isEmpty(b.tophash[i]) && inserti == nil {
+					inserti = &b.tophash[i]
+					insertk = add(unsafe.Pointer(b),
+        dataOffset+i*uintptr(t.KeySize))
+					elem = add(unsafe.Pointer(b),
+		dataOffset+abi.OldMapBucketCount*uintptr(t.KeySize)+
+					           i*uintptr(t.ValueSize))
+				}
+		// 4.1.1.2 遇到 emptyRest：后续全空，直接退出外层循环
+				if b.tophash[i] == emptyRest {
+					break bucketloop
+				}
+				continue // 4.1.1.3 检查下一槽
+			}
+			// 4.1.2 tophash 相同 → 检查完整 key
+			k := add(unsafe.Pointer(b), dataOffset+i*uintptr(t.KeySize))
+			// 4.1.2.1 解引用间接 key
+			if t.IndirectKey() {
+				k = *((*unsafe.Pointer)(k))
+			}
+			// 4.1.2.2 若 key 不等，继续
+			if !t.Key.Equal(key, k) {
+				continue
+			}
+
+			// 4.1.2.3 找到已有 key：必要时更新 key 内容
+			if t.NeedKeyUpdate() {
+				typedmemmove(t.Key, k, key)
+			}
+			// 4.1.2.4 锁定对应 value 槽
+			elem = add(unsafe.Pointer(b),
+			           dataOffset+abi.OldMapBucketCount*uintptr(t.KeySize)+
+			           i*uintptr(t.ValueSize))
+			goto done // 4.1.2.5 结束查找进入写值阶段
+		}
+
+		// 4.2 若存在溢出桶 → 继续扫描
+		ovf := b.overflow(t)
+		if ovf == nil {
+			break // 4.3 无溢出桶：跳出 bucketloop
+		}
+		b = ovf // 4.2.1 切换到下一个溢出桶
+	}
+
+	//──────────────────────────────────────────────────────────
+	// 5 未找到旧键：决定是否扩容或创建溢出桶
+	//──────────────────────────────────────────────────────────
+
+	// 5.1 判断负载或溢出桶数量是否触发扩容
+	if !h.growing() &&
+	   (overLoadFactor(h.count+1, h.B) ||
+	    tooManyOverflowBuckets(h.noverflow, h.B)) {
+		hashGrow(t, h) // 5.1.1 开始扩容
+		goto again     // 5.1.2 表地址变动，重走流程
+	}
+
+	// 5.2 若所有桶都满且没记录空槽 → 新建溢出桶
+	if inserti == nil {
+		// 5.2.1 分配并链入新溢出桶
+		newb := h.newoverflow(t, b)
+		inserti = &newb.tophash[0]
+		insertk = add(unsafe.Pointer(newb), dataOffset)
+		elem = add(insertk, abi.OldMapBucketCount*uintptr(t.KeySize))
+	}
+
+	//──────────────────────────────────────────────────────────
+	// 6 真正写入键值对
+	//──────────────────────────────────────────────────────────
+
+	// 6.1 若 key 需间接存储，先分配堆对象再写指针
+	if t.IndirectKey() {
+		kmem := newobject(t.Key)
+		*(*unsafe.Pointer)(insertk) = kmem
+		insertk = kmem
+	}
+	// 6.2 value 间接存储同理
+	if t.IndirectElem() {
+		vmem := newobject(t.Elem)
+		*(*unsafe.Pointer)(elem) = vmem
+	}
+	// 6.3 拷贝 key 数据到槽位
+	typedmemmove(t.Key, insertk, key)
+	// 6.4 写入 tophash，标记此槽被占
+	*inserti = top
+	// 6.5 map 元素计数 +1
+	h.count++
+
+done: //───────────────────
+	//──────────────────────────────────────────────────────────
+	// 7 收尾：清写标志 & 返回 value 指针
+	//──────────────────────────────────────────────────────────
+
+	// 7.1 理论上仍在写：若已被清零说明并发写 → 崩溃
+	if h.flags&hashWriting == 0 {
+		fatal("concurrent map writes")
+	}
+	// 7.2 清除“正在写入”标志
+	h.flags &^= hashWriting
+
+	// 7.3 若 value 为间接类型，elem 当前存指针地址，再解引用一次
+	if t.IndirectElem() {
+		elem = *((*unsafe.Pointer)(elem))
+	}
+	// 7.4 返回 value 槽地址（编译器随后将用户值写入）
+	return elem
+}
+
+
+func mapassign(t *maptype, 
+h *hmap, 
+key unsafe.Pointer) unsafe.Pointer {
+    // 安全检查...
+    // 1. 计算哈希值
+    hash := t.Hasher(key, uintptr(h.hash0))
+    // 设置写标志
+    h.flags ^= hashWriting  
+    // 2. 延迟初始化桶数组（懒加载）
+    if h.buckets == nil {
+        h.buckets = newobject(t.Bucket)
+    }
+again:
+    // 3. 计算桶位置
+    bucket := hash & bucketMask(h.B)  
+    // 4. 如果正在扩容，协助扩容
+    if h.growing() {
+        growWork(t, h, bucket)
+    } 
+    // 5. 获取桶并查找位置
+    b := (*bmap)(add(h.buckets, bucket*uintptr(t.BucketSize)))
+    top := tophash(hash) 
+    var inserti *uint8     // 插入位置的tophash
+    var insertk unsafe.Pointer  // key的存储位置
+    var elem unsafe.Pointer     // value的存储位置 
+    // 6. 查找现有key或空位置
+    for {
+        for i := uintptr(0); i < abi.OldMapBucketCount; i++ {
+            if b.tophash[i] != top {
+                // 找到空位
+                if isEmpty(b.tophash[i]) && inserti == nil {
+                    inserti = &b.tophash[i]
+                    insertk = add(unsafe.Pointer(b),  
+                    dataOffset+i*uintptr(t.KeySize))
+                    elem = add(unsafe.Pointer(b), 
+               dataOffset+abi.OldMapBucketCount*
+             uintptr(t.KeySize)+i*uintptr(t.ValueSize))
+                }
+                continue
+            }           
+            // 7. 比较key是否存在
+            k := add(unsafe.Pointer(b), dataOffset+i*uintptr(t.KeySize))
+            if t.IndirectKey() {
+                k = *((*unsafe.Pointer)(k))
+            }
+            if t.Key.Equal(key, k) {
+                // 8. key已存在，更新值
+                elem = add(unsafe.Pointer(b), dataOffset+abi.OldMapBucketCount*uintptr(t.KeySize)+i*uintptr(t.ValueSize))
+                goto done
+            }
+        }    
+        // 9. 遍历溢出桶
+        ovf := b.overflow(t)
+        if ovf == nil {
+            break
+        }
+        b = ovf
+    }   
+    // 10. 没找到现有key，插入新key  
+    // 11. 检查是否需要扩容
+    if !h.growing() && (overLoadFactor(h.count+1, h.B) || tooManyOverflowBuckets(h.noverflow, h.B)) {
+        hashGrow(t, h)
+        goto again
+    }  
+    // 12. 如果没有空位，创建新溢出桶
+    if inserti == nil {
+        newb := h.newoverflow(t, b)
+        inserti = &newb.tophash[0]
+        insertk = add(unsafe.Pointer(newb), dataOffset)
+        elem = add(insertk, abi.OldMapBucketCount*uintptr(t.KeySize))
+    }   
+    // 13. 存储新key
+    if t.IndirectKey() {
+        kmem := newobject(t.Key)
+        *(*unsafe.Pointer)(insertk) = kmem
+        insertk = kmem
+    }
+    typedmemmove(t.Key, insertk, key)
+    *inserti = top
+    h.count++    
+done:
+    // 恢复标志位
+    h.flags &^= hashWriting    
+    // 14. 返回value指针，让调用者设置value
+    return elem
+}
+
+
 func makemap(t *maptype, hint int, h *hmap) *hmap {
     // ... // 
     B := uint8(0)
