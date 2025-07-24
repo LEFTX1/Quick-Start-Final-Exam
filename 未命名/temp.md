@@ -1,4 +1,143 @@
 ``` Go
+
+
+
+m[13] = LabelInfo{
+  Name: "ALPHA",
+  Ref:  &Meta{Source: "imported"},
+}
+
+LabelInfo{
+	Name: "",
+	Ref:  nil,
+}
+
+
+// 1️⃣ 纯值型：商品库存数量
+//    key  : 商品 ID
+//    value: 当前库存（整数，不含指针）
+var stockLeft = map[int]int{
+	101: 42,   // 商品 101 还剩 42 件
+	102: 0,    // 商品 102 售罄
+}
+
+// 2️⃣ 指针作 value：在线用户会话
+//    key  : 会话 token
+//    value: 指向 Session 结构体的指针
+type Session struct {
+	UserID string
+	// 还有很多运行时字段……
+}
+var sessions = map[string]*Session{
+	"tok-abc": {UserID: "u1"},
+	"tok-def": {UserID: "u2"},
+}
+
+// 3️⃣ 结构体值内含指针：订单信息
+//    key  : 订单号
+//    value: Order 以值存放，但内部字段含指针
+type Address struct{ City string }
+
+type Order struct {
+	ID       string
+	ShipTo   *Address  // 指向地址的指针 → 含指针字段
+	ItemNums int
+}
+var orders = map[string]Order{
+	"ord-001": {ID: "ord-001", ShipTo: &Address{City: "Beijing"}, ItemNums: 3},
+}
+
+// ----------------- delete 操作 -----------------
+
+func main() {
+	// ❶ 纯值型库存：runtime 仅把槽位清零，GC 不会去扫，无泄漏风险
+	delete(stockLeft, 102)
+
+	// ❷ 指针 session：runtime 把指针写成 nil，避免泄漏 *Session
+	delete(sessions, "tok-def")
+
+	// ❸ 订单：runtime 把整个 Order 区块清零，内部 ShipTo 字段也被写成 nil，
+	//        防止 *Address 悬挂引用
+	delete(orders, "ord-001")
+}
+
+
+
+
+
+
+----------------------
+package main
+
+import (
+	"fmt"
+	"runtime"
+	"time"
+)
+
+type Profile struct {
+	Bio string
+}
+
+type User struct {
+	Name    string
+	Profile *Profile
+}
+
+func main() {
+	// map1: value 含指针
+	users := make(map[string]*User, 8)
+
+	// map2: 纯值型
+	hits := make(map[int]int, 8)
+
+	// ---- 1. 填充 -------------------------------------------------
+	for i := 0; i < 4; i++ {
+		p := &Profile{Bio: fmt.Sprintf("No.%d", i)}
+		users[fmt.Sprintf("u%d", i)] = &User{Name: fmt.Sprintf("u%d", i), Profile: p}
+		hits[i] = i * 100
+	}
+	fmt.Println("filled users:", len(users), "hits:", len(hits))
+
+	// ---- 2. 删除：正确做法 --------------------------------------
+	delete(users, "u1")          // 删除指针元素
+	delete(hits, 2)              // 删除值元素
+	// 手动 nil 清理额外指针（如果 map 外还有副本）
+	// users["u0"].Profile = nil  // 示意：当你自己还握有指针副本时应置 nil
+
+	// ---- 3. 强制 GC & 观测 --------------------------------------
+	printMem("after delete, before GC")
+	runtime.GC()
+	printMem("after GC")
+
+	// ---- 4. 演示“不清理指针”风险 -------------------------------
+	// 再添加一个有大对象的用户，随后仅 delete 而不手动清 Profile 指针
+	big := make([]byte, 8<<20) // 8 MB
+	users["leak"] = &User{Name: "leak", Profile: &Profile{Bio: string(big[:8])}}
+
+	delete(users, "leak")      // 槽位标记 emptyOne，但 Profile/Bio 里的 8 MB 仍被指针握着
+	printMem("before leak GC") // 查看分配
+	runtime.GC()
+	printMem("after leak GC")  // 你会发现 8 MB 依旧占用，因为桶里残留指针
+}
+
+// 打印堆分配量
+func printMem(tag string) {
+	var m runtime.MemStats
+	runtime.ReadMemStats(&m)
+	fmt.Printf("%-25s -> heapAlloc = %.2f MB\n", tag, float64(m.HeapAlloc)/(1<<20))
+	time.Sleep(100 * time.Millisecond) // 稍等，让打印更清晰
+}
+
+
+
+
+
+
+
+
+
+
 type Address struct {
     City string
 }
