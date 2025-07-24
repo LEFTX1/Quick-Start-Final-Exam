@@ -1,4 +1,34 @@
 ``` Go
+type Address struct {
+    City string
+}
+
+type Person struct {
+    Name    string
+    Address *Address
+}
+
+m := make(map[Person]string)
+addr := &Address{City: "New York"}
+p := Person{Name: "John", Address: addr}
+m[p] = "Developer"
+
+delete(m, p)  // 删除 m 中的键值对
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 inserti -> &b.tophash[1]		
 insertk -> &b.keys[1]

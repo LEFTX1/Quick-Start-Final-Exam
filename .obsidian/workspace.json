@@ -110,18 +110,6 @@
             }
           },
           {
-            "id": "30dd78caa3504a01",
-            "type": "leaf",
-            "state": {
-              "type": "excalidraw",
-              "state": {
-                "file": "Excalidraw/Drawing 2025-07-21 22.17.03.excalidraw.md"
-              },
-              "icon": "excalidraw-icon",
-              "title": "Drawing 2025-07-21 22.17.03.excalidraw"
-            }
-          },
-          {
             "id": "4b5844bfd5f39c96",
             "type": "leaf",
             "state": {
@@ -362,6 +350,43 @@
       "obsidian-excalidraw-plugin:新建绘图文件": false,
       "obsidian-git:Open Git source control": false
     }
+  },
+  "floating": {
+    "id": "a25853b6b3128c34",
+    "type": "floating",
+    "children": [
+      {
+        "id": "67993b14fea0362d",
+        "type": "window",
+        "children": [
+          {
+            "id": "b213816a5fb33854",
+            "type": "tabs",
+            "children": [
+              {
+                "id": "30dd78caa3504a01",
+                "type": "leaf",
+                "state": {
+                  "type": "excalidraw",
+                  "state": {
+                    "file": "Excalidraw/Drawing 2025-07-21 22.17.03.excalidraw.md"
+                  },
+                  "icon": "excalidraw-icon",
+                  "title": "Drawing 2025-07-21 22.17.03.excalidraw"
+                }
+              }
+            ]
+          }
+        ],
+        "direction": "vertical",
+        "x": 697,
+        "y": 153,
+        "width": 970,
+        "height": 821,
+        "maximize": false,
+        "zoom": 1
+      }
+    ]
   },
   "active": "b672382f55b62974",
   "lastOpenFiles": [
