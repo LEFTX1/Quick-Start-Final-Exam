@@ -11,13 +11,11 @@ func hashGrow(t *maptype, h *hmap) {
 		bigger = 0 // B 不增加，桶数量不变，只是整理数据
 		h.flags |= sameSizeGrow // 设置一个“等量扩容”的标志位
 	}
-
     // 2. **挂载旧仓库**
 	oldbuckets := h.buckets // 保存当前桶数组的指针，它即将成为“旧仓库”
-	
     // 3. **分配新仓库**
-	newbuckets, nextOverflow := makeBucketArray(t, h.B+bigger, nil) // 分配新的桶数组
-
+	newbuckets, nextOverflow := makeBucketArray(t, h.B+bigger, nil) 
+	// 分配新的桶数组
     // --- 关键的准备工作 ---
 	h.B += bigger            // 更新尺寸蓝图 B
 	h.flags &^= sameSizeGrow // 清除“等量扩容”标志位（如果之前设置了）
@@ -27,7 +25,6 @@ func hashGrow(t *maptype, h *hmap) {
     // 4. **重置进度条**
 	h.nevacuate = 0 // 初始化搬家进度为 0
 	h.noverflow = 0 // 新桶数组的溢出桶数量暂时为 0
-
 	// 如果 key 和 value 都不含指针，需要特殊处理溢出桶的元数据以便GC
 	if h.extra != nil && h.extra.overflow != nil {
 		if h.extra.oldoverflow != nil {
