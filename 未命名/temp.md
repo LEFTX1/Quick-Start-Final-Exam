@@ -1,6 +1,31 @@
 ``` Go
 
+    ch1 := make(chan int, 3)
+    ch2 := make(chan int, 3)
+    areEqual := (ch1 == ch2)
+    //false
 
+
+
+
+
+
+
+
+// hchan 是 Go channel 在运行时的核心数据结构
+type hchan struct {
+ //..//
+    // --- 传送带本体 (缓冲区) ---
+    buf      unsafe.Pointer // 指针，指向一个环形数组
+    sendx    uint           // "下一个放入" 的位置索引
+    recvx    uint           // "下一个取出" 的位置索引
+    // --- 两个等候区 (等待队列) ---
+    recvq    waitq  // 接收者等候区 (等待接收数据的 goroutine 队列)
+    sendq    waitq  // 发送者等候区 (等待发送数据的 goroutine 队列)
+    // --- 传送带控制器 (锁) ---
+    lock mutex              // 互斥锁，保护 hchan 中的所有字段，
+    //确保同一时间只有一个goroutine 能操作 channel
+}
 
 m[13] = LabelInfo{
   Name: "ALPHA",
