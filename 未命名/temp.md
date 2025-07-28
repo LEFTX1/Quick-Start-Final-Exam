@@ -1,5 +1,106 @@
 ``` Go
 
+
+// src/runtime/map_noswiss.go
+// hashGrow 负责启动一次新的 map 扩容
+func hashGrow(t *maptype, h *hmap) {
+	// 1. **计算新尺寸 (翻倍扩容)**
+	bigger := uint8(1) // 默认将 B 增加 1，即桶数量翻倍
+	if !overLoadFactor(h.count+1, h.B) {
+		// 如果不是因为元素数量过多，而是因为溢出桶太多，则执行“等量扩容”
+		bigger = 0 // B 不增加，桶数量不变，只是整理数据
+		h.flags |= sameSizeGrow // 设置一个“等量扩容”的标志位
+	}
+
+    // 2. **挂载旧仓库**
+	oldbuckets := h.buckets // 保存当前桶数组的指针，它即将成为“旧仓库”
+	
+    // 3. **分配新仓库**
+	newbuckets, nextOverflow := makeBucketArray(t, h.B+bigger, nil) // 分配新的桶数组
+
+    // --- 关键的准备工作 ---
+	h.B += bigger            // 更新尺寸蓝图 B
+	h.flags &^= sameSizeGrow // 清除“等量扩容”标志位（如果之前设置了）
+	h.oldbuckets = oldbuckets // 将旧桶数组挂载到 oldbuckets 指针上
+	h.buckets = newbuckets    // 让 buckets 指针指向新分配的桶数组
+	
+    // 4. **重置进度条**
+	h.nevacuate = 0 // 初始化搬家进度为 0
+	h.noverflow = 0 // 新桶数组的溢出桶数量暂时为 0
+
+	// 如果 key 和 value 都不含指针，需要特殊处理溢出桶的元数据以便GC
+	if h.extra != nil && h.extra.overflow != nil {
+		if h.extra.oldoverflow != nil {
+			throw("oldoverflow is not nil")
+		}
+		h.extra.oldoverflow = h.extra.overflow
+		h.extra.overflow = nil
+	}
+	if nextOverflow != nil {
+		if h.extra == nil {
+			h.extra = new(mapextra)
+		}
+		h.extra.nextOverflow = nextOverflow
+	}
+
+	// 此时，map 同时拥有了 oldbuckets 和 buckets 两个数据区。数据迁移尚未开始。
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// src/runtime/map_noswiss.go
+// mapassign 是编译器为 m[key] = value 生成的函数调用
+func mapassign(t *maptype, h *hmap, key unsafe.Pointer) 
+unsafe.Pointer {
+    // ......
+    // 1. 检查是否达到了负载因子阈值
+	//- overLoadFactor: 检查元素数量是否过多(元素数/桶数 > 6.5)
+	//- tooManyOverflowBuckets: 检查溢出桶是否过多
+	if !h.growing() && (overLoadFactor(h.count+1, h.B) || tooManyOverflowBuckets(h.noverflow, h.B)) {
+		// 2. 触发扩容：如果任一条件满足，并且当前不在扩容状态，
+		//则调用 hashGrow 开始扩容
+		hashGrow(t, h)
+        // ... (在扩容后，重新计算桶的位置)
+	}
+    // ... (后续的插入逻辑) ...
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     ch1 := make(chan int, 3)
     ch2 := make(chan int, 3)
     areEqual := (ch1 == ch2)
