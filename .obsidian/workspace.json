@@ -313,13 +313,12 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "未命名/temp.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "temp 的大纲"
+              "title": "大纲"
             }
           },
           {
@@ -388,7 +387,7 @@
       }
     ]
   },
-  "active": "b672382f55b62974",
+  "active": "143784dee3102b02",
   "lastOpenFiles": [
     "Excalidraw/Drawing 2025-07-21 22.17.03.excalidraw.md",
     "未命名/temp.md",

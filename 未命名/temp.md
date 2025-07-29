@@ -22,10 +22,11 @@ func hashGrow(t *maptype, h *hmap) {
 	h.oldbuckets = oldbuckets // 将旧桶数组挂载到 oldbuckets 指针上
 	h.buckets = newbuckets    // 让 buckets 指针指向新分配的桶数组
 	
-    // 4. **重置进度条**
+    // 4. 重置进度条
 	h.nevacuate = 0 // 初始化搬家进度为 0
 	h.noverflow = 0 // 新桶数组的溢出桶数量暂时为 0
-	// 如果 key 和 value 都不含指针，需要特殊处理溢出桶的元数据以便GC
+	// 如果 key 和 value 都不含指针，
+	//需要特殊处理溢出桶的元数据以便GC
 	if h.extra != nil && h.extra.overflow != nil {
 		if h.extra.oldoverflow != nil {
 			throw("oldoverflow is not nil")
