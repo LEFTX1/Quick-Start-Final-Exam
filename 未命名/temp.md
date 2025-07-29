@@ -1,6 +1,56 @@
 ``` Go
 
 // src/runtime/map_noswiss.go
+// growing 函数报告 h 是否正在增长（扩容）
+func (h *hmap) growing() bool {
+	// 判断逻辑非常简单：只要 oldbuckets 指针不是 nil，就代表正在扩容。
+	return h.oldbuckets != nil
+}
+
+
+// src/runtime/map_noswiss.go -> mapaccess1 函数
+func mapaccess1(t *maptype, h *hmap, key unsafe.Pointer) 
+unsafe.Pointer {
+	// ...
+	// 如果 h.growing() 返回 true，说明正在扩容
+	if h.growing() {
+		// 就要去旧桶里定位 key
+		oldbucket := hash & h.noldbucketsmask()
+		// ...
+		// 并且在操作前，要检查这个旧桶是否需要搬家
+		if !evacuated(b) {
+			evacuate(t, h, oldbucket)
+			// ... 重新计算在新桶里的位置 ...
+		}
+	}
+	// ... (如果不在扩容，就直接在 buckets 里操作) ...
+}
+
+
+
+
+// src/runtime/map_noswiss.go -> mapassign 函数
+func mapassign(t *maptype, h *hmap, key unsafe.Pointer) 
+unsafe.Pointer {
+	// ...
+	// 1. 检查负载因子是否超标
+	// 2. 并且，当前没有正在进行扩容 (`!h.growing()`)
+	if !h.growing() && (overLoadFactor(h.count+1, h.B) || tooManyOverflowBuckets(h.noverflow, h.B)) {
+		// 两个条件都满足，才真正触发扩容
+		hashGrow(t, h)
+		// ...
+	}
+	// ...
+}
+
+
+
+
+
+
+
+
+// src/runtime/map_noswiss.go
 func makeBucketArray(t *maptype, b uint8, dirtyalloc unsafe.Pointer) (buckets unsafe.Pointer, nextOverflow *bmap) {
 	// 1. 计算常规桶数量
 	base := bucketShift(b) // base = 2^B
