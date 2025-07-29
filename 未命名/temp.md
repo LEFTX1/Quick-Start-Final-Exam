@@ -681,7 +681,20 @@ type bmap struct {
     overflow uintptr      // 指向溢出桶的指针
 }
 
+// src/runtime/map_noswiss.go
+type hmap struct {
+    // ...
+    flags      uint8
+    // ...
+}
 
+// flags的可能取值 (这些是掩码，可以通过位运算组合使用)
+const (
+    iterator     = 1 // 标志：当前有迭代器在遍历buckets
+    oldIterator  = 2 // 标志：当前有迭代器在遍历oldbuckets
+    hashWriting  = 4 // 标志：当前有goroutine正在对map进行写操作
+    sameSizeGrow = 8 // 标志：当前正在进行同尺寸增长，而非翻倍扩容
+)
 
 type hmap struct {
     count     int       // map中元素的个数（被内置的len()函数使用）
