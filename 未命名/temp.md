@@ -1,6 +1,20 @@
 ``` Go
 
 
+// mapextra 结构体，只在需要时分配
+
+type mapextra struct {
+    overflow    *[]*bmap // 存储当前 buckets 数组的所有溢出桶指针
+    oldoverflow *[]*bmap // 存储 oldbuckets 数组的所有溢出桶指针
+    // nextOverflow 指向一个预分配好的、可直接使用的空闲溢出桶
+    nextOverflow *bmap
+}
+
+
+
+
+
+
 // src/runtime/map_noswiss.go
 // hashGrow 负责启动一次新的 map 扩容
 func hashGrow(t *maptype, h *hmap) {
