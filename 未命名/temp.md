@@ -1,5 +1,58 @@
 ``` Go
 
+// src/runtime/map_noswiss.go
+func makeBucketArray(t *maptype, b uint8, dirtyalloc unsafe.Pointer) (buckets unsafe.Pointer, nextOverflow *bmap) {
+	// 1. 计算常规桶数量
+	base := bucketShift(b) // base = 2^B
+	nbuckets := base
+	// 2. 【批发采购逻辑】决定是否并采购多少溢出桶
+	//    对于非常小的map (B<4, 即少于16个桶)，溢出概率低，不进行此优化。
+	if b >= 4 {
+		// 估算并增加一批溢出桶的数量。
+		// 这是一个基于统计的经验值，通常会额外增加 2^(B-4) 个桶。
+		// 这样一次性申请，避免了后续频繁的小块内存分配。
+		nbuckets += bucketShift(b - 4)
+		// (省略了内存对齐的微调代码，确保内存地址对齐以提高访问效率)
+		sz := t.Bucket.Size_ * nbuckets
+		up := roundupsize(sz, !t.Bucket.Pointers())
+		if up != sz {
+			nbuckets = up / t.Bucket.Size_
+		}
+	}
+
+	// 3. **执行内存申请**
+	//    一次性向底层申请能容纳 nbuckets 个桶的连续大块内存。
+	if dirtyalloc == nil {
+		buckets = newarray(t.Bucket, int(nbuckets))
+	} else {
+		// (如果提供了脏内存，则直接使用并清零)
+		buckets = dirtyalloc
+		size := t.Bucket.Size_ * nbuckets
+		if t.Bucket.Pointers() {
+			memclrHasPointers(buckets, size)
+		} else {
+			memclrNoHeapPointers(buckets, size)
+		}
+	}
+
+	// 4. **【设置管理员】设置 nextOverflow 指向第一个“备用桶”**
+	if base != nbuckets {
+		// 如果 nbuckets > base，说明我们成功“批发”了溢出桶。
+
+		// a. 让 nextOverflow 指向第一个备用桶的地址。
+		//    这个地址就是常规桶区域末尾的下一个位置。
+		nextOverflow = (*bmap)(add(buckets, base*uintptr(t.BucketSize)))
+
+		// b. 在最后一个备用桶上设置一个“终止标记”，这是一个聪明的技巧。
+		//    让最后一个备用桶的 overflow 指针指向一个非nil的值（比如整个桶数组的开头）。
+		//    这样在消耗备用桶时，我们就能通过检查这个标记知道是否已经用到了最后一个。
+		last := (*bmap)(add(buckets, (nbuckets-1)*uintptr(t.BucketSize)))
+		last.setoverflow(t, (*bmap)(buckets))
+	}
+
+	return buckets, nextOverflow
+}
+
 
 // mapextra 结构体，只在需要时分配
 
