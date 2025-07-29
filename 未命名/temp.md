@@ -1,5 +1,38 @@
 ``` Go
 
+
+// src/runtime/map_noswiss.go
+func tooManyOverflowBuckets(noverflow uint16, B uint8) bool {
+	// 1. 【优化】对于小map，快速路径
+	//    如果 B < 16 (即桶的数量小于 2^16 = 65536)
+	//noverflow 是一个精确的计数。
+	//    如果溢出桶数量达到了常规桶的数量，就触发。
+	if B < 16 {
+		// bucketShift(B) 就是 2^B，即常规桶的数量。
+		return noverflow >= uint16(bucketShift(B))
+	}
+	// 2. 【核心】对于大map，近似估算
+	//    当 B >= 16 时，
+	//精确记录 noverflow 会消耗太多内存和计算资源。
+	//    此时，noverflow 变成一个“近似计数器”。
+	//    我们期望当溢出桶数量约等于 2^B 时，
+	//noverflow 的计数值能达到 2^15。
+	//    所以，直接检查 noverflow 
+	//是否达到了它的最大容量 (2^15 - 1)。
+	return noverflow >= 1<<15
+}
+
+
+
+
+
+
+
+
+
+
+
+
 // src/runtime/map_noswiss.go
 // growing 函数报告 h 是否正在增长（扩容）
 func (h *hmap) growing() bool {
