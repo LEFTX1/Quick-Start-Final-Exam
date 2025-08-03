@@ -735,16 +735,20 @@ type hmap struct {
     B         uint8     // 桶数量的对数，表示有2^B个桶
     noverflow uint16    // 溢出桶的大致数量
     hash0     uint32    // 哈希种子，用于计算哈希值时添加随机性
-
     buckets    unsafe.Pointer // 指向2^B个桶的数组
     oldbuckets unsafe.Pointer // 扩容时指向旧的桶数组
     nevacuate  uintptr        // 扩容进度，小于此值的桶已经完成迁移
     clearSeq   uint64         // 清除序列号，用于跟踪map的清除操作
-    
     extra *mapextra // 额外字段，仅在需要时使用
 }
 
-
+// src/runtime/map_noswiss.go
+const (
+	iterator     = 1 // 标记：当前有迭代器在遍历map (for range)
+	oldIterator  = 2 // 标记：当前有迭代器在遍历 oldbuckets
+	hashWriting  = 4 // 标记：当前有协程正在向map写入数据，用作一种“写锁”
+	sameSizeGrow = 8 // 标记：当前正在进行“等容扩容”
+)
 // Go map 的桶结构
 type bmap struct {
     tophash [abi.OldMapBucketCount]uint8

@@ -110,6 +110,18 @@
             }
           },
           {
+            "id": "d47eca779007c986",
+            "type": "leaf",
+            "state": {
+              "type": "excalidraw",
+              "state": {
+                "file": "Excalidraw/Drawing 2025-08-03 18.29.10.excalidraw.md"
+              },
+              "icon": "excalidraw-icon",
+              "title": "Drawing 2025-08-03 18.29.10.excalidraw"
+            }
+          },
+          {
             "id": "4b5844bfd5f39c96",
             "type": "leaf",
             "state": {
@@ -333,7 +345,7 @@
             }
           }
         ],
-        "currentTab": 3
+        "currentTab": 4
       }
     ],
     "direction": "horizontal",
@@ -353,10 +365,12 @@
   },
   "active": "b672382f55b62974",
   "lastOpenFiles": [
-    "Excalidraw/Drawing 2025-07-21 22.17.03.excalidraw.md",
-    "未命名/temp.md",
-    "Pasted image 20250723032208.png",
+    "Pasted image 20250803193432.png",
     "面试/计算机网络.md",
+    "Excalidraw/Drawing 2025-08-03 18.29.10.excalidraw.md",
+    "未命名/temp.md",
+    "Excalidraw/Drawing 2025-07-21 22.17.03.excalidraw.md",
+    "Pasted image 20250723032208.png",
     "Excalidraw/Drawing 2025-07-21 22.17.02.excalidraw.md",
     "golang context/golang context.md",
     "Excalidraw/context/WithDeadlineCause.md",
@@ -388,7 +402,6 @@
     "Pasted image 20250708015345.png",
     "Pasted image 20250708015324.png",
     "面试/未命名.md",
-    "嵌入式复习.md",
     "未命名",
     "static/黑白整齐简历模板 (5).pdf",
     "static/黑白整齐简历模板 (6).pdf",
