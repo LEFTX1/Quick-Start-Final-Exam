@@ -110,6 +110,18 @@
             }
           },
           {
+            "id": "869c006701e71fd0",
+            "type": "leaf",
+            "state": {
+              "type": "excalidraw",
+              "state": {
+                "file": "Excalidraw/Drawing 2025-08-04 17.08.55.excalidraw.md"
+              },
+              "icon": "excalidraw-icon",
+              "title": "Drawing 2025-08-04 17.08.55.excalidraw"
+            }
+          },
+          {
             "id": "d47eca779007c986",
             "type": "leaf",
             "state": {
@@ -206,7 +218,7 @@
             }
           }
         ],
-        "currentTab": 7
+        "currentTab": 8
       }
     ],
     "direction": "vertical"
@@ -363,13 +375,14 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "b672382f55b62974",
+  "active": "869c006701e71fd0",
   "lastOpenFiles": [
+    "未命名/temp.md",
+    "Excalidraw/Drawing 2025-08-04 17.08.55.excalidraw.md",
     "Pasted image 20250804092453.png",
     "Pasted image 20250803193432.png",
     "面试/计算机网络.md",
     "Excalidraw/Drawing 2025-08-03 18.29.10.excalidraw.md",
-    "未命名/temp.md",
     "Excalidraw/Drawing 2025-07-21 22.17.03.excalidraw.md",
     "Pasted image 20250723032208.png",
     "Excalidraw/Drawing 2025-07-21 22.17.02.excalidraw.md",
@@ -400,7 +413,6 @@
     "算法设计与分析/未命名.md",
     "未命名 1",
     "Pasted image 20250708031619.png",
-    "Pasted image 20250708015345.png",
     "面试/未命名.md",
     "未命名",
     "static/黑白整齐简历模板 (5).pdf",
