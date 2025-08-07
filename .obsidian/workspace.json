@@ -222,9 +222,21 @@
               "icon": "lucide-file",
               "title": "任务释放思路"
             }
+          },
+          {
+            "id": "994f87584dc98c48",
+            "type": "leaf",
+            "state": {
+              "type": "excalidraw",
+              "state": {
+                "file": "Excalidraw/Drawing 2025-08-07 22.16.13.excalidraw.md"
+              },
+              "icon": "excalidraw-icon",
+              "title": "Drawing 2025-08-07 22.16.13.excalidraw"
+            }
           }
         ],
-        "currentTab": 16
+        "currentTab": 17
       }
     ],
     "direction": "vertical"
@@ -381,10 +393,11 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "892c6d95dd0a0594",
+  "active": "994f87584dc98c48",
   "lastOpenFiles": [
-    "未命名/temp.md",
     "任务释放思路.md",
+    "Excalidraw/Drawing 2025-08-07 22.16.13.excalidraw.md",
+    "未命名/temp.md",
     "风险控制项目",
     "面试/redis.md",
     "面试/prompt.md",
@@ -418,7 +431,6 @@
     "面试/大模型相关.md",
     "Excalidraw/context/cancel向下传播.svg",
     "Excalidraw/Drawing 2024-11-07 11.11.42.excalidraw.md",
-    "算法设计与分析/未命名.md",
     "未命名 1",
     "Pasted image 20250708031619.png",
     "未命名",
