@@ -213,14 +213,18 @@
             "id": "892c6d95dd0a0594",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "任务释放思路.md",
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "新标签页"
+              "title": "任务释放思路"
             }
           }
         ],
-        "currentTab": 5
+        "currentTab": 16
       }
     ],
     "direction": "vertical"
@@ -377,8 +381,10 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "a76c7b1782834285",
+  "active": "892c6d95dd0a0594",
   "lastOpenFiles": [
+    "未命名/temp.md",
+    "任务释放思路.md",
     "风险控制项目",
     "面试/redis.md",
     "面试/prompt.md",
@@ -390,7 +396,6 @@
     "面试/计算机网络 快速过.md",
     "面试/快速过.md",
     "面试/kafka.md",
-    "未命名/temp.md",
     "Pasted image 20250804092453.png",
     "Pasted image 20250803193432.png",
     "Excalidraw/Drawing 2025-07-21 22.17.03.excalidraw.md",
@@ -423,7 +428,6 @@
     "temp",
     "static/黑白整齐简历模板 (3).pdf",
     "新建 文本文档.html",
-    "小林coding 网络",
-    "golang gc"
+    "小林coding 网络"
   ]
 }
