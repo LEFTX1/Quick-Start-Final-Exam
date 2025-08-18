@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "未命名/temp.md",
+                "file": "未命名/未命名 1.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "temp"
+              "title": "未命名 1"
             }
           },
           {
@@ -192,8 +192,10 @@
   },
   "active": "c0205e89828b1437",
   "lastOpenFiles": [
-    "Excalidraw/Drawing 2025-08-17 22.49.13.excalidraw.md",
     "未命名/temp.md",
+    "未命名/未命名 1.md",
+    "未命名/未命名",
+    "Excalidraw/Drawing 2025-08-17 22.49.13.excalidraw.md",
     "Pasted Image 20250817225052_759.png",
     "Excalidraw/Drawing 2025-07-08 19.53.41.excalidraw.md",
     "Excalidraw/Drawing 2025-07-21 22.17.02.excalidraw.md",
@@ -235,7 +237,6 @@
     "eino框架实战和源码走读",
     "temp",
     "static/黑白整齐简历模板 (3).pdf",
-    "新建 文本文档.html",
-    "小林coding 网络"
+    "新建 文本文档.html"
   ]
 }
