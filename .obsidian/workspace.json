@@ -4,75 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "5d8c09ec0450fea8",
+        "id": "cebad893ab89e867",
         "type": "tabs",
         "children": [
           {
-            "id": "3fafa543ab25a256",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "数值分析/数值分析.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "数值分析"
-            }
-          },
-          {
-            "id": "bc01847bbd30d4d8",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "数值分析/数值分析.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "数值分析"
-            }
-          },
-          {
-            "id": "25f037d5162d9478",
-            "type": "leaf",
-            "state": {
-              "type": "excalidraw",
-              "state": {
-                "file": "Excalidraw/Drawing 2025-07-08 19.53.41.excalidraw.md"
-              },
-              "icon": "excalidraw-icon",
-              "title": "Drawing 2025-07-08 19.53.41.excalidraw"
-            }
-          },
-          {
-            "id": "d021e22d9ba9dda5",
-            "type": "leaf",
-            "state": {
-              "type": "excalidraw",
-              "state": {
-                "file": "Excalidraw/Drawing 2025-07-08 19.53.41.excalidraw.md"
-              },
-              "icon": "excalidraw-icon",
-              "title": "Drawing 2025-07-08 19.53.41.excalidraw"
-            }
-          },
-          {
-            "id": "4bda7ab70c69067e",
-            "type": "leaf",
-            "state": {
-              "type": "excalidraw",
-              "state": {
-                "file": "Excalidraw/Drawing 2025-07-08 19.53.41.excalidraw.md"
-              },
-              "icon": "lucide-file",
-              "title": "插件不再活动"
-            }
-          },
-          {
-            "id": "c754ea3cb80a2b40",
+            "id": "c0205e89828b1437",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -86,157 +22,18 @@
             }
           },
           {
-            "id": "3152c6a8628d0478",
+            "id": "e19041508662e922",
             "type": "leaf",
             "state": {
               "type": "excalidraw",
               "state": {
-                "file": "Excalidraw/Drawing 2025-07-08 19.53.41.excalidraw.md"
+                "file": "Excalidraw/Drawing 2025-08-17 22.49.13.excalidraw.md"
               },
               "icon": "excalidraw-icon",
-              "title": "Drawing 2025-07-08 19.53.41.excalidraw"
-            }
-          },
-          {
-            "id": "b672382f55b62974",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "面试/简历.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "简历"
-            }
-          },
-          {
-            "id": "869c006701e71fd0",
-            "type": "leaf",
-            "state": {
-              "type": "excalidraw",
-              "state": {
-                "file": "Excalidraw/Drawing 2025-08-04 17.08.55.excalidraw.md"
-              },
-              "icon": "excalidraw-icon",
-              "title": "Drawing 2025-08-04 17.08.55.excalidraw"
-            }
-          },
-          {
-            "id": "d47eca779007c986",
-            "type": "leaf",
-            "state": {
-              "type": "excalidraw",
-              "state": {
-                "file": "Excalidraw/Drawing 2025-08-03 18.29.10.excalidraw.md"
-              },
-              "icon": "excalidraw-icon",
-              "title": "Drawing 2025-08-03 18.29.10.excalidraw"
-            }
-          },
-          {
-            "id": "4b5844bfd5f39c96",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "面试/计算机网络.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "计算机网络"
-            }
-          },
-          {
-            "id": "715be101edaee0e2",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "面试/mysql.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "mysql"
-            }
-          },
-          {
-            "id": "c997724c28a584c4",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "面试/GO相关.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "GO相关"
-            }
-          },
-          {
-            "id": "ff549c5fc9830176",
-            "type": "leaf",
-            "state": {
-              "type": "empty",
-              "state": {},
-              "icon": "lucide-file",
-              "title": "新标签页"
-            }
-          },
-          {
-            "id": "379018d81f422d35",
-            "type": "leaf",
-            "state": {
-              "type": "image",
-              "state": {
-                "file": "static/1731404777835.png"
-              },
-              "icon": "lucide-image",
-              "title": "1731404777835"
-            }
-          },
-          {
-            "id": "b008ba0275632d94",
-            "type": "leaf",
-            "state": {
-              "type": "empty",
-              "state": {},
-              "icon": "lucide-file",
-              "title": "新标签页"
-            }
-          },
-          {
-            "id": "892c6d95dd0a0594",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "任务释放思路.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "任务释放思路"
-            }
-          },
-          {
-            "id": "994f87584dc98c48",
-            "type": "leaf",
-            "state": {
-              "type": "excalidraw",
-              "state": {
-                "file": "Excalidraw/Drawing 2025-07-21 22.17.03.excalidraw.md"
-              },
-              "icon": "excalidraw-icon",
-              "title": "Drawing 2025-07-21 22.17.03.excalidraw"
+              "title": "Drawing 2025-08-17 22.49.13.excalidraw"
             }
           }
-        ],
-        "currentTab": 17
+        ]
       }
     ],
     "direction": "vertical"
@@ -393,18 +190,24 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "8752dbf6b34a0362",
+  "active": "c0205e89828b1437",
   "lastOpenFiles": [
-    "Excalidraw/Drawing 2025-07-21 22.17.03.excalidraw.md",
-    "Excalidraw/Drawing 2025-08-03 18.29.10.excalidraw.md",
-    "Excalidraw/Drawing 2025-08-04 17.08.55.excalidraw.md",
-    "Excalidraw/Drawing 2025-08-07 22.16.13.excalidraw.md",
-    "任务释放思路.md",
+    "Excalidraw/Drawing 2025-08-17 22.49.13.excalidraw.md",
     "未命名/temp.md",
+    "Pasted Image 20250817225052_759.png",
+    "Excalidraw/Drawing 2025-07-08 19.53.41.excalidraw.md",
+    "Excalidraw/Drawing 2025-07-21 22.17.02.excalidraw.md",
+    "Excalidraw/Drawing 2024-11-19 01.00.40.excalidraw.md",
+    "Excalidraw/Drawing 2025-07-08 19.03.41.excalidraw.md",
+    "Excalidraw/Drawing 2024-11-19 00.59.59.excalidraw.md",
+    "Excalidraw/Drawing 2025-08-07 22.16.13.excalidraw.md",
+    "Excalidraw/Drawing 2025-07-21 22.17.03.excalidraw.md",
+    "Excalidraw/Drawing 2025-08-04 17.08.55.excalidraw.md",
+    "Excalidraw/Drawing 2025-08-03 18.29.10.excalidraw.md",
+    "任务释放思路.md",
     "风险控制项目",
     "面试/redis.md",
     "面试/prompt.md",
-    "Excalidraw/Drawing 2025-07-08 19.53.41.excalidraw.md",
     "面试/简历.md",
     "面试/计算机网络.md",
     "面试/计算机网络 快速过.md",
@@ -413,13 +216,10 @@
     "Pasted image 20250804092453.png",
     "Pasted image 20250803193432.png",
     "Pasted image 20250723032208.png",
-    "Excalidraw/Drawing 2025-07-21 22.17.02.excalidraw.md",
     "golang context/golang context.md",
     "Excalidraw/context/WithDeadlineCause.md",
     "Pasted Image 20250722044448_028.png",
     "Pasted Image 20250722041715_429.png",
-    "Excalidraw/Drawing 2025-07-08 19.03.41.excalidraw.md",
-    "Excalidraw/Drawing 2024-11-19 01.00.40.excalidraw.md",
     "面试/GO相关.md",
     "未命名/未命名.md",
     "面试/mysql.md",
@@ -427,12 +227,8 @@
     "Excalidraw/context/withcancel全流程.svg",
     "Pasted Image 20250716185543_700.png",
     "static/1731404777835.png",
-    "面试/面试鸭.md",
-    "面试/大模型相关.md",
     "Excalidraw/context/cancel向下传播.svg",
-    "Excalidraw/Drawing 2024-11-07 11.11.42.excalidraw.md",
     "未命名 1",
-    "Pasted image 20250708031619.png",
     "未命名",
     "static/黑白整齐简历模板 (5).pdf",
     "static/黑白整齐简历模板 (6).pdf",
