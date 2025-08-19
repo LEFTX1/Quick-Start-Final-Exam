@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "未命名/未命名 1.md",
+                "file": "未命名/MIDDLEWARE_GUIDE.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "未命名 1"
+              "title": "MIDDLEWARE_GUIDE"
             }
           },
           {
@@ -152,13 +152,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "未命名/temp.md",
+                "file": "未命名/MIDDLEWARE_GUIDE.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "temp 的大纲"
+              "title": "MIDDLEWARE_GUIDE 的大纲"
             }
           },
           {
@@ -172,7 +172,7 @@
             }
           }
         ],
-        "currentTab": 4
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
@@ -192,6 +192,8 @@
   },
   "active": "c0205e89828b1437",
   "lastOpenFiles": [
+    "未命名/goroutine_status_fields.md",
+    "未命名/MIDDLEWARE_GUIDE.md",
     "未命名/temp.md",
     "未命名/未命名 1.md",
     "未命名/未命名",
@@ -224,8 +226,6 @@
     "Pasted Image 20250722041715_429.png",
     "面试/GO相关.md",
     "未命名/未命名.md",
-    "面试/mysql.md",
-    "未命名/goroutine_status_fields.md",
     "Excalidraw/context/withcancel全流程.svg",
     "Pasted Image 20250716185543_700.png",
     "static/1731404777835.png",
