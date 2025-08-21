@@ -22,6 +22,18 @@
             }
           },
           {
+            "id": "a41d8897835ed16b",
+            "type": "leaf",
+            "state": {
+              "type": "release-notes",
+              "state": {
+                "currentVersion": "1.9.10"
+              },
+              "icon": "lucide-book-up",
+              "title": "版本说明 1.9.10"
+            }
+          },
+          {
             "id": "e19041508662e922",
             "type": "leaf",
             "state": {
@@ -33,7 +45,8 @@
               "title": "Drawing 2025-08-17 22.49.13.excalidraw"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -180,6 +193,7 @@
   },
   "left-ribbon": {
     "hiddenItems": {
+      "bases:创建新数据库": false,
       "switcher:打开快速切换": false,
       "graph:查看关系图谱": false,
       "canvas:新建白板": false,
@@ -190,7 +204,7 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "c0205e89828b1437",
+  "active": "a41d8897835ed16b",
   "lastOpenFiles": [
     "未命名/goroutine_status_fields.md",
     "未命名/MIDDLEWARE_GUIDE.md",
