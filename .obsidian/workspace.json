@@ -25,12 +25,14 @@
             "id": "a41d8897835ed16b",
             "type": "leaf",
             "state": {
-              "type": "release-notes",
+              "type": "markdown",
               "state": {
-                "currentVersion": "1.9.10"
+                "file": "未命名/未命名.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "lucide-book-up",
-              "title": "版本说明 1.9.10"
+              "icon": "lucide-file",
+              "title": "未命名"
             }
           },
           {
@@ -165,13 +167,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "未命名/MIDDLEWARE_GUIDE.md",
+                "file": "未命名/未命名.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "MIDDLEWARE_GUIDE 的大纲"
+              "title": "未命名 的大纲"
             }
           },
           {
@@ -206,10 +208,12 @@
   },
   "active": "a41d8897835ed16b",
   "lastOpenFiles": [
-    "未命名/goroutine_status_fields.md",
     "未命名/MIDDLEWARE_GUIDE.md",
-    "未命名/temp.md",
+    "未命名/goroutine_status_fields.md",
     "未命名/未命名 1.md",
+    "未命名/未命名.md",
+    "未命名/temp.md",
+    "面试/redis.md",
     "未命名/未命名",
     "Excalidraw/Drawing 2025-08-17 22.49.13.excalidraw.md",
     "Pasted Image 20250817225052_759.png",
@@ -224,7 +228,6 @@
     "Excalidraw/Drawing 2025-08-03 18.29.10.excalidraw.md",
     "任务释放思路.md",
     "风险控制项目",
-    "面试/redis.md",
     "面试/prompt.md",
     "面试/简历.md",
     "面试/计算机网络.md",
@@ -239,7 +242,6 @@
     "Pasted Image 20250722044448_028.png",
     "Pasted Image 20250722041715_429.png",
     "面试/GO相关.md",
-    "未命名/未命名.md",
     "Excalidraw/context/withcancel全流程.svg",
     "Pasted Image 20250716185543_700.png",
     "static/1731404777835.png",
