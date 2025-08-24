@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "未命名/未命名.md",
+                "file": "未命名/未命名 2.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "未命名"
+              "title": "未命名 2"
             }
           },
           {
@@ -167,13 +167,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "未命名/未命名.md",
+                "file": "未命名/未命名 2.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "未命名 的大纲"
+              "title": "未命名 2 的大纲"
             }
           },
           {
@@ -208,10 +208,11 @@
   },
   "active": "a41d8897835ed16b",
   "lastOpenFiles": [
-    "未命名/MIDDLEWARE_GUIDE.md",
-    "未命名/goroutine_status_fields.md",
-    "未命名/未命名 1.md",
     "未命名/未命名.md",
+    "未命名/未命名 2.md",
+    "未命名/未命名 1.md",
+    "未命名/goroutine_status_fields.md",
+    "未命名/MIDDLEWARE_GUIDE.md",
     "未命名/temp.md",
     "面试/redis.md",
     "未命名/未命名",
@@ -241,7 +242,6 @@
     "Excalidraw/context/WithDeadlineCause.md",
     "Pasted Image 20250722044448_028.png",
     "Pasted Image 20250722041715_429.png",
-    "面试/GO相关.md",
     "Excalidraw/context/withcancel全流程.svg",
     "Pasted Image 20250716185543_700.png",
     "static/1731404777835.png",
